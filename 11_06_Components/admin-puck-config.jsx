@@ -4,6 +4,9 @@ import AdminText from './components/admin-text';
 import AdminImage from './components/admin-image';
 import AdminSection from './components/admin-section';
 import AdminHero from './components/admin-hero';
+import AdminSenHong from './components/admin-senHong';
+import AdminBanChuyenMon from './components/admin-banChuyenMon';
+import AdminCauLacBo from './components/admin-cauLacBo';
 
 //Config — đăng ký 5 components với fields + defaultProps + render.
 
@@ -189,6 +192,176 @@ export const puckConfig = {
         layout: { align: 'center' }
       },
       render: (props) => <AdminHero {...props} />
+    },
+
+    SenHong: {
+      label: 'Sen Hồng',
+      fields: {
+        background: {
+          type: 'object', label: 'Nền',
+          objectFields: {
+            type: {
+              type: 'select', label: 'Loại nền',
+              options: [
+                { label: 'Màu', value: 'color' },
+                { label: 'Hình ảnh', value: 'image' },
+                { label: 'GIF', value: 'gif' }
+              ]
+            },
+            color: { type: 'text', label: 'Màu nền' },
+            imageUrl: { type: 'text', label: 'URL ảnh nền' },
+            gifUrl: { type: 'text', label: 'URL GIF nền' }
+          }
+        },
+        card: {
+          type: 'object', label: 'Thẻ nội dung',
+          objectFields: {
+            label: { type: 'text', label: 'Nhãn phụ' },
+            title: { type: 'text', label: 'Tiêu đề' },
+            description: { type: 'textarea', label: 'Mô tả' },
+            borderRadius: { type: 'text', label: 'Bo góc thẻ' },
+            textColor: { type: 'text', label: 'Màu chữ' },
+            fontSize: { type: 'text', label: 'Cỡ chữ' }
+          }
+        },
+        button: {
+          type: 'object', label: 'Nút',
+          objectFields: {
+            text: { type: 'text', label: 'Chữ trong nút' },
+            bgColor: { type: 'text', label: 'Màu nền nút' },
+            textColor: { type: 'text', label: 'Màu chữ nút' },
+            borderRadius: { type: 'text', label: 'Bo góc nút' },
+            fontSize: { type: 'text', label: 'Cỡ chữ nút' }
+          }
+        },
+        position: {
+          type: 'select', label: 'Vị trí thẻ',
+          options: [
+            { label: 'Trái', value: 'left' },
+            { label: 'Giữa', value: 'center' },
+            { label: 'Phải', value: 'right' }
+          ]
+        }
+      },
+      defaultProps: {
+        background: { type: 'color', color: '#1a6fc4' },
+        card: {
+          label: 'LAN TỎA GIÁ TRỊ ĐẤT',
+          title: 'Sen Hồng',
+          description: 'CLB Doanh nhân Đồng Tháp tại TPHCM quy tụ những người con quê hương Đất Sen Hồng.',
+          borderRadius: '16px',
+          textColor: '#ffffff',
+          fontSize: '16px'
+        },
+        button: {
+          text: 'Tham gia cộng đồng',
+          bgColor: '#2563eb',
+          textColor: '#ffffff',
+          borderRadius: '8px',
+          fontSize: '16px'
+        },
+        position: 'left'
+      },
+      render: (props) => <AdminSenHong {...props} />
+    },
+
+    BanChuyenMon: {
+      label: 'Các Ban Chuyên Môn',
+      fields: {
+        heading: {
+          type: 'object', label: 'Tiêu đề',
+          objectFields: {
+            title: { type: 'text', label: 'Tiêu đề chính' },
+            subtitle: { type: 'text', label: 'Tiêu đề phụ' }
+          }
+        },
+        cards: {
+          type: 'array', label: 'Danh sách ban',
+          arrayFields: {
+            imageUrl: { type: 'text', label: 'URL ảnh' },
+            title: { type: 'text', label: 'Tên ban' },
+            buttonText: { type: 'text', label: 'Chữ trong nút' },
+            buttonBorderRadius: { type: 'text', label: 'Bo góc nút' }
+          },
+          getItemSummary: (item) => item.title
+        },
+        cardStyle: {
+          type: 'object', label: 'Style chung thẻ',
+          objectFields: {
+            titleSize: { type: 'text', label: 'Cỡ chữ tên ban' },
+            buttonBorderColor: { type: 'text', label: 'Màu viền nút' },
+            buttonBorderRadius: { type: 'text', label: 'Bo góc nút (chung)' },
+            buttonTextColor: { type: 'text', label: 'Màu chữ nút' },
+            buttonFontSize: { type: 'text', label: 'Cỡ chữ nút' }
+          }
+        }
+      },
+      defaultProps: {
+        heading: {
+          title: 'CÁC BAN CHUYÊN MÔN',
+          subtitle: 'CLB DOANH NHÂN ĐỒNG THÁP TẠI TP. HỒ CHÍ MINH'
+        },
+        cards: [
+          { imageUrl: '', title: 'Ban Kinh tế – Đầu tư', buttonText: 'Xem hoạt động →' },
+          { imageUrl: '', title: 'Ban Văn hóa – Thể thao', buttonText: 'Xem hoạt động →' },
+          { imageUrl: '', title: 'Ban Xã hội – Cộng đồng', buttonText: 'Xem hoạt động →' },
+          { imageUrl: '', title: 'Ban Khởi nghiệp', buttonText: 'Xem hoạt động →' },
+          { imageUrl: '', title: 'Ban Giao thương quốc tế', buttonText: 'Xem hoạt động →' }
+        ],
+        cardStyle: {
+          titleSize: '16px',
+          buttonBorderColor: 'white',
+          buttonBorderRadius: '20px',
+          buttonTextColor: 'white',
+          buttonFontSize: '14px'
+        }
+      },
+      render: (props) => <AdminBanChuyenMon {...props} />
+    },
+
+    CauLacBo: {
+      label: 'Câu Lạc Bộ',
+      fields: {
+        sections: {
+          type: 'array', label: 'Danh sách khu vực',
+          arrayFields: {
+            title: { type: 'text', label: 'Tiêu đề' },
+            text: { type: 'textarea', label: 'Nội dung' },
+            imageUrl: { type: 'text', label: 'URL ảnh' },
+            members: {
+              type: 'array', label: 'Thành viên',
+              arrayFields: {
+                avatar: { type: 'text', label: 'URL ảnh đại diện' },
+                name: { type: 'text', label: 'Họ tên' },
+                clbRole: { type: 'text', label: 'Chức vụ CLB' },
+                companyRole: { type: 'text', label: 'Chức vụ doanh nghiệp' },
+                company: { type: 'text', label: 'Doanh nghiệp' }
+              },
+              getItemSummary: (item) => item.name
+            }
+          },
+          getItemSummary: (item) => item.title
+        }
+      },
+      defaultProps: {
+        sections: [
+          {
+            title: 'VỀ CÂU LẠC BỘ',
+            text: 'CLB Doanh nhân Đồng Tháp tại TP.HCM là nơi hội tụ các doanh nghiệp, nhà quản lý và cá nhân khởi nghiệp trên địa bàn tỉnh.',
+            imageUrl: '',
+            members: []
+          },
+          {
+            title: 'CƠ CẤU TỔ CHỨC',
+            text: '',
+            imageUrl: '',
+            members: [
+              { avatar: '', name: 'Trần Văn Khang', clbRole: 'Ủy viên BCH', companyRole: 'Tổng Giám đốc', company: 'Công ty CP Logistics Đồng Tháp' }
+            ]
+          }
+        ]
+      },
+      render: (props) => <AdminCauLacBo {...props} />
     }
   },
 
@@ -196,7 +369,8 @@ export const puckConfig = {
   categoryGroups: [
     { title: 'Cơ bản', components: ['Heading', 'Text', 'Image'] },
     { title: 'Layout', components: ['Section'] },
-    { title: 'Nâng cao', components: ['Hero'] }
+    { title: 'Nâng cao', components: ['Hero'] },
+    { title: 'Bài tập', components: ['SenHong', 'BanChuyenMon', 'CauLacBo'] }
   ],
 
   // Root config
