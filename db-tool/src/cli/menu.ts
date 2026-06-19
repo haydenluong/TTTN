@@ -4,7 +4,7 @@ import chalk from 'chalk';
 // prevents typos when checking the result.
 export type MenuAction = 'backup' | 'restore' | 'verify' | 'rollback' | 'history' | 'exit';
 
-// đổi màu 
+// đổi màu
 function printBanner(): void {
   console.log(chalk.cyan('\n================================'));
   console.log(chalk.cyan.bold('        Database Tool'));
@@ -16,16 +16,16 @@ export async function showMenu(): Promise<MenuAction> {
 
   const { action } = await inquirer.prompt<{ action: MenuAction }>([
     {
-      type: 'list',        // tạo input cho list 
-      name: 'action',      // key in the returned object
+      type: 'list', // tạo input cho list
+      name: 'action', // key in the returned object
       message: 'Select:',
       choices: [
-        { name: '1. Backup',   value: 'backup' },
-        { name: '2. Restore',  value: 'restore' },
-        { name: '3. Verify',   value: 'verify' },
+        { name: '1. Backup', value: 'backup' },
+        { name: '2. Restore', value: 'restore' },
+        { name: '3. Verify', value: 'verify' },
         { name: '4. Rollback', value: 'rollback' },
-        { name: '5. History',  value: 'history' },
-        { name: '6. Exit',     value: 'exit' },
+        { name: '5. History', value: 'history' },
+        { name: '6. Exit', value: 'exit' },
       ],
     },
   ]);

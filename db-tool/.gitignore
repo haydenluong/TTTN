@@ -2,6 +2,7 @@ node_modules/
 dist/
 .env
 *.log
+config/db.config.json
 
 # Runtime output folders (keep structure, ignore content)
 Logs/*

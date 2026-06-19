@@ -1,9 +1,8 @@
 {
   "username": "root",
-  "password": "123456",
-  "database": "dataBS",
+  "password": "your-password-here",
+  "database": "your-database-name",
   "host": "127.0.0.1",
   "dialect": "mysql",
   "port": 3306
 }
-
