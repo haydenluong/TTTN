@@ -1,3 +1,0 @@
-- winston is a highly flexible, production-grade logging library for JavaScript and Node.js applications
-- for mysql.dump, a > b means take the output of command a and write it into file b
-- stringifying makes "same set of tables" comparable with ===.
