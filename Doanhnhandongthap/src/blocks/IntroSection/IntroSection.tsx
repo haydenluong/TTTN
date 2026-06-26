@@ -2,7 +2,7 @@ import { getBackgroundStyle, type SectionBackground } from "../shared/background
 import { StatNumber } from "../shared/statCountUp";
 import { alignClass, type Alignment } from "../shared/alignment";
 import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
-import type { TitleDivider } from "../shared/titleDivider";
+import { dividerMarginStyle, type TitleDivider } from "../shared/titleDivider";
 
 export type IntroStat = {
   number: number;
@@ -25,6 +25,8 @@ export type IntroSectionProps = {
   titleAlign: Alignment;
   titleStyle: TitleStyle;
   divider: TitleDivider;
+  accentColor: string;
+  accentWidth: number;
 };
 
 export default function IntroSection({
@@ -42,16 +44,18 @@ export default function IntroSection({
   titleAlign,
   titleStyle,
   divider,
+  accentColor,
+  accentWidth,
 }: IntroSectionProps) {
   return (
     <section className="max-w-[1100px] mx-auto px-5 py-[60px]" style={getBackgroundStyle(background)}>
-      <div className={`mb-[50px] flex flex-col ${alignClass(titleAlign, "items")}`}>
-        <h1 className={`mb-2.5 font-bold ${alignClass(titleAlign)}`} style={getTitleStyle(titleStyle)}>
+      <div className={`mb-[50px] ${alignClass(titleAlign)}`}>
+        <h1 className="mb-2.5 font-bold" style={getTitleStyle(titleStyle)}>
           {title}
         </h1>
         <hr
           className="h-1 rounded-[20px]"
-          style={{ width: `${divider.width}px`, backgroundColor: divider.color }}
+          style={{ width: `${divider.width}px`, backgroundColor: divider.color, ...dividerMarginStyle(divider.align) }}
         />
       </div>
 
@@ -71,7 +75,10 @@ export default function IntroSection({
             </p>
           ))}
 
-          <div className="mt-5 rounded-[10px] border-l-[5px] border-[#f7941d] bg-[#f7f8fa] p-[25px] text-[#333]">
+          <div
+            className="mt-5 rounded-[10px] bg-[#f7f8fa] p-[25px] text-[#333]"
+            style={{ borderLeft: `${accentWidth}px solid ${accentColor}` }}
+          >
             <p>
               <strong>{visionLabel}</strong> {visionText}
             </p>

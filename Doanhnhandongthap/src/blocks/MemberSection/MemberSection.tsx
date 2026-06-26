@@ -2,7 +2,7 @@ import { getBackgroundStyle, type SectionBackground } from "../shared/background
 import { StatNumber } from "../shared/statCountUp";
 import { alignClass, type Alignment } from "../shared/alignment";
 import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
-import type { TitleDivider } from "../shared/titleDivider";
+import { dividerMarginStyle, type TitleDivider } from "../shared/titleDivider";
 
 export type MemberStat = {
   number: number;
@@ -43,13 +43,13 @@ export default function MemberSection({
 }: MemberSectionProps) {
   return (
     <section className="max-w-[1100px] mx-auto px-5 py-[60px]" style={getBackgroundStyle(background)}>
-      <div className={`mb-[50px] flex flex-col ${alignClass(titleAlign, "items")}`}>
-        <h1 className={`mb-2.5 font-bold ${alignClass(titleAlign)}`} style={getTitleStyle(titleStyle)}>
+      <div className={`mb-[50px] ${alignClass(titleAlign)}`}>
+        <h1 className="mb-2.5 font-bold" style={getTitleStyle(titleStyle)}>
           {title}
         </h1>
         <div
           className="h-1 rounded-[30px]"
-          style={{ width: `${divider.width}px`, backgroundColor: divider.color }}
+          style={{ width: `${divider.width}px`, backgroundColor: divider.color, ...dividerMarginStyle(divider.align) }}
         />
       </div>
 

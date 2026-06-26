@@ -818,6 +818,8 @@ export const puckConfig: Config<Props, RootProps> = {
         visionText: { type: "textarea", contentEditable: true, label: "Nội dung tầm nhìn" },
         missionLabel: { type: "text", contentEditable: true, label: "Nhãn sứ mệnh" },
         missionText: { type: "textarea", contentEditable: true, label: "Nội dung sứ mệnh" },
+        accentColor: { type: "text", label: "Màu vạch dọc khung tầm nhìn/sứ mệnh" },
+        accentWidth: { type: "number", label: "Độ dày vạch dọc (px)" },
         stats: {
           type: "array",
           label: "Số liệu",
@@ -834,7 +836,9 @@ export const puckConfig: Config<Props, RootProps> = {
       },
       defaultProps: {
         title: "GIỚI THIỆU DOANH NHÂN ĐỒNG THÁP",
-        divider: { width: 90, color: "#f7941d" },
+        divider: { width: 90, color: "#f7941d", align: "center" },
+        accentColor: "#f7941d",
+        accentWidth: 5,
         imageUrl: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a",
         imageAlt: "Doanh nhân Đồng Tháp",
         contentTitle: "Kết nối – Đồng hành – Phát triển",
@@ -896,7 +900,7 @@ export const puckConfig: Config<Props, RootProps> = {
       },
       defaultProps: {
         title: "HỘI VIÊN",
-        divider: { width: 90, color: "#F7931E" },
+        divider: { width: 90, color: "#F7931E", align: "center" },
         checkmarkColor: "#F7931E",
         imageUrl: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
         imageAlt: "Hội viên",
