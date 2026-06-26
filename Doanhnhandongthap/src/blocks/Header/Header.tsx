@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export type HeaderLogoLine = {
   text: string;
-  fontSize: string;
+  fontSize: number;
   color: string;
   align: "left" | "center" | "right";
 };
@@ -25,11 +25,11 @@ export type HeaderStyles = {
   transparentOnHome: boolean;
   nonHomeBgColor: string;
   scrolledBgColor: string;
-  blurAmount: string;
-  headerHeight: string;
+  blurAmount: number;
+  headerHeight: number;
   textColor: string;
   hoverColor: string;
-  menuFontSize: string;
+  menuFontSize: number;
   menuFontWeight: string;
   gap: number;
   scrolledBorderBottom: string;
@@ -57,10 +57,10 @@ export default function Header({ logo, menu, styles, isHome }: HeaderProps) {
   const transparentNow = styles.transparentOnHome && isHome && !scrolled;
 
   const headerStyle = {
-    height: styles.headerHeight,
+    height: `${styles.headerHeight}px`,
     background: transparentNow ? "transparent" : scrolled ? styles.scrolledBgColor : styles.nonHomeBgColor,
-    backdropFilter: scrolled ? `blur(${styles.blurAmount})` : "blur(0px)",
-    WebkitBackdropFilter: scrolled ? `blur(${styles.blurAmount})` : "blur(0px)",
+    backdropFilter: scrolled ? `blur(${styles.blurAmount}px)` : "blur(0px)",
+    WebkitBackdropFilter: scrolled ? `blur(${styles.blurAmount}px)` : "blur(0px)",
     borderBottom: scrolled ? styles.scrolledBorderBottom : "1px solid transparent",
     boxShadow: scrolled ? styles.scrolledShadow : "none",
     transition: "background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease",
@@ -129,7 +129,7 @@ export default function Header({ logo, menu, styles, isHome }: HeaderProps) {
               <span
                 key={i}
                 className="font-bold block w-full"
-                style={{ fontSize: line.fontSize, color: line.color, textAlign: line.align }}
+                style={{ fontSize: `${line.fontSize}px`, color: line.color, textAlign: line.align }}
               >
                 {line.text}
               </span>
@@ -143,7 +143,7 @@ export default function Header({ logo, menu, styles, isHome }: HeaderProps) {
               key={item.id}
               href={item.url}
               className="transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap"
-              style={{ color: styles.textColor, fontSize: styles.menuFontSize, fontWeight: styles.menuFontWeight }}
+              style={{ color: styles.textColor, fontSize: `${styles.menuFontSize}px`, fontWeight: styles.menuFontWeight }}
               onMouseEnter={(e) => (e.currentTarget.style.color = styles.hoverColor)}
               onMouseLeave={(e) => (e.currentTarget.style.color = styles.textColor)}
             >

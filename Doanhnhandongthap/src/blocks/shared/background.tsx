@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { fieldMiniLabelStyle, fieldSelectStyle, LabeledNumberInput, LabeledTextInput } from "./fieldStyles";
+import { fieldMiniLabelStyle, fieldSelectStyle, LabeledSliderInput, LabeledTextInput } from "./fieldStyles";
 import { ImageUrlInput } from "./imageUrl";
 
 export type SectionBackground = {
@@ -134,18 +134,18 @@ export const backgroundField = {
 
         {value.type === "gradient-image" && (
           <ImageUrlInput
-            label="Ảnh phủ lên gradient"
+            label="URL ảnh phủ lên gradient"
             value={value.overlayUrl ?? ""}
             onChange={(v) => set("overlayUrl", v)}
           />
         )}
 
         {value.type === "image" && (
-          <ImageUrlInput label="Ảnh nền" value={value.imageUrl ?? ""} onChange={(v) => set("imageUrl", v)} />
+          <ImageUrlInput label="URL ảnh nền" value={value.imageUrl ?? ""} onChange={(v) => set("imageUrl", v)} />
         )}
 
         {value.type === "gif" && (
-          <ImageUrlInput label="GIF nền" value={value.gifUrl ?? ""} onChange={(v) => set("gifUrl", v)} />
+          <ImageUrlInput label="URL GIF nền" value={value.gifUrl ?? ""} onChange={(v) => set("gifUrl", v)} />
         )}
 
         {isGradient && (
@@ -164,8 +164,8 @@ export const backgroundField = {
           </>
         )}
 
-        <LabeledNumberInput
-          label="Độ mờ (0 - 1)"
+        <LabeledSliderInput
+          label="Độ mờ"
           value={value.opacity ?? 1}
           onChange={(v) => set("opacity", v)}
         />

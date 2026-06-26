@@ -19,6 +19,7 @@ import { cornerRadiusField } from "./blocks/shared/cornerRadius";
 import { backgroundField } from "./blocks/shared/background";
 import { titleStyleField } from "./blocks/shared/titleStyle";
 import { imageUrlField } from "./blocks/shared/imageUrl";
+import { titleDividerField } from "./blocks/shared/titleDivider";
 
 // Field shared tái sử dụng cho mọi section, đừng hardcode className cho các thứ sau:
 // background (màu/gradient/ảnh/gif), alignment (căn chỉnh), buttonStyle (nút), cardStyle (thẻ), spacing (padding).
@@ -33,7 +34,7 @@ const headerField = {
       type: "object" as const,
       label: "Logo",
       objectFields: {
-        imageUrl: imageUrlField,
+        imageUrl: imageUrlField("URL ảnh logo"),
         imageAlt: { type: "text" as const, label: "Alt text" },
         link: { type: "text" as const, label: "Đường dẫn khi click logo" },
         lineGap: { type: "number" as const, label: "Khoảng cách 2 dòng chữ (px)" },
@@ -42,7 +43,7 @@ const headerField = {
           label: "Các dòng chữ cạnh logo",
           arrayFields: {
             text: { type: "text" as const, contentEditable: true, label: "Nội dung" },
-            fontSize: { type: "text" as const, label: "Cỡ chữ" },
+            fontSize: { type: "number" as const, label: "Cỡ chữ (px)" },
             color: { type: "text" as const, label: "Màu chữ" },
             align: {
               type: "select" as const,
@@ -79,11 +80,11 @@ const headerField = {
         },
         nonHomeBgColor: { type: "text" as const, label: "Màu nền (trang không phải trang chủ)" },
         scrolledBgColor: { type: "text" as const, label: "Màu nền khi đã cuộn" },
-        blurAmount: { type: "text" as const, label: "Độ mờ kính khi đã cuộn (vd: 18px)" },
-        headerHeight: { type: "text" as const, label: "Chiều cao header" },
+        blurAmount: { type: "number" as const, label: "Độ mờ kính khi đã cuộn (px)" },
+        headerHeight: { type: "number" as const, label: "Chiều cao header (px)" },
         textColor: { type: "text" as const, label: "Màu chữ menu" },
         hoverColor: { type: "text" as const, label: "Màu chữ khi hover" },
-        menuFontSize: { type: "text" as const, label: "Cỡ chữ menu" },
+        menuFontSize: { type: "number" as const, label: "Cỡ chữ menu (px)" },
         menuFontWeight: { type: "text" as const, label: "Độ đậm chữ menu" },
         gap: { type: "number" as const, label: "Khoảng cách giữa các mục menu (px)" },
         scrolledBorderBottom: { type: "text" as const, label: "Viền dưới khi đã cuộn" },
@@ -97,7 +98,7 @@ const footerField = {
   type: "object" as const,
   label: "Footer",
   objectFields: {
-    logoUrl: imageUrlField,
+    logoUrl: imageUrlField("URL ảnh logo"),
     logoAlt: { type: "text" as const, label: "Alt text" },
     brandLines: {
       type: "array" as const,
@@ -159,7 +160,7 @@ const footerField = {
       getItemSummary: (item: { icon: string }) => item.icon,
     },
     background: { type: "text" as const, label: "Nền footer (css background)" },
-    decorativeImageUrl: imageUrlField,
+    decorativeImageUrl: imageUrlField("URL ảnh hoa văn trang trí (tuỳ chọn)"),
   },
 };
 
@@ -189,9 +190,12 @@ export const puckConfig: Config<Props, RootProps> = {
       fields: {
         
         subtitle: { type: "text", contentEditable: true, label: "Nhãn phụ" },
+        subtitleStyle: { ...titleStyleField, label: "Kiểu nhãn phụ" },
         title: { type: "text", contentEditable: true,
            label: "Tiêu đề" },
         description: { type: "textarea", contentEditable: true, label: "Mô tả" },
+        descriptionFontSize: { type: "number", label: "Kích thước chữ mô tả (px)" },
+        descriptionTextColor: { type: "text", label: "Màu chữ mô tả" },
         ctaTargetId: { type: "text", label: "ID khu vực cuộn tới" },
         background: backgroundField,
         card: {
@@ -208,17 +212,18 @@ export const puckConfig: Config<Props, RootProps> = {
               ],
             },
             radius: cornerRadiusField,
-            textColor: { type: "text", label: "Màu chữ mô tả" },
-            fontSize: { type: "text", label: "Kích thước chữ mô tả" },
           },
         },
         button: buttonStyleField,
       },
       defaultProps: {
         subtitle: "Lan tỏa giá trị Đất",
+        subtitleStyle: { fontSize: 15, textColor: "rgba(255,255,255,0.85)" },
         title: "Sen Hồng",
         description:
           "CLB Doanh nhân Đồng Tháp tại TPHCM quy tụ những người con quê hương Đất Sen Hồng. Với tinh thần Hợp tác - Đổi mới - Phát triển, CLB đóng vai trò là cầu nối chiến lược, hợp tác, thúc đẩy giá trị kinh doanh và lan toả sẻ chia nghĩa tình quê hương.",
+        descriptionFontSize: 15,
+        descriptionTextColor: "rgba(255,255,255,0.8)",
         ctaTargetId: "lien-he",
         background: {
           type: "gradient-image",
@@ -232,15 +237,13 @@ export const puckConfig: Config<Props, RootProps> = {
         card: {
           position: "left",
           radius: { mode: "each", all: 0, topLeft: 16, topRight: 100, bottomRight: 16, bottomLeft: 100 },
-          textColor: "rgba(255,255,255,0.8)",
-          fontSize: "15px",
         },
         button: {
           label: "Tham gia cộng đồng",
           bgColor: "#0072ff",
           textColor: "#ffffff",
           borderRadius: { mode: "each", all: 0, topLeft: 0, topRight: 30, bottomRight: 0, bottomLeft: 30 },
-          fontSize: "15px",
+          fontSize: 15,
         },
       },
       render: (props) => <Hero {...props} />,
@@ -256,7 +259,7 @@ export const puckConfig: Config<Props, RootProps> = {
           type: "array",
           label: "Danh sách logo",
           arrayFields: {
-            imageUrl: imageUrlField,
+            imageUrl: imageUrlField("URL ảnh"),
             alt: { type: "text", label: "Alt text" },
             icon: { type: "textarea", label: "SVG icon (nếu không có URL)" },
             label: { type: "text", contentEditable: true, label: "Chữ thay ảnh (nếu không có URL)" },
@@ -284,13 +287,11 @@ export const puckConfig: Config<Props, RootProps> = {
           { imageUrl: "https://webdemo.hexagon.xyz/medias/Logo Khoi D.png", alt: "Logo Khối D" },
           { imageUrl: "https://webdemo.hexagon.xyz/medias/Happy Food.png", alt: "Logo Happy Food" },
           {
-            imageUrl: "",
             alt: "Logo Ecobook",
             label: "ECOBOOK",
             icon: `<svg viewBox="0 0 80 40" width="80" height="32"><path d="M 15 25 C 25 15, 38 15, 40 20 C 42 15, 55 15, 65 25 C 55 18, 42 18, 40 23 C 38 18, 25 18, 15 25 Z" fill="#22c55e" /><path d="M 18 18 C 26 10, 38 10, 40 15 C 42 10, 54 10, 62 18 C 54 12, 42 12, 40 17 C 38 12, 26 12, 18 18 Z" fill="#eab308" /><path d="M 22 11 C 28 5, 38 5, 40 10 C 42 5, 52 5, 58 11 C 52 7, 42 7, 40 12 C 38 7, 28 7, 22 11 Z" fill="#22c55e" /></svg>`,
           },
           {
-            imageUrl: "",
             alt: "Logo Comoon",
             label: "COMOON",
             icon: `<svg viewBox="0 0 80 40" width="80" height="32"><path d="M 20 12 C 30 5, 50 5, 60 12 C 55 18, 45 18, 40 18 C 35 18, 25 18, 20 12 Z" fill="#15803d" /><path d="M 22 17 C 30 11, 50 11, 58 17 C 53 23, 47 23, 40 23 C 33 23, 27 23, 22 17 Z" fill="#eab308" /><path d="M 25 22 C 32 17, 48 17, 55 22 C 50 30, 45 32, 40 32 C 35 32, 30 30, 25 22 Z" fill="#15803d" /></svg>`,
@@ -310,9 +311,10 @@ export const puckConfig: Config<Props, RootProps> = {
           label: "Thẻ về CLB",
           objectFields: {
             title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+            titleStyle: titleStyleField,
             text: { type: "textarea", contentEditable: true, label: "Nội dung" },
-            cornerImageUrl: imageUrlField,
-            veclbImageUrl: imageUrlField,
+            cornerImageUrl: imageUrlField("URL ảnh góc"),
+            veclbImageUrl: imageUrlField("URL ảnh vẽ nền"),
             radius: cornerRadiusField,
           },
         },
@@ -321,11 +323,12 @@ export const puckConfig: Config<Props, RootProps> = {
           label: "Thẻ cơ cấu tổ chức",
           objectFields: {
             title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+            titleStyle: titleStyleField,
             profiles: {
               type: "array",
               label: "Danh sách thành viên",
               arrayFields: {
-                avatarUrl: imageUrlField,
+                avatarUrl: imageUrlField("URL ảnh đại diện"),
                 name: { type: "text", contentEditable: true, label: "Họ tên" },
                 clbRole: { type: "text", contentEditable: true, label: "Chức vụ CLB" },
                 companyRole: { type: "text", contentEditable: true, label: "Chức vụ Doanh nghiệp" },
@@ -356,7 +359,7 @@ export const puckConfig: Config<Props, RootProps> = {
           },
         },
         background: backgroundField,
-        decorativeImageUrl: imageUrlField,
+        decorativeImageUrl: imageUrlField("URL ảnh hoa văn nền"),
         spacing: spacingField,
       },
       defaultProps: {
@@ -376,6 +379,7 @@ export const puckConfig: Config<Props, RootProps> = {
         },
         leftCard: {
           title: "VỀ CÂU LẠC BỘ",
+          titleStyle: { fontSize: 24, textColor: "#0B5077" },
           text: "CLB Doanh nhân Đồng Tháp tại TP.HCM là nơi hội tụ các doanh nghiệp, nhà quản lý và cá nhân khởi nghiệp trên địa bàn tỉnh. Với tinh thần kết nối – đồng hành – sẻ chia, CLB đóng vai trò thúc đẩy giá trị kinh doanh trong bối cảnh hội nhập và chuyển đổi số.",
           cornerImageUrl:
             "https://webdemo.hexagon.xyz/medias/business-man-holding-smart-device-pointing-index-finger-screen-with-dot-connection-digital-illustration 1.png",
@@ -384,6 +388,7 @@ export const puckConfig: Config<Props, RootProps> = {
         },
         rightCard: {
           title: "CƠ CẤU TỔ CHỨC",
+          titleStyle: { fontSize: 24, textColor: "#0B5077" },
           fieldLabels: {
             name: "Họ tên:",
             clbRole: "Chức vụ CLB:",
@@ -465,20 +470,21 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Các Ban Chuyên Môn",
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
-        titleAlign: alignmentField,
         titleStyle: titleStyleField,
         subtitle: { type: "text", contentEditable: true, label: "Tiêu đề phụ" },
+        subtitleStyle: titleStyleField,
         teams: {
           type: "array",
           label: "Danh sách ban",
           arrayFields: {
-            iconUrl: imageUrlField,
+            iconUrl: imageUrlField("URL icon"),
             alt: { type: "text", label: "Alt text" },
             title: { type: "text", contentEditable: true, label: "Tên ban" },
           },
           getItemSummary: (item) => item.title,
         },
         background: backgroundField,
+        titleAlign: alignmentField,
         cardStyle: cardStyleField,
         button: buttonStyleField,
         spacing: spacingField,
@@ -486,6 +492,7 @@ export const puckConfig: Config<Props, RootProps> = {
       defaultProps: {
         title: "CÁC BAN CHUYÊN MÔN",
         subtitle: "CLB DOANH NHÂN ĐỒNG THÁP TẠI TP. HỒ CHÍ MINH",
+        subtitleStyle: { fontSize: 24, textColor: "#1158a7" },
         background: {
           type: "gradient-image",
           gradientFrom: "#f0e0ff",
@@ -499,14 +506,14 @@ export const puckConfig: Config<Props, RootProps> = {
         cardStyle: {
           borderRadius: { mode: "each", all: 0, topLeft: 80, topRight: 0, bottomRight: 80, bottomLeft: 0 },
           textColor: "#ffffff",
-          fontSize: "19px",
+          fontSize: 19,
         },
         button: {
           label: "Xem hoạt động",
           bgColor: "rgba(255,255,255,0.15)",
           textColor: "#ffffff",
           borderRadius: { mode: "all", all: 30, topLeft: 30, topRight: 30, bottomRight: 30, bottomLeft: 30 },
-          fontSize: "13px",
+          fontSize: 13,
         },
         teams: [
           {
@@ -543,9 +550,8 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Hành Trình & Số Liệu",
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
-        titleAlign: alignmentField,
         titleStyle: titleStyleField,
-        bgLoopUrl: imageUrlField,
+        bgLoopUrl: imageUrlField("URL ảnh hoa văn nền"),
         stats: {
           type: "array",
           label: "Danh sách số liệu",
@@ -557,6 +563,7 @@ export const puckConfig: Config<Props, RootProps> = {
           getItemSummary: (item) => `${item.number}${item.suffix ?? "+"}`,
         },
         background: backgroundField,
+        titleAlign: alignmentField,
         spacing: spacingField,
       },
       defaultProps: {
@@ -586,14 +593,13 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Tin Tức & Sự Kiện",
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
-        titleAlign: alignmentField,
         titleStyle: titleStyleField,
         viewMoreLabel: { type: "text", contentEditable: true, label: "Chữ xem thêm" },
         cards: {
           type: "array",
           label: "Danh sách bài viết",
           arrayFields: {
-            imageUrl: imageUrlField,
+            imageUrl: imageUrlField("URL ảnh"),
             alt: { type: "text", label: "Alt text" },
             badge: { type: "text", contentEditable: true, label: "Nhãn (vd: Mới nhất)" },
             date: { type: "text", contentEditable: true, label: "Ngày" },
@@ -605,6 +611,7 @@ export const puckConfig: Config<Props, RootProps> = {
           getItemSummary: (item) => item.title,
         },
         background: backgroundField,
+        titleAlign: alignmentField,
         cardStyle: cardStyleField,
         spacing: spacingField,
       },
@@ -624,7 +631,7 @@ export const puckConfig: Config<Props, RootProps> = {
         cardStyle: {
           borderRadius: { mode: "all", all: 20, topLeft: 20, topRight: 20, bottomRight: 20, bottomLeft: 20 },
           textColor: "#0B5077",
-          fontSize: "17px",
+          fontSize: 17,
         },
         cards: [
           {
@@ -683,7 +690,6 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Giá Trị Cộng Đồng",
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
-        titleAlign: alignmentField,
         titleStyle: titleStyleField,
         viewMoreLabel: { type: "text", contentEditable: true, label: "Chữ xem thêm" },
         viewMoreHref: { type: "text", label: "Đường dẫn xem thêm" },
@@ -691,7 +697,7 @@ export const puckConfig: Config<Props, RootProps> = {
           type: "array",
           label: "Danh sách giá trị",
           arrayFields: {
-            iconUrl: imageUrlField,
+            iconUrl: imageUrlField("URL icon"),
             alt: { type: "text", label: "Alt text" },
             title: { type: "text", contentEditable: true, label: "Tiêu đề" },
             desc: { type: "textarea", contentEditable: true, label: "Mô tả" },
@@ -699,6 +705,7 @@ export const puckConfig: Config<Props, RootProps> = {
           getItemSummary: (item) => item.title,
         },
         background: backgroundField,
+        titleAlign: alignmentField,
         cardStyle: cardStyleField,
       },
       defaultProps: {
@@ -723,7 +730,7 @@ export const puckConfig: Config<Props, RootProps> = {
         cardStyle: {
           borderRadius: { mode: "each", all: 0, topLeft: 70, topRight: 15, bottomRight: 70, bottomLeft: 15 },
           textColor: "#0b4c8c",
-          fontSize: "15px",
+          fontSize: 15,
         },
         cards: [
           {
@@ -753,7 +760,6 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Liên Hệ & Hợp Tác",
       fields: {
         title: { type: "textarea", contentEditable: true, label: "Tiêu đề" },
-        titleAlign: alignmentField,
         titleStyle: titleStyleField,
         pills: {
           type: "array",
@@ -761,16 +767,19 @@ export const puckConfig: Config<Props, RootProps> = {
           arrayFields: {
             icon: { type: "text", contentEditable: true, label: "Icon (emoji)" },
             label: { type: "text", contentEditable: true, label: "Nội dung" },
-            href: { type: "text", label: "Đường dẫn (mailto:/tel:)" },
+            // Ẩn khỏi sidebar — href cố định trong defaultProps (mailto:/tel:), không cho sửa tay
+            // để tránh người dùng gõ sai định dạng làm hỏng link liên hệ.
+            href: { type: "text", label: "Đường dẫn (mailto:/tel:)", visible: false },
           },
           getItemSummary: (item) => item.label,
         },
         registerLabel: { type: "text", contentEditable: true, label: "Chữ nút đăng ký" },
         background: backgroundField,
+        titleAlign: alignmentField,
       },
       defaultProps: {
         title:
-          "QUAN TÂM VÀ HỢP TÁC<br/>VỚI CÁC CHƯƠNG TRÌNH HOẠT ĐỘNG<br/>CỦA CLB DOANH NHÂN ĐỒNG THÁP TẠI TP.HCM",
+          "QUAN TÂM VÀ HỢP TÁC VỚI CÁC CHƯƠNG TRÌNH HOẠT ĐỘNG CỦA CLB DOANH NHÂN ĐỒNG THÁP TẠI TP.HCM",
         titleAlign: "center",
         titleStyle: { fontSize: 24, textColor: "#0B5077" },
         pills: [
@@ -796,9 +805,8 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Giới Thiệu Tổng Quan",
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
-        titleAlign: alignmentField,
         titleStyle: titleStyleField,
-        imageUrl: imageUrlField,
+        imageUrl: imageUrlField("URL ảnh"),
         imageAlt: { type: "text", label: "Alt text" },
         contentTitle: { type: "text", contentEditable: true, label: "Tiêu đề nội dung" },
         paragraphs: {
@@ -821,9 +829,12 @@ export const puckConfig: Config<Props, RootProps> = {
           getItemSummary: (item) => `${item.number}${item.suffix ?? "+"}`,
         },
         background: backgroundField,
+        titleAlign: alignmentField,
+        divider: titleDividerField,
       },
       defaultProps: {
         title: "GIỚI THIỆU DOANH NHÂN ĐỒNG THÁP",
+        divider: { width: 90, color: "#f7941d" },
         imageUrl: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a",
         imageAlt: "Doanh nhân Đồng Tháp",
         contentTitle: "Kết nối – Đồng hành – Phát triển",
@@ -853,9 +864,8 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Thông Tin Hội Viên",
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
-        titleAlign: alignmentField,
         titleStyle: titleStyleField,
-        imageUrl: imageUrlField,
+        imageUrl: imageUrlField("URL ảnh"),
         imageAlt: { type: "text", label: "Alt text" },
         contentTitle: { type: "text", contentEditable: true, label: "Tiêu đề nội dung" },
         paragraphs: {
@@ -880,9 +890,14 @@ export const puckConfig: Config<Props, RootProps> = {
           getItemSummary: (item) => `${item.number}${item.suffix ?? "+"}`,
         },
         background: backgroundField,
+        titleAlign: alignmentField,
+        divider: titleDividerField,
+        checkmarkColor: { type: "text", label: "Màu dấu tích ✓" },
       },
       defaultProps: {
         title: "HỘI VIÊN",
+        divider: { width: 90, color: "#F7931E" },
+        checkmarkColor: "#F7931E",
         imageUrl: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
         imageAlt: "Hội viên",
         contentTitle: "Cộng đồng doanh nhân cùng phát triển",
@@ -955,8 +970,8 @@ export const puckConfig: Config<Props, RootProps> = {
           link: "/",
           lineGap: 8,
           lines: [
-            { text: "CÂU LẠC BỘ DOANH NHÂN ĐỒNG THÁP ", fontSize: "13px", color: "#ffffff", align: "left" },
-            { text: "TẠI TP.HỒ CHÍ MINH", fontSize: "13px", color: "#ffffff", align: "center" },
+            { text: "CÂU LẠC BỘ DOANH NHÂN ĐỒNG THÁP ", fontSize: 13, color: "#ffffff", align: "left" },
+            { text: "TẠI TP.HỒ CHÍ MINH", fontSize: 13, color: "#ffffff", align: "center" },
           ],
         },
         menu: [
@@ -971,11 +986,11 @@ export const puckConfig: Config<Props, RootProps> = {
           transparentOnHome: true,
           nonHomeBgColor: "#2465B3",
           scrolledBgColor: "#002F96",
-          blurAmount: "18px",
-          headerHeight: "80px",
+          blurAmount: 18,
+          headerHeight: 80,
           textColor: "#e5e7eb",
           hoverColor: "#E91E8C",
-          menuFontSize: "15px",
+          menuFontSize: 15,
           menuFontWeight: "500",
           gap: 32,
           scrolledBorderBottom: "1px solid rgba(255, 255, 255, 0.1)",
@@ -1040,7 +1055,7 @@ export const puckConfig: Config<Props, RootProps> = {
           <Header {...header} isHome={isHome} />
           {/* Header fixed nên không chiếm chỗ trong layout. Trang chủ: Hero cố ý nằm dưới header trong suốt nên không bù margin.
               Các trang khác: header có nền đặc ngay từ đầu nên cần margin-top bằng chiều cao header để không bị che. */}
-          <main style={{ marginTop: isHome ? 0 : header.styles.headerHeight }}>{children}</main>
+          <main style={{ marginTop: isHome ? 0 : `${header.styles.headerHeight}px` }}>{children}</main>
           <Footer
             {...footer}
             brandLines={(footer.brandLines as unknown as { value: string }[]).map((l) => l.value)}

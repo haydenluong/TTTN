@@ -22,6 +22,15 @@ const justifyClass: Record<Alignment, string> = {
   right: "justify-end",
 };
 
-export function alignClass(align: Alignment, kind: "text" | "justify" = "text"): string {
+// items-{start,center,end} — dùng cho wrapper flex-col khi cần các con (vd hr/div chiều
+// rộng cố định) bám theo lề trái/giữa/phải, vì text-align không tác dụng lên block có width cố định.
+const itemsClass: Record<Alignment, string> = {
+  left: "items-start",
+  center: "items-center",
+  right: "items-end",
+};
+
+export function alignClass(align: Alignment, kind: "text" | "justify" | "items" = "text"): string {
+  if (kind === "items") return itemsClass[align];
   return kind === "text" ? textAlignClass[align] : justifyClass[align];
 }

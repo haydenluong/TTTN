@@ -2,6 +2,7 @@ import { getBackgroundStyle, type SectionBackground } from "../shared/background
 import { StatNumber } from "../shared/statCountUp";
 import { alignClass, type Alignment } from "../shared/alignment";
 import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
+import type { TitleDivider } from "../shared/titleDivider";
 
 export type MemberStat = {
   number: number;
@@ -21,6 +22,8 @@ export type MemberSectionProps = {
   background: SectionBackground;
   titleAlign: Alignment;
   titleStyle: TitleStyle;
+  divider: TitleDivider;
+  checkmarkColor: string;
 };
 
 export default function MemberSection({
@@ -35,14 +38,19 @@ export default function MemberSection({
   background,
   titleAlign,
   titleStyle,
+  divider,
+  checkmarkColor,
 }: MemberSectionProps) {
   return (
     <section className="max-w-[1100px] mx-auto px-5 py-[60px]" style={getBackgroundStyle(background)}>
-      <div className={`mb-[50px] ${alignClass(titleAlign)}`}>
-        <h1 className="mb-2.5 font-bold" style={getTitleStyle(titleStyle)}>
+      <div className={`mb-[50px] flex flex-col ${alignClass(titleAlign, "items")}`}>
+        <h1 className={`mb-2.5 font-bold ${alignClass(titleAlign)}`} style={getTitleStyle(titleStyle)}>
           {title}
         </h1>
-        <div className="mx-auto h-1 w-[90px] rounded-[30px] bg-[#F7931E]" />
+        <div
+          className="h-1 rounded-[30px]"
+          style={{ width: `${divider.width}px`, backgroundColor: divider.color }}
+        />
       </div>
 
       <div className="grid grid-cols-1 items-center gap-[50px] md:grid-cols-2">
@@ -69,7 +77,7 @@ export default function MemberSection({
                   key={i}
                   className={`py-2.5 ${i < benefits.length - 1 ? "border-b border-[#eee]" : ""}`}
                 >
-                  <span className="mr-2.5 font-bold text-[#F7931E]">✓</span>
+                  <span className="mr-2.5 font-bold" style={{ color: checkmarkColor }}>✓</span>
                   {benefit}
                 </li>
               ))}

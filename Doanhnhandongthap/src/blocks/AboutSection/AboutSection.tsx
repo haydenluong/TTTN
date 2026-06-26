@@ -3,6 +3,7 @@ import { getBackgroundStyle, type SectionBackground } from "../shared/background
 import { type ButtonStyle } from "../shared/buttonStyle";
 import { paddingYStyle, type SectionSpacing } from "../shared/spacing";
 import { type CornerRadius, cornerRadiusToCss } from "../shared/cornerRadius";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type AboutProfile = {
   avatarUrl: string;
@@ -15,6 +16,7 @@ export type AboutProfile = {
 export type AboutSectionProps = {
   leftCard: {
     title: string;
+    titleStyle: TitleStyle;
     text: string;
     cornerImageUrl: string;
     veclbImageUrl: string;
@@ -22,6 +24,7 @@ export type AboutSectionProps = {
   };
   rightCard: {
     title: string;
+    titleStyle: TitleStyle;
     profiles: AboutProfile[];
     fieldLabels: {
       name: string;
@@ -91,7 +94,10 @@ export default function AboutSection({
           className="group relative flex min-h-[480px] flex-col overflow-hidden border-[1.5px] border-[rgba(0,198,255,0.25)] bg-white py-[50px] px-10 shadow-[0px_10px_30px_rgba(0,114,255,0.08)]"
           style={radiusStyle(leftCard.radius)}
         >
-          <h2 className="relative z-[3] mb-6 text-2xl font-extrabold tracking-[0.03em] text-[#0B5077]">
+          <h2
+            className="relative z-[3] mb-6 font-extrabold tracking-[0.03em]"
+            style={getTitleStyle(leftCard.titleStyle)}
+          >
             {leftCard.title}
           </h2>
           <p className="relative z-[3] max-w-[85%] text-[15px] leading-[1.8] text-[#1e293b]">
@@ -113,7 +119,10 @@ export default function AboutSection({
           className="relative flex min-h-[480px] flex-col overflow-hidden border-[1.5px] border-[rgba(0,198,255,0.25)] bg-white py-[50px] px-10 shadow-[0px_10px_30px_rgba(0,114,255,0.08)]"
           style={radiusStyle(rightCard.radius)}
         >
-          <h2 className="relative z-[3] mb-6 text-2xl font-extrabold tracking-[0.03em] text-[#0B5077]">
+          <h2
+            className="relative z-[3] mb-6 font-extrabold tracking-[0.03em]"
+            style={getTitleStyle(rightCard.titleStyle)}
+          >
             {rightCard.title}
           </h2>
 

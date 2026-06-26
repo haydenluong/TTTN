@@ -4,7 +4,7 @@ import { type CornerRadius, cornerRadiusField, cornerRadiusToCss } from "./corne
 export type CardStyle = {
   borderRadius: CornerRadius;
   textColor: string;
-  fontSize: string;
+  fontSize: number;
 };
 
 export const cardStyleField = {
@@ -13,7 +13,7 @@ export const cardStyleField = {
   objectFields: {
     borderRadius: cornerRadiusField,
     textColor: { type: "text" as const, label: "Màu chữ" },
-    fontSize: { type: "text" as const, label: "Cỡ chữ" },
+    fontSize: { type: "number" as const, label: "Cỡ chữ (px)" },
   },
 };
 
@@ -21,6 +21,6 @@ export function getCardStyle(card: CardStyle): CSSProperties {
   return {
     borderRadius: cornerRadiusToCss(card.borderRadius),
     color: card.textColor,
-    fontSize: card.fontSize,
+    fontSize: `${card.fontSize}px`,
   };
 }

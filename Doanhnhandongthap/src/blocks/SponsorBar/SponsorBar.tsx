@@ -4,7 +4,7 @@ import { paddingYStyle, type SectionSpacing } from "../shared/spacing";
 import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type SponsorBarLogo = {
-  imageUrl: string;
+  imageUrl?: string;
   alt: string;
   icon?: string;
   label?: string;

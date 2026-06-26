@@ -12,13 +12,16 @@ function readFileAsDataUrl(file: File): Promise<string> {
   });
 }
 
+// URL input + nút "tải lên từ máy" + xem trước ảnh — dùng được cả như nội dung của
+// 1 Puck field (qua imageUrlField) và lồng trực tiếp bên trong field tự chế khác
+// (background.tsx dùng lại y nguyên component này cho overlayUrl/imageUrl/gifUrl/baseImageUrl).
 export function ImageUrlInput({
-  label,
+  label = "URL ảnh",
   value,
   onChange,
 }: {
-  label: string;
-  value: string;
+  label?: string;
+  value: string | undefined;
   onChange: (v: string) => void;
 }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -80,10 +83,13 @@ export function ImageUrlInput({
   );
 }
 
-export const imageUrlField = {
-  type: "custom" as const,
-  label: "Ảnh",
-  render: ({ value, onChange }: { value: string; onChange: (v: string) => void }) => (
-    <ImageUrlInput label="URL ảnh" value={value} onChange={onChange} />
-  ),
-};
+// Factory vì mỗi field cần label riêng trên sidebar (vd "URL ảnh logo", "URL icon"...).
+export function imageUrlField(label = "URL ảnh") {
+  return {
+    type: "custom" as const,
+    label,
+    render: ({ value, onChange }: { value: string | undefined; onChange: (v: string) => void }) => (
+      <ImageUrlInput value={value} onChange={onChange} />
+    ),
+  };
+}

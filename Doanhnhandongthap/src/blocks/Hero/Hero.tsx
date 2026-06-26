@@ -2,18 +2,20 @@ import type { ReactNode } from "react";
 import { getBackgroundStyle, type SectionBackground } from "../shared/background";
 import { getButtonStyle, type ButtonStyle } from "../shared/buttonStyle";
 import { type CornerRadius, cornerRadiusToCss } from "../shared/cornerRadius";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type HeroCard = {
   position: "left" | "center" | "right";
   radius: CornerRadius;
-  textColor: string;
-  fontSize: string;
 };
 
 export type HeroProps = {
   subtitle: string;
+  subtitleStyle: TitleStyle;
   title: string;
   description: ReactNode;
+  descriptionFontSize: number;
+  descriptionTextColor: string;
   ctaTargetId: string;
   background: SectionBackground;
   card: HeroCard;
@@ -28,8 +30,11 @@ const justifyByPosition: Record<HeroCard["position"], string> = {
 
 export default function Hero({
   subtitle,
+  subtitleStyle,
   title,
   description,
+  descriptionFontSize,
+  descriptionTextColor,
   ctaTargetId,
   background,
   card,
@@ -62,7 +67,10 @@ export default function Hero({
           }}
         >
           <div className="flex flex-col text-left gap-3">
-            <h3 className="text-[15px] font-medium uppercase tracking-[0.12em] text-white/85">
+            <h3
+              className="font-medium uppercase tracking-[0.12em]"
+              style={getTitleStyle(subtitleStyle)}
+            >
               {subtitle}
             </h3>
 
@@ -73,7 +81,7 @@ export default function Hero({
               {title}
             </h1>
 
-            <div className="leading-[1.7]" style={{ color: card.textColor, fontSize: card.fontSize }}>
+            <div className="leading-[1.7]" style={{ color: descriptionTextColor, fontSize: `${descriptionFontSize}px` }}>
               {description}
             </div>
           </div>

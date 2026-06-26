@@ -6,7 +6,7 @@ export type ButtonStyle = {
   bgColor: string;
   textColor: string;
   borderRadius: CornerRadius;
-  fontSize: string;
+  fontSize: number;
 };
 
 export const buttonStyleField = {
@@ -17,7 +17,7 @@ export const buttonStyleField = {
     bgColor: { type: "text" as const, label: "Màu nút" },
     textColor: { type: "text" as const, label: "Màu chữ nút" },
     borderRadius: cornerRadiusField,
-    fontSize: { type: "text" as const, label: "Cỡ chữ nút" },
+    fontSize: { type: "number" as const, label: "Cỡ chữ nút (px)" },
   },
 };
 
@@ -26,6 +26,6 @@ export function getButtonStyle(button: Pick<ButtonStyle, "bgColor" | "textColor"
     backgroundColor: button.bgColor,
     color: button.textColor,
     borderRadius: cornerRadiusToCss(button.borderRadius),
-    fontSize: button.fontSize,
+    fontSize: `${button.fontSize}px`,
   };
 }

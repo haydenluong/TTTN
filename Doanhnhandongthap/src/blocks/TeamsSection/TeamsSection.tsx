@@ -19,6 +19,7 @@ export type TeamsSectionProps = {
   background: SectionBackground;
   titleAlign: Alignment;
   titleStyle: TitleStyle;
+  subtitleStyle: TitleStyle;
   cardStyle: CardStyle;
   button: ButtonStyle;
   spacing: SectionSpacing;
@@ -31,6 +32,7 @@ export default function TeamsSection({
   background,
   titleAlign,
   titleStyle,
+  subtitleStyle,
   cardStyle,
   button,
   spacing,
@@ -45,7 +47,9 @@ export default function TeamsSection({
         <h2 className={`font-extrabold ${alignClass(titleAlign)}`} style={getTitleStyle(titleStyle)}>
           {title}
         </h2>
-        <h2 className={`mb-12 text-2xl font-bold text-[#1158a7] ${alignClass(titleAlign)}`}>{subtitle}</h2>
+        <h2 className={`mb-12 font-bold ${alignClass(titleAlign)}`} style={getTitleStyle(subtitleStyle)}>
+          {subtitle}
+        </h2>
 
         <div className="flex flex-wrap justify-center gap-[30px]">
           {teams.map((team, i) => (
@@ -63,7 +67,7 @@ export default function TeamsSection({
               </div>
               <h4
                 className="mb-6 font-bold [text-shadow:0_1px_2px_rgba(0,0,0,0.15)]"
-                style={{ color: cardStyle.textColor, fontSize: cardStyle.fontSize }}
+                style={{ color: cardStyle.textColor, fontSize: `${cardStyle.fontSize}px` }}
               >
                 {team.title}
               </h4>

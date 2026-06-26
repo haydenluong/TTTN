@@ -4,6 +4,11 @@ import "@puckeditor/core/puck.css";
 
 import { puckConfig } from "./puck.config";
 import { useState } from "react";
+import { PuckNumberFieldOverride } from "./blocks/shared/fieldStyles";
+
+// Thay field type:"number" gốc của Puck bằng bản tự chế — sửa lỗi backspace số nhảy về "0"
+// (Number("") === 0 khiến input commit ngay giá trị 0 mỗi khi xoá hết chữ số).
+const puckOverrides = { fieldTypes: { number: PuckNumberFieldOverride } };
 
 type PageKey = "home" | "gioi-thieu" | "hoi-vien";
 
@@ -153,6 +158,7 @@ function SubPageEditor() {
         key={activePage}
         config={puckConfig}
         data={loadData(activePage)}
+        overrides={puckOverrides}
         onPublish={(d) => {
           localStorage.setItem(storageKeys[activePage], JSON.stringify(d));
         }}

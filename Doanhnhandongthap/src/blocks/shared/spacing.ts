@@ -6,11 +6,11 @@ export type SectionSpacing = {
 
 export const spacingField = {
   type: "object" as const,
-  label: "Khoảng cách",
+  label: "Khoảng đệm trên/dưới (padding)",
   objectFields: {
     paddingY: {
       type: "number" as const,
-      label: "Padding trên/dưới (x4px)",
+      label: "Độ dày padding (x4px)",
       min: 0,
       max: 40,
       step: 1,
