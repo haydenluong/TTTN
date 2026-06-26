@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { getBackgroundStyle, type SectionBackground } from "../shared/background";
+import { alignClass, type Alignment } from "../shared/alignment";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type ContactPill = {
   icon: string;
@@ -12,16 +14,27 @@ export type ContactCtaProps = {
   pills: ContactPill[];
   registerLabel: string;
   background: SectionBackground;
+  titleAlign: Alignment;
+  titleStyle: TitleStyle;
 };
 
-export default function ContactCta({ title, pills, registerLabel, background }: ContactCtaProps) {
+export default function ContactCta({
+  title,
+  pills,
+  registerLabel,
+  background,
+  titleAlign,
+  titleStyle,
+}: ContactCtaProps) {
   return (
     <section
       className="relative overflow-hidden pt-[100px] pb-[160px] text-center"
       style={getBackgroundStyle(background)}
     >
       <div className="relative z-[2] w-full max-w-[90%] mx-auto">
-        <h2 className="text-2xl font-extrabold leading-[1.5] text-[#0B5077]">{title}</h2>
+        <h2 className={`font-extrabold leading-[1.5] ${alignClass(titleAlign)}`} style={getTitleStyle(titleStyle)}>
+          {title}
+        </h2>
 
         <div className="my-[45px] flex flex-wrap justify-center gap-[30px]">
           {pills.map((pill, i) => (

@@ -1,7 +1,11 @@
 import { getBackgroundStyle, type SectionBackground } from "../shared/background";
+import { StatNumber } from "../shared/statCountUp";
+import { alignClass, type Alignment } from "../shared/alignment";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type MemberStat = {
-  number: string;
+  number: number;
+  suffix?: string;
   label: string;
 };
 
@@ -15,6 +19,8 @@ export type MemberSectionProps = {
   benefits: string[];
   stats: MemberStat[];
   background: SectionBackground;
+  titleAlign: Alignment;
+  titleStyle: TitleStyle;
 };
 
 export default function MemberSection({
@@ -27,11 +33,15 @@ export default function MemberSection({
   benefits,
   stats,
   background,
+  titleAlign,
+  titleStyle,
 }: MemberSectionProps) {
   return (
     <section className="max-w-[1100px] mx-auto px-5 py-[60px]" style={getBackgroundStyle(background)}>
-      <div className="mb-[50px] text-center">
-        <h1 className="mb-2.5 text-[30px] md:text-[38px] font-bold text-[#0F5B94]">{title}</h1>
+      <div className={`mb-[50px] ${alignClass(titleAlign)}`}>
+        <h1 className="mb-2.5 font-bold" style={getTitleStyle(titleStyle)}>
+          {title}
+        </h1>
         <div className="mx-auto h-1 w-[90px] rounded-[30px] bg-[#F7931E]" />
       </div>
 
@@ -71,7 +81,11 @@ export default function MemberSection({
       <div className="mt-[60px] grid grid-cols-1 gap-5 md:grid-cols-4">
         {stats.map((stat, i) => (
           <div key={i} className="rounded-[14px] bg-white p-7 text-center shadow-[0_5px_20px_rgba(0,0,0,0.08)]">
-            <h3 className="mb-2 text-[34px] font-bold text-[#0F5B94]">{stat.number}</h3>
+            <StatNumber
+              value={stat.number}
+              suffix={stat.suffix}
+              className="mb-2 block text-[34px] font-bold text-[#0F5B94]"
+            />
             <span className="text-[#666]">{stat.label}</span>
           </div>
         ))}

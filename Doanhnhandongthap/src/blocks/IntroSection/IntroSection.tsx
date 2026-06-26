@@ -1,7 +1,11 @@
 import { getBackgroundStyle, type SectionBackground } from "../shared/background";
+import { StatNumber } from "../shared/statCountUp";
+import { alignClass, type Alignment } from "../shared/alignment";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type IntroStat = {
-  number: string;
+  number: number;
+  suffix?: string;
   desc: string;
 };
 
@@ -17,6 +21,8 @@ export type IntroSectionProps = {
   missionText: string;
   stats: IntroStat[];
   background: SectionBackground;
+  titleAlign: Alignment;
+  titleStyle: TitleStyle;
 };
 
 export default function IntroSection({
@@ -31,11 +37,15 @@ export default function IntroSection({
   missionText,
   stats,
   background,
+  titleAlign,
+  titleStyle,
 }: IntroSectionProps) {
   return (
     <section className="max-w-[1100px] mx-auto px-5 py-[60px]" style={getBackgroundStyle(background)}>
-      <div className="mb-[50px] text-center">
-        <h1 className="mb-2.5 text-[30px] md:text-[38px] font-bold text-[#0f5b94]">{title}</h1>
+      <div className={`mb-[50px] ${alignClass(titleAlign)}`}>
+        <h1 className="mb-2.5 font-bold" style={getTitleStyle(titleStyle)}>
+          {title}
+        </h1>
         <hr className="mx-auto h-1 w-[90px] rounded-[20px] bg-[#f7941d]" />
       </div>
 
@@ -70,7 +80,11 @@ export default function IntroSection({
       <div className="mt-[60px] grid grid-cols-1 gap-5 md:grid-cols-3">
         {stats.map((stat, i) => (
           <div key={i} className="rounded-[14px] bg-white p-[30px] text-center shadow-[0_5px_20px_rgba(0,0,0,0.08)]">
-            <h3 className="mb-2.5 text-[34px] font-bold text-[#0f5b94]">{stat.number}</h3>
+            <StatNumber
+              value={stat.number}
+              suffix={stat.suffix}
+              className="mb-2.5 block text-[34px] font-bold text-[#0f5b94]"
+            />
             <p className="text-[#666]">{stat.desc}</p>
           </div>
         ))}

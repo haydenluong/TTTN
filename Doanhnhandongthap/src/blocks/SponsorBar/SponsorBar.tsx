@@ -1,9 +1,10 @@
 import { getBackgroundStyle, type SectionBackground } from "../shared/background";
 import { alignClass, type Alignment } from "../shared/alignment";
 import { paddingYStyle, type SectionSpacing } from "../shared/spacing";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type SponsorBarLogo = {
-  imageUrl?: string;
+  imageUrl: string;
   alt: string;
   icon?: string;
   label?: string;
@@ -14,10 +15,11 @@ export type SponsorBarProps = {
   logos: SponsorBarLogo[];
   background: SectionBackground;
   titleAlign: Alignment;
+  titleStyle: TitleStyle;
   spacing: SectionSpacing;
 };
 
-export default function SponsorBar({ title, logos, background, titleAlign, spacing }: SponsorBarProps) {
+export default function SponsorBar({ title, logos, background, titleAlign, titleStyle, spacing }: SponsorBarProps) {
   // tao array voi 3 items cua logos duplicated -> 6 items de tao hieu ung scroll lien tuc
   const track = [...logos, ...logos];
 
@@ -27,7 +29,10 @@ export default function SponsorBar({ title, logos, background, titleAlign, spaci
       style={{ ...getBackgroundStyle(background), ...paddingYStyle(spacing) }}
     >
       <div className="w-full max-w-[90%] mx-auto">
-        <h2 className={`mb-7 px-5 text-2xl font-extrabold uppercase tracking-wide text-[#0A2540] ${alignClass(titleAlign)}`}>
+        <h2
+          className={`mb-7 px-5 font-extrabold uppercase tracking-wide ${alignClass(titleAlign)}`}
+          style={getTitleStyle(titleStyle)}
+        >
           {title}
         </h2>
 

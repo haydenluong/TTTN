@@ -4,6 +4,7 @@ import { type CardStyle } from "../shared/cardStyle";
 import { cornerRadiusToCss } from "../shared/cornerRadius";
 import { getButtonStyle, type ButtonStyle } from "../shared/buttonStyle";
 import { paddingYStyle, type SectionSpacing } from "../shared/spacing";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type Team = {
   iconUrl: string;
@@ -17,6 +18,7 @@ export type TeamsSectionProps = {
   teams: Team[];
   background: SectionBackground;
   titleAlign: Alignment;
+  titleStyle: TitleStyle;
   cardStyle: CardStyle;
   button: ButtonStyle;
   spacing: SectionSpacing;
@@ -28,6 +30,7 @@ export default function TeamsSection({
   teams,
   background,
   titleAlign,
+  titleStyle,
   cardStyle,
   button,
   spacing,
@@ -39,7 +42,9 @@ export default function TeamsSection({
       style={{ ...getBackgroundStyle(background), ...paddingYStyle(spacing) }}
     >
       <div className="w-full max-w-[90%] mx-auto">
-        <h2 className={`text-3xl font-extrabold text-[#0b4c8c] ${alignClass(titleAlign)}`}>{title}</h2>
+        <h2 className={`font-extrabold ${alignClass(titleAlign)}`} style={getTitleStyle(titleStyle)}>
+          {title}
+        </h2>
         <h2 className={`mb-12 text-2xl font-bold text-[#1158a7] ${alignClass(titleAlign)}`}>{subtitle}</h2>
 
         <div className="flex flex-wrap justify-center gap-[30px]">

@@ -28,7 +28,7 @@ export type FooterProps = {
   copyrightText: string;
   socialLinks: FooterSocialLink[];
   background: string;
-  decorativeImageUrl?: string;
+  decorativeImageUrl: string;
 };
 
 const contactIcons: Record<FooterContact["icon"], string> = {

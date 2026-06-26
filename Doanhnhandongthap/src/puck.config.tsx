@@ -17,6 +17,8 @@ import { cardStyleField } from "./blocks/shared/cardStyle";
 import { spacingField } from "./blocks/shared/spacing";
 import { cornerRadiusField } from "./blocks/shared/cornerRadius";
 import { backgroundField } from "./blocks/shared/background";
+import { titleStyleField } from "./blocks/shared/titleStyle";
+import { imageUrlField } from "./blocks/shared/imageUrl";
 
 // Field shared tái sử dụng cho mọi section, đừng hardcode className cho các thứ sau:
 // background (màu/gradient/ảnh/gif), alignment (căn chỉnh), buttonStyle (nút), cardStyle (thẻ), spacing (padding).
@@ -31,7 +33,7 @@ const headerField = {
       type: "object" as const,
       label: "Logo",
       objectFields: {
-        imageUrl: { type: "text" as const, label: "URL ảnh logo" },
+        imageUrl: imageUrlField,
         imageAlt: { type: "text" as const, label: "Alt text" },
         link: { type: "text" as const, label: "Đường dẫn khi click logo" },
         lineGap: { type: "number" as const, label: "Khoảng cách 2 dòng chữ (px)" },
@@ -39,7 +41,7 @@ const headerField = {
           type: "array" as const,
           label: "Các dòng chữ cạnh logo",
           arrayFields: {
-            text: { type: "text" as const, label: "Nội dung" },
+            text: { type: "text" as const, contentEditable: true, label: "Nội dung" },
             fontSize: { type: "text" as const, label: "Cỡ chữ" },
             color: { type: "text" as const, label: "Màu chữ" },
             align: {
@@ -61,7 +63,7 @@ const headerField = {
       label: "Menu điều hướng",
       arrayFields: {
         id: { type: "text" as const, label: "ID" },
-        label: { type: "text" as const, label: "Nhãn hiển thị" },
+        label: { type: "text" as const, contentEditable: true, label: "Nhãn hiển thị" },
         url: { type: "text" as const, label: "Đường dẫn" },
       },
       getItemSummary: (item: { label: string }) => item.label,
@@ -95,14 +97,14 @@ const footerField = {
   type: "object" as const,
   label: "Footer",
   objectFields: {
-    logoUrl: { type: "text" as const, label: "URL ảnh logo" },
+    logoUrl: imageUrlField,
     logoAlt: { type: "text" as const, label: "Alt text" },
     brandLines: {
       type: "array" as const,
       label: "Các dòng tên đơn vị",
-      arrayFields: { value: { type: "text" as const, label: "Nội dung" } },
+      arrayFields: { value: { type: "text" as const, contentEditable: true, label: "Nội dung" } },
     },
-    officeLabel: { type: "text" as const, label: "Nhãn 'Trụ sở chính'" },
+    officeLabel: { type: "text" as const, contentEditable: true, label: "Nhãn 'Trụ sở chính'" },
     contacts: {
       type: "array" as const,
       label: "Thông tin liên hệ",
@@ -116,7 +118,7 @@ const footerField = {
             { label: "Điện thoại", value: "phone" },
           ],
         },
-        text: { type: "textarea" as const, label: "Nội dung" },
+        text: { type: "textarea" as const, contentEditable: true, label: "Nội dung" },
       },
       getItemSummary: (item: { text: string }) => item.text,
     },
@@ -124,12 +126,12 @@ const footerField = {
       type: "array" as const,
       label: "Cột liên kết",
       arrayFields: {
-        title: { type: "text" as const, label: "Tiêu đề cột" },
+        title: { type: "text" as const, contentEditable: true, label: "Tiêu đề cột" },
         links: {
           type: "array" as const,
           label: "Danh sách liên kết",
           arrayFields: {
-            label: { type: "text" as const, label: "Chữ hiển thị" },
+            label: { type: "text" as const, contentEditable: true, label: "Chữ hiển thị" },
             href: { type: "text" as const, label: "Đường dẫn" },
           },
           getItemSummary: (item: { label: string }) => item.label,
@@ -137,7 +139,7 @@ const footerField = {
       },
       getItemSummary: (item: { title: string }) => item.title,
     },
-    copyrightText: { type: "text" as const, label: "Dòng bản quyền" },
+    copyrightText: { type: "text" as const, contentEditable: true, label: "Dòng bản quyền" },
     socialLinks: {
       type: "array" as const,
       label: "Liên kết mạng xã hội",
@@ -157,7 +159,7 @@ const footerField = {
       getItemSummary: (item: { icon: string }) => item.icon,
     },
     background: { type: "text" as const, label: "Nền footer (css background)" },
-    decorativeImageUrl: { type: "text" as const, label: "URL ảnh hoa văn trang trí (tuỳ chọn)" },
+    decorativeImageUrl: imageUrlField,
   },
 };
 
@@ -186,11 +188,10 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Banner Trang Chủ",
       fields: {
         
-        subtitle: { type: "text", label: "Nhãn phụ" },
-        title: { type: "text",
-           label: "Tiêu đề",
-           contentEditable: true },
-        description: { type: "textarea", label: "Mô tả" },
+        subtitle: { type: "text", contentEditable: true, label: "Nhãn phụ" },
+        title: { type: "text", contentEditable: true,
+           label: "Tiêu đề" },
+        description: { type: "textarea", contentEditable: true, label: "Mô tả" },
         ctaTargetId: { type: "text", label: "ID khu vực cuộn tới" },
         background: backgroundField,
         card: {
@@ -249,19 +250,20 @@ export const puckConfig: Config<Props, RootProps> = {
       label: "Dải Logo Hội Viên",
       fields: {
         title: { type: "text", label: "Tiêu đề", contentEditable: true},
+        titleAlign: alignmentField,
+        titleStyle: titleStyleField,
         logos: {
           type: "array",
           label: "Danh sách logo",
           arrayFields: {
-            imageUrl: { type: "text", label: "URL ảnh" },
+            imageUrl: imageUrlField,
             alt: { type: "text", label: "Alt text" },
             icon: { type: "textarea", label: "SVG icon (nếu không có URL)" },
-            label: { type: "text", label: "Chữ thay ảnh (nếu không có URL)" },
+            label: { type: "text", contentEditable: true, label: "Chữ thay ảnh (nếu không có URL)" },
           },
           getItemSummary: (item) => item.alt,
         },
         background: backgroundField,
-        titleAlign: alignmentField,
         spacing: spacingField,
       },
       defaultProps: {
@@ -274,6 +276,7 @@ export const puckConfig: Config<Props, RootProps> = {
           gradientDirection: "to bottom",
         },
         titleAlign: "center",
+        titleStyle: { fontSize: 24, textColor: "#0A2540" },
         spacing: { paddingY: 9 },
         logos: [
           { imageUrl: "https://webdemo.hexagon.xyz/medias/Logo Khoi E.png", alt: "Logo Khối E" },
@@ -281,11 +284,13 @@ export const puckConfig: Config<Props, RootProps> = {
           { imageUrl: "https://webdemo.hexagon.xyz/medias/Logo Khoi D.png", alt: "Logo Khối D" },
           { imageUrl: "https://webdemo.hexagon.xyz/medias/Happy Food.png", alt: "Logo Happy Food" },
           {
+            imageUrl: "",
             alt: "Logo Ecobook",
             label: "ECOBOOK",
             icon: `<svg viewBox="0 0 80 40" width="80" height="32"><path d="M 15 25 C 25 15, 38 15, 40 20 C 42 15, 55 15, 65 25 C 55 18, 42 18, 40 23 C 38 18, 25 18, 15 25 Z" fill="#22c55e" /><path d="M 18 18 C 26 10, 38 10, 40 15 C 42 10, 54 10, 62 18 C 54 12, 42 12, 40 17 C 38 12, 26 12, 18 18 Z" fill="#eab308" /><path d="M 22 11 C 28 5, 38 5, 40 10 C 42 5, 52 5, 58 11 C 52 7, 42 7, 40 12 C 38 7, 28 7, 22 11 Z" fill="#22c55e" /></svg>`,
           },
           {
+            imageUrl: "",
             alt: "Logo Comoon",
             label: "COMOON",
             icon: `<svg viewBox="0 0 80 40" width="80" height="32"><path d="M 20 12 C 30 5, 50 5, 60 12 C 55 18, 45 18, 40 18 C 35 18, 25 18, 20 12 Z" fill="#15803d" /><path d="M 22 17 C 30 11, 50 11, 58 17 C 53 23, 47 23, 40 23 C 33 23, 27 23, 22 17 Z" fill="#eab308" /><path d="M 25 22 C 32 17, 48 17, 55 22 C 50 30, 45 32, 40 32 C 35 32, 30 30, 25 22 Z" fill="#15803d" /></svg>`,
@@ -304,10 +309,10 @@ export const puckConfig: Config<Props, RootProps> = {
           type: "object",
           label: "Thẻ về CLB",
           objectFields: {
-            title: { type: "text", label: "Tiêu đề" },
-            text: { type: "textarea", label: "Nội dung" },
-            cornerImageUrl: { type: "text", label: "URL ảnh góc" },
-            veclbImageUrl: { type: "text", label: "URL ảnh vẽ nền" },
+            title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+            text: { type: "textarea", contentEditable: true, label: "Nội dung" },
+            cornerImageUrl: imageUrlField,
+            veclbImageUrl: imageUrlField,
             radius: cornerRadiusField,
           },
         },
@@ -315,16 +320,16 @@ export const puckConfig: Config<Props, RootProps> = {
           type: "object",
           label: "Thẻ cơ cấu tổ chức",
           objectFields: {
-            title: { type: "text", label: "Tiêu đề" },
+            title: { type: "text", contentEditable: true, label: "Tiêu đề" },
             profiles: {
               type: "array",
               label: "Danh sách thành viên",
               arrayFields: {
-                avatarUrl: { type: "text", label: "URL ảnh đại diện" },
-                name: { type: "text", label: "Họ tên" },
-                clbRole: { type: "text", label: "Chức vụ CLB" },
-                companyRole: { type: "text", label: "Chức vụ Doanh nghiệp" },
-                company: { type: "text", label: "Doanh nghiệp" },
+                avatarUrl: imageUrlField,
+                name: { type: "text", contentEditable: true, label: "Họ tên" },
+                clbRole: { type: "text", contentEditable: true, label: "Chức vụ CLB" },
+                companyRole: { type: "text", contentEditable: true, label: "Chức vụ Doanh nghiệp" },
+                company: { type: "text", contentEditable: true, label: "Doanh nghiệp" },
               },
               getItemSummary: (item) => item.name,
             },
@@ -332,10 +337,10 @@ export const puckConfig: Config<Props, RootProps> = {
               type: "object",
               label: "Nhãn các trường thông tin",
               objectFields: {
-                name: { type: "text", label: "Nhãn 'Họ tên'" },
-                clbRole: { type: "text", label: "Nhãn 'Chức vụ CLB'" },
-                companyRole: { type: "text", label: "Nhãn 'Chức vụ Doanh nghiệp'" },
-                company: { type: "text", label: "Nhãn 'Doanh nghiệp'" },
+                name: { type: "text", contentEditable: true, label: "Nhãn 'Họ tên'" },
+                clbRole: { type: "text", contentEditable: true, label: "Nhãn 'Chức vụ CLB'" },
+                companyRole: { type: "text", contentEditable: true, label: "Nhãn 'Chức vụ Doanh nghiệp'" },
+                company: { type: "text", contentEditable: true, label: "Nhãn 'Doanh nghiệp'" },
               },
             },
             radius: cornerRadiusField,
@@ -351,7 +356,7 @@ export const puckConfig: Config<Props, RootProps> = {
           },
         },
         background: backgroundField,
-        decorativeImageUrl: { type: "text", label: "URL ảnh hoa văn nền" },
+        decorativeImageUrl: imageUrlField,
         spacing: spacingField,
       },
       defaultProps: {
@@ -459,20 +464,21 @@ export const puckConfig: Config<Props, RootProps> = {
     TeamsSection: {
       label: "Các Ban Chuyên Môn",
       fields: {
-        title: { type: "text", label: "Tiêu đề" },
-        subtitle: { type: "text", label: "Tiêu đề phụ" },
+        title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+        titleAlign: alignmentField,
+        titleStyle: titleStyleField,
+        subtitle: { type: "text", contentEditable: true, label: "Tiêu đề phụ" },
         teams: {
           type: "array",
           label: "Danh sách ban",
           arrayFields: {
-            iconUrl: { type: "text", label: "URL icon" },
+            iconUrl: imageUrlField,
             alt: { type: "text", label: "Alt text" },
-            title: { type: "text", label: "Tên ban" },
+            title: { type: "text", contentEditable: true, label: "Tên ban" },
           },
           getItemSummary: (item) => item.title,
         },
         background: backgroundField,
-        titleAlign: alignmentField,
         cardStyle: cardStyleField,
         button: buttonStyleField,
         spacing: spacingField,
@@ -488,6 +494,7 @@ export const puckConfig: Config<Props, RootProps> = {
           gradientDirection: "to bottom",
         },
         titleAlign: "center",
+        titleStyle: { fontSize: 30, textColor: "#0b4c8c" },
         spacing: { paddingY: 25 },
         cardStyle: {
           borderRadius: { mode: "each", all: 0, topLeft: 80, topRight: 0, bottomRight: 80, bottomLeft: 0 },
@@ -535,19 +542,21 @@ export const puckConfig: Config<Props, RootProps> = {
     StatsSection: {
       label: "Hành Trình & Số Liệu",
       fields: {
-        title: { type: "text", label: "Tiêu đề" },
-        bgLoopUrl: { type: "text", label: "URL ảnh hoa văn nền" },
+        title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+        titleAlign: alignmentField,
+        titleStyle: titleStyleField,
+        bgLoopUrl: imageUrlField,
         stats: {
           type: "array",
           label: "Danh sách số liệu",
           arrayFields: {
-            number: { type: "text", label: "Số liệu" },
-            desc: { type: "textarea", label: "Mô tả" },
+            number: { type: "number", label: "Số liệu (chỉ nhập số, dấu + tự thêm)" },
+            suffix: { type: "text", label: "Ký hiệu sau số (mặc định +)" },
+            desc: { type: "textarea", contentEditable: true, label: "Mô tả" },
           },
-          getItemSummary: (item) => item.number,
+          getItemSummary: (item) => `${item.number}${item.suffix ?? "+"}`,
         },
         background: backgroundField,
-        titleAlign: alignmentField,
         spacing: spacingField,
       },
       defaultProps: {
@@ -561,12 +570,13 @@ export const puckConfig: Config<Props, RootProps> = {
           gradientDirection: "to bottom",
         },
         titleAlign: "center",
+        titleStyle: { fontSize: 24, textColor: "#0b4c8c" },
         spacing: { paddingY: 27.5 },
         stats: [
-          { number: "500+", desc: "Hội viên là các doanh nghiệp và doanh nhân tiêu biểu tại TP.HCM" },
-          { number: "20+", desc: "Năm hình thành và phát triển mạng lưới kết nối đồng hương" },
-          { number: "1.000+", desc: "Cơ hội giao thương và kết nối đầu tư được khởi tạo mỗi năm" },
-          { number: "100+", desc: "Chương trình thiện nguyện và hoạt động hướng về quê hương" },
+          { number: 500, desc: "Hội viên là các doanh nghiệp và doanh nhân tiêu biểu tại TP.HCM" },
+          { number: 20, desc: "Năm hình thành và phát triển mạng lưới kết nối đồng hương" },
+          { number: 1000, desc: "Cơ hội giao thương và kết nối đầu tư được khởi tạo mỗi năm" },
+          { number: 100, desc: "Chương trình thiện nguyện và hoạt động hướng về quê hương" },
         ],
       },
       render: (props) => <StatsSection {...props} />,
@@ -575,25 +585,26 @@ export const puckConfig: Config<Props, RootProps> = {
     NewsSection: {
       label: "Tin Tức & Sự Kiện",
       fields: {
-        title: { type: "text", label: "Tiêu đề" },
-        viewMoreLabel: { type: "text", label: "Chữ xem thêm" },
+        title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+        titleAlign: alignmentField,
+        titleStyle: titleStyleField,
+        viewMoreLabel: { type: "text", contentEditable: true, label: "Chữ xem thêm" },
         cards: {
           type: "array",
           label: "Danh sách bài viết",
           arrayFields: {
-            imageUrl: { type: "text", label: "URL ảnh" },
+            imageUrl: imageUrlField,
             alt: { type: "text", label: "Alt text" },
-            badge: { type: "text", label: "Nhãn (vd: Mới nhất)" },
-            date: { type: "text", label: "Ngày" },
-            title: { type: "text", label: "Tiêu đề bài viết" },
-            desc: { type: "textarea", label: "Mô tả" },
+            badge: { type: "text", contentEditable: true, label: "Nhãn (vd: Mới nhất)" },
+            date: { type: "text", contentEditable: true, label: "Ngày" },
+            title: { type: "text", contentEditable: true, label: "Tiêu đề bài viết" },
+            desc: { type: "textarea", contentEditable: true, label: "Mô tả" },
             href: { type: "text", label: "Đường dẫn" },
             large: { type: "radio", label: "Card lớn", options: [{ label: "Có", value: true }, { label: "Không", value: false }] },
           },
           getItemSummary: (item) => item.title,
         },
         background: backgroundField,
-        titleAlign: alignmentField,
         cardStyle: cardStyleField,
         spacing: spacingField,
       },
@@ -608,6 +619,7 @@ export const puckConfig: Config<Props, RootProps> = {
           gradientDirection: "to bottom",
         },
         titleAlign: "left",
+        titleStyle: { fontSize: 24, textColor: "#0B5077" },
         spacing: { paddingY: 25 },
         cardStyle: {
           borderRadius: { mode: "all", all: 20, topLeft: 20, topRight: 20, bottomRight: 20, bottomLeft: 20 },
@@ -670,22 +682,23 @@ export const puckConfig: Config<Props, RootProps> = {
     ValuesSection: {
       label: "Giá Trị Cộng Đồng",
       fields: {
-        title: { type: "text", label: "Tiêu đề" },
-        viewMoreLabel: { type: "text", label: "Chữ xem thêm" },
+        title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+        titleAlign: alignmentField,
+        titleStyle: titleStyleField,
+        viewMoreLabel: { type: "text", contentEditable: true, label: "Chữ xem thêm" },
         viewMoreHref: { type: "text", label: "Đường dẫn xem thêm" },
         cards: {
           type: "array",
           label: "Danh sách giá trị",
           arrayFields: {
-            iconUrl: { type: "text", label: "URL icon" },
+            iconUrl: imageUrlField,
             alt: { type: "text", label: "Alt text" },
-            title: { type: "text", label: "Tiêu đề" },
-            desc: { type: "textarea", label: "Mô tả" },
+            title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+            desc: { type: "textarea", contentEditable: true, label: "Mô tả" },
           },
           getItemSummary: (item) => item.title,
         },
         background: backgroundField,
-        titleAlign: alignmentField,
         cardStyle: cardStyleField,
       },
       defaultProps: {
@@ -706,6 +719,7 @@ export const puckConfig: Config<Props, RootProps> = {
           baseImagePosition: "right center",
         },
         titleAlign: "left",
+        titleStyle: { fontSize: 24, textColor: "#0b4c8c" },
         cardStyle: {
           borderRadius: { mode: "each", all: 0, topLeft: 70, topRight: 15, bottomRight: 70, bottomLeft: 15 },
           textColor: "#0b4c8c",
@@ -738,23 +752,27 @@ export const puckConfig: Config<Props, RootProps> = {
     ContactCta: {
       label: "Liên Hệ & Hợp Tác",
       fields: {
-        title: { type: "textarea", label: "Tiêu đề" },
+        title: { type: "textarea", contentEditable: true, label: "Tiêu đề" },
+        titleAlign: alignmentField,
+        titleStyle: titleStyleField,
         pills: {
           type: "array",
           label: "Thông tin liên hệ",
           arrayFields: {
-            icon: { type: "text", label: "Icon (emoji)" },
-            label: { type: "text", label: "Nội dung" },
+            icon: { type: "text", contentEditable: true, label: "Icon (emoji)" },
+            label: { type: "text", contentEditable: true, label: "Nội dung" },
             href: { type: "text", label: "Đường dẫn (mailto:/tel:)" },
           },
           getItemSummary: (item) => item.label,
         },
-        registerLabel: { type: "text", label: "Chữ nút đăng ký" },
+        registerLabel: { type: "text", contentEditable: true, label: "Chữ nút đăng ký" },
         background: backgroundField,
       },
       defaultProps: {
         title:
           "QUAN TÂM VÀ HỢP TÁC<br/>VỚI CÁC CHƯƠNG TRÌNH HOẠT ĐỘNG<br/>CỦA CLB DOANH NHÂN ĐỒNG THÁP TẠI TP.HCM",
+        titleAlign: "center",
+        titleStyle: { fontSize: 24, textColor: "#0B5077" },
         pills: [
           { icon: "✉️", label: "info@dte.hunghau.vn", href: "mailto:info@dte.hunghau.vn" },
           { icon: "📞", label: "1800 1568", href: "tel:18001568" },
@@ -777,27 +795,30 @@ export const puckConfig: Config<Props, RootProps> = {
     IntroSection: {
       label: "Giới Thiệu Tổng Quan",
       fields: {
-        title: { type: "text", label: "Tiêu đề" },
-        imageUrl: { type: "text", label: "URL ảnh" },
+        title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+        titleAlign: alignmentField,
+        titleStyle: titleStyleField,
+        imageUrl: imageUrlField,
         imageAlt: { type: "text", label: "Alt text" },
-        contentTitle: { type: "text", label: "Tiêu đề nội dung" },
+        contentTitle: { type: "text", contentEditable: true, label: "Tiêu đề nội dung" },
         paragraphs: {
           type: "array",
           label: "Đoạn văn",
-          arrayFields: { value: { type: "textarea", label: "Nội dung" } },
+          arrayFields: { value: { type: "textarea", contentEditable: true, label: "Nội dung" } },
         },
-        visionLabel: { type: "text", label: "Nhãn tầm nhìn" },
-        visionText: { type: "textarea", label: "Nội dung tầm nhìn" },
-        missionLabel: { type: "text", label: "Nhãn sứ mệnh" },
-        missionText: { type: "textarea", label: "Nội dung sứ mệnh" },
+        visionLabel: { type: "text", contentEditable: true, label: "Nhãn tầm nhìn" },
+        visionText: { type: "textarea", contentEditable: true, label: "Nội dung tầm nhìn" },
+        missionLabel: { type: "text", contentEditable: true, label: "Nhãn sứ mệnh" },
+        missionText: { type: "textarea", contentEditable: true, label: "Nội dung sứ mệnh" },
         stats: {
           type: "array",
           label: "Số liệu",
           arrayFields: {
-            number: { type: "text", label: "Số liệu" },
-            desc: { type: "text", label: "Mô tả" },
+            number: { type: "number", label: "Số liệu (chỉ nhập số, dấu + tự thêm)" },
+            suffix: { type: "text", label: "Ký hiệu sau số (mặc định +)" },
+            desc: { type: "text", contentEditable: true, label: "Mô tả" },
           },
-          getItemSummary: (item) => item.number,
+          getItemSummary: (item) => `${item.number}${item.suffix ?? "+"}`,
         },
         background: backgroundField,
       },
@@ -815,11 +836,13 @@ export const puckConfig: Config<Props, RootProps> = {
         missionLabel: "Sứ mệnh:",
         missionText: "Kết nối doanh nghiệp – chia sẻ tri thức – tạo giá trị phát triển bền vững.",
         stats: [
-          { number: "500+", desc: "Doanh nghiệp tham gia" },
-          { number: "50+", desc: "Sự kiện kết nối mỗi năm" },
-          { number: "100%", desc: "Hướng đến phát triển bền vững" },
+          { number: 500, desc: "Doanh nghiệp tham gia" },
+          { number: 50, desc: "Sự kiện kết nối mỗi năm" },
+          { number: 100, suffix: "%", desc: "Hướng đến phát triển bền vững" },
         ],
         background: { type: "color", color: "#ffffff" },
+        titleAlign: "center",
+        titleStyle: { fontSize: 32, textColor: "#0f5b94" },
       },
       render: (props) => (
         <IntroSection {...props} paragraphs={(props.paragraphs as unknown as { value: string }[]).map((p) => p.value)} />
@@ -829,29 +852,32 @@ export const puckConfig: Config<Props, RootProps> = {
     MemberSection: {
       label: "Thông Tin Hội Viên",
       fields: {
-        title: { type: "text", label: "Tiêu đề" },
-        imageUrl: { type: "text", label: "URL ảnh" },
+        title: { type: "text", contentEditable: true, label: "Tiêu đề" },
+        titleAlign: alignmentField,
+        titleStyle: titleStyleField,
+        imageUrl: imageUrlField,
         imageAlt: { type: "text", label: "Alt text" },
-        contentTitle: { type: "text", label: "Tiêu đề nội dung" },
+        contentTitle: { type: "text", contentEditable: true, label: "Tiêu đề nội dung" },
         paragraphs: {
           type: "array",
           label: "Đoạn văn",
-          arrayFields: { value: { type: "textarea", label: "Nội dung" } },
+          arrayFields: { value: { type: "textarea", contentEditable: true, label: "Nội dung" } },
         },
-        benefitsTitle: { type: "text", label: "Tiêu đề quyền lợi" },
+        benefitsTitle: { type: "text", contentEditable: true, label: "Tiêu đề quyền lợi" },
         benefits: {
           type: "array",
           label: "Danh sách quyền lợi",
-          arrayFields: { value: { type: "text", label: "Nội dung" } },
+          arrayFields: { value: { type: "text", contentEditable: true, label: "Nội dung" } },
         },
         stats: {
           type: "array",
           label: "Số liệu",
           arrayFields: {
-            number: { type: "text", label: "Số liệu" },
-            label: { type: "text", label: "Nhãn" },
+            number: { type: "number", label: "Số liệu (chỉ nhập số, dấu + tự thêm)" },
+            suffix: { type: "text", label: "Ký hiệu sau số (mặc định +)" },
+            label: { type: "text", contentEditable: true, label: "Nhãn" },
           },
-          getItemSummary: (item) => item.number,
+          getItemSummary: (item) => `${item.number}${item.suffix ?? "+"}`,
         },
         background: backgroundField,
       },
@@ -873,12 +899,14 @@ export const puckConfig: Config<Props, RootProps> = {
           { value: "Đồng hành cùng các chương trình phát triển địa phương" },
         ] as unknown as string[],
         stats: [
-          { number: "800+", label: "Hội viên" },
-          { number: "120+", label: "Đối tác" },
-          { number: "40+", label: "Sự kiện / năm" },
-          { number: "12", label: "Nhóm kết nối" },
+          { number: 800, label: "Hội viên" },
+          { number: 120, label: "Đối tác" },
+          { number: 40, label: "Sự kiện / năm" },
+          { number: 12, suffix: "", label: "Nhóm kết nối" },
         ],
         background: { type: "color", color: "#ffffff" },
+        titleAlign: "center",
+        titleStyle: { fontSize: 32, textColor: "#0F5B94" },
       },
       render: (props) => (
         <MemberSection

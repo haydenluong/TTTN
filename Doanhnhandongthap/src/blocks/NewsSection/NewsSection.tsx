@@ -3,6 +3,7 @@ import { alignClass, type Alignment } from "../shared/alignment";
 import { type CardStyle } from "../shared/cardStyle";
 import { paddingYStyle, type SectionSpacing } from "../shared/spacing";
 import { cornerRadiusToCss } from "../shared/cornerRadius";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type NewsCard = {
   imageUrl: string;
@@ -21,6 +22,7 @@ export type NewsSectionProps = {
   cards: NewsCard[];
   background: SectionBackground;
   titleAlign: Alignment;
+  titleStyle: TitleStyle;
   cardStyle: CardStyle;
   spacing: SectionSpacing;
 };
@@ -31,6 +33,7 @@ export default function NewsSection({
   cards,
   background,
   titleAlign,
+  titleStyle,
   cardStyle,
   spacing,
 }: NewsSectionProps) {
@@ -41,7 +44,9 @@ export default function NewsSection({
     >
       <div className="w-full max-w-[90%] mx-auto">
         <div className="mb-[50px] flex items-end justify-between border-b border-black/[0.06] pb-4">
-          <h2 className={`text-2xl font-extrabold text-[#0B5077] ${alignClass(titleAlign)}`}>{title}</h2>
+          <h2 className={`font-extrabold ${alignClass(titleAlign)}`} style={getTitleStyle(titleStyle)}>
+            {title}
+          </h2>
           <a href="#" className="group flex items-center gap-1.5 text-sm font-bold text-[#0B355B] transition-colors hover:text-[#f43f5e]">
             {viewMoreLabel}
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>

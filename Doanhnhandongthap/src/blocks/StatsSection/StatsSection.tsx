@@ -1,9 +1,12 @@
 import { getBackgroundStyle, type SectionBackground } from "../shared/background";
 import { alignClass, type Alignment } from "../shared/alignment";
 import { paddingYStyle, type SectionSpacing } from "../shared/spacing";
+import { StatNumber } from "../shared/statCountUp";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type Stat = {
-  number: string;
+  number: number;
+  suffix?: string;
   desc: string;
 };
 
@@ -13,6 +16,7 @@ export type StatsSectionProps = {
   stats: Stat[];
   background: SectionBackground;
   titleAlign: Alignment;
+  titleStyle: TitleStyle;
   spacing: SectionSpacing;
 };
 
@@ -22,6 +26,7 @@ export default function StatsSection({
   stats,
   background,
   titleAlign,
+  titleStyle,
   spacing,
 }: StatsSectionProps) {
   return (
@@ -35,7 +40,10 @@ export default function StatsSection({
         style={{ backgroundImage: `url('${bgLoopUrl}')` }}
       />
       <div className="relative z-[2] w-full max-w-[90%] mx-auto">
-        <h2 className={`mb-[70px] text-2xl font-extrabold tracking-[0.05em] text-[#0b4c8c] [text-shadow:0_1px_2px_rgba(255,255,255,0.5)] ${alignClass(titleAlign)}`}>
+        <h2
+          className={`mb-[70px] font-extrabold tracking-[0.05em] [text-shadow:0_1px_2px_rgba(255,255,255,0.5)] ${alignClass(titleAlign)}`}
+          style={getTitleStyle(titleStyle)}
+        >
           {title}
         </h2>
 
@@ -45,9 +53,11 @@ export default function StatsSection({
               key={i}
               className="flex flex-col items-center p-[20px_10px] transition-transform duration-300 hover:-translate-y-1.5"
             >
-              <span className="mb-4 font-serif text-[52px] font-bold leading-none text-[#0b2540]">
-                {stat.number}
-              </span>
+              <StatNumber
+                value={stat.number}
+                suffix={stat.suffix}
+                className="mb-4 font-serif text-[52px] font-bold leading-none text-[#0b2540]"
+              />
               <p className="max-w-[250px] text-sm font-medium leading-[1.6] text-[#1e293b]">{stat.desc}</p>
             </div>
           ))}

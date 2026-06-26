@@ -2,6 +2,7 @@ import { getBackgroundStyle, type SectionBackground } from "../shared/background
 import { alignClass, type Alignment } from "../shared/alignment";
 import { type CardStyle } from "../shared/cardStyle";
 import { cornerRadiusToCss } from "../shared/cornerRadius";
+import { getTitleStyle, type TitleStyle } from "../shared/titleStyle";
 
 export type ValueCard = {
   iconUrl: string;
@@ -17,6 +18,7 @@ export type ValuesSectionProps = {
   cards: ValueCard[];
   background: SectionBackground;
   titleAlign: Alignment;
+  titleStyle: TitleStyle;
   cardStyle: CardStyle;
 };
 
@@ -34,15 +36,18 @@ export default function ValuesSection({
   cards,
   background,
   titleAlign,
+  titleStyle,
   cardStyle,
 }: ValuesSectionProps) {
   return (
     <section className="relative pt-20 pb-[90px]" style={getBackgroundStyle(background)}>
       <div className="relative z-[1] w-full max-w-[90%] mx-auto">
         <div className="mb-12 flex items-center justify-between">
-          <h2 className={`text-2xl font-extrabold leading-[1.3] text-[#0b4c8c] ${alignClass(titleAlign)}`}>
-            {title}
-          </h2>
+          <div className={`flex flex-1 ${alignClass(titleAlign, "justify")}`}>
+            <h2 className="font-extrabold leading-[1.3]" style={getTitleStyle(titleStyle)}>
+              {title}
+            </h2>
+          </div>
           <a
             href={viewMoreHref}
             className="group flex items-center gap-1.5 whitespace-nowrap text-sm font-bold text-[#0b4c8c] transition-colors hover:text-[#f43f5e]"
