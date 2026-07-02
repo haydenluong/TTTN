@@ -1,8 +1,9 @@
 import { useScrollReveal } from "../shared/useScrollReveal";
 import { getBackgroundStyle } from "../shared/background";
 import { cornerRadiusToCss } from "../shared/cornerRadius";
+import { dividerMarginStyle } from "../shared/titleDivider";
 
-export default function NewProducts({ title, titleStyle = {}, products = [], background, imageRadius }) {
+export default function NewProducts({ title, titleStyle = {}, divider, products = [], background, imageRadius }) {
   const ref = useScrollReveal();
   const bgStyle = background?.type ? getBackgroundStyle(background) : { backgroundColor: "#fdf5e8" };
   return (
@@ -15,7 +16,7 @@ export default function NewProducts({ title, titleStyle = {}, products = [], bac
             <h2 className="uppercase mb-2" style={{ color: titleStyle.textColor || "#1a7a2e", fontSize: titleStyle.fontSize ? `${titleStyle.fontSize}px` : "1.5rem", fontWeight: "bold" }}>
               {title}
             </h2>
-            <div className="w-14 h-[4px] rounded" style={{ backgroundColor: "#f5a100" }} />
+            <div className="h-[4px] rounded" style={{ backgroundColor: divider?.color || "#f5a100", width: divider?.width ? `${divider.width}px` : "56px", ...dividerMarginStyle(divider?.align || "left") }} />
           </div>
 
           {/* Grid */}

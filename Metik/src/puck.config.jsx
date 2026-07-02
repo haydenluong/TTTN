@@ -13,6 +13,7 @@ import { cornerRadiusField, cornerRadiusToCss } from "./blocks/shared/cornerRadi
 import { imageUrlField, videoUrlField } from "./blocks/shared/imageUrl";
 import { titleStyleField } from "./blocks/shared/titleStyle";
 import { backgroundField } from "./blocks/shared/background";
+import { titleDividerField } from "./blocks/shared/titleDivider";
 
 const headerField = {
   type: "object",
@@ -66,6 +67,7 @@ export const puckConfig = {
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
         titleStyle: titleStyleField,
+        divider: titleDividerField,
         background: backgroundField,
         imageRadius: cornerRadiusField,
         products: {
@@ -84,6 +86,7 @@ export const puckConfig = {
       defaultProps: {
         title: "SẢN PHẨM MỚI",
         titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
+        divider: { width: 56, color: "#f5a100", align: "left" },
         background: { type: "color", color: "#fdf5e8" },
         imageRadius: { mode: "all", all: 12, topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12 },
         products: [
@@ -101,6 +104,10 @@ export const puckConfig = {
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
         titleStyle: titleStyleField,
+        divider: titleDividerField,
+        row1Reverse: { type: "select", label: "Hàng 1 — thứ tự", options: [{ label: "Ảnh — Nội dung", value: "false" }, { label: "Nội dung — Ảnh", value: "true" }] },
+        row2Reverse: { type: "select", label: "Hàng 2 — thứ tự", options: [{ label: "Bullets — Ảnh", value: "false" }, { label: "Ảnh — Bullets", value: "true" }] },
+        row3Reverse: { type: "select", label: "Hàng 3 — thứ tự", options: [{ label: "Ảnh — Nội dung", value: "false" }, { label: "Nội dung — Ảnh", value: "true" }] },
         introText: { type: "textarea", contentEditable: true, label: "Đoạn giới thiệu" },
         introTextSize: { type: "number", label: "Cỡ chữ đoạn giới thiệu (px)" },
         introTextColor: { type: "text", label: "Màu chữ đoạn giới thiệu" },
@@ -129,6 +136,10 @@ export const puckConfig = {
       defaultProps: {
         title: "GIỚI THIỆU VỀ METIK",
         titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
+        divider: { width: 56, color: "#f5a100", align: "left" },
+        row1Reverse: "false",
+        row2Reverse: "false",
+        row3Reverse: "false",
         introTextSize: 15,
         introTextColor: "#374151",
         row1TextSize: 15,
@@ -166,6 +177,8 @@ export const puckConfig = {
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
         titleStyle: titleStyleField,
+        divider: titleDividerField,
+        reverse: { type: "select", label: "Thứ tự bố cục", options: [{ label: "Nội dung — Video", value: "false" }, { label: "Video — Nội dung", value: "true" }] },
         paragraph1: { type: "textarea", contentEditable: true, label: "Đoạn văn 1" },
         paragraph1Size: { type: "number", label: "Cỡ chữ đoạn 1 (px)" },
         paragraph1Color: { type: "text", label: "Màu chữ đoạn 1" },
@@ -178,6 +191,8 @@ export const puckConfig = {
       defaultProps: {
         title: "VỀ CHÚNG TÔI",
         titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
+        divider: { width: 56, color: "#f5a100", align: "left" },
+        reverse: "false",
         paragraph1Size: 15,
         paragraph1Color: "#374151",
         paragraph2Size: 15,
@@ -197,6 +212,7 @@ export const puckConfig = {
       fields: {
         title: { type: "text", contentEditable: true, label: "Tiêu đề" },
         titleStyle: titleStyleField,
+        divider: titleDividerField,
         testimonials: {
           type: "array",
           label: "Danh sách đánh giá",
@@ -216,6 +232,7 @@ export const puckConfig = {
       defaultProps: {
         title: "KHÁCH HÀNG NÓI GÌ?",
         titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
+        divider: { width: 56, color: "#f5a100", align: "left" },
         background: { type: "color", color: "#fdf5e8" },
         testimonials: [
           {
@@ -244,6 +261,14 @@ export const puckConfig = {
     GioiThieuSection: {
       label: "Giới Thiệu — Video & Nội Dung",
       fields: {
+        reverse: {
+          type: "select",
+          label: "Thứ tự bố cục",
+          options: [
+            { label: "Video — Nội dung", value: "false" },
+            { label: "Nội dung — Video", value: "true" },
+          ],
+        },
         paragraph1: { type: "textarea", contentEditable: true, label: "Đoạn văn 1" },
         paragraph1Size: { type: "number", label: "Cỡ chữ đoạn 1 (px)" },
         paragraph1Color: { type: "text", label: "Màu chữ đoạn 1" },
@@ -264,6 +289,7 @@ export const puckConfig = {
         paragraph2Color: "#374151",
         videoUrl: "",
         background: { type: "color", color: "#ffffff" },
+        reverse: "false",
       },
       render: (props) => <GioiThieuSection {...props} />,
     },

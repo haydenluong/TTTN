@@ -116,6 +116,7 @@ const initialDataByPage = {
           paragraph2:
             'metik không chỉ là một sản phẩm snack. metik là cảm giác giòn vui khi mở gói, là hương vị dễ mê trong từng miếng bánh và là nguồn năng lượng tích cực cho những khoảnh khắc thường ngày.',
           videoUrl: "",
+          reverse: "false",
         },
       },
     ],

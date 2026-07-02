@@ -1,10 +1,15 @@
 import { cornerRadiusToCss } from "../shared/cornerRadius";
 import { useScrollReveal } from "../shared/useScrollReveal";
 import { getBackgroundStyle } from "../shared/background";
+import { dividerMarginStyle } from "../shared/titleDivider";
 
 export default function AboutSection({
   title,
   titleStyle = {},
+  divider,
+  row1Reverse,
+  row2Reverse,
+  row3Reverse,
   introText,
   introTextSize,
   introTextColor,
@@ -28,6 +33,9 @@ export default function AboutSection({
 }) {
   const ref = useScrollReveal();
   const bgStyle = background?.type ? getBackgroundStyle(background) : { backgroundColor: bgColor || "#fdf5e8" };
+  const r1 = row1Reverse === "true";
+  const r2 = row2Reverse === "true";
+  const r3 = row3Reverse === "true";
   return (
     <section className="reveal px-6 py-14" ref={ref} style={bgStyle}>
       <div className="max-w-7xl mx-auto">
@@ -39,7 +47,7 @@ export default function AboutSection({
           >
             {title}
           </h2>
-          <div className="w-14 h-[4px] rounded" style={{ backgroundColor: "#f5a100" }} />
+          <div className="h-[4px] rounded" style={{ backgroundColor: divider?.color || "#f5a100", width: divider?.width ? `${divider.width}px` : "56px", ...dividerMarginStyle(divider?.align || "left") }} />
         </div>
 
         {/* Intro */}
@@ -47,52 +55,46 @@ export default function AboutSection({
           <p className="leading-relaxed mb-12 max-w-3xl" style={{ fontSize: introTextSize ? `${introTextSize}px` : undefined, color: introTextColor || "#374151" }}>{introText}</p>
         )}
 
-        {/* Row 1: image left, text right */}
+        {/* Row 1: image / text */}
         <div className="grid grid-cols-2 gap-12 items-center mb-14">
-          <div className="overflow-hidden" style={{ borderRadius: row1Radius ? cornerRadiusToCss(row1Radius) : "1rem" }}>
+          <div className={`overflow-hidden ${r1 ? "order-last" : "order-first"}`} style={{ borderRadius: row1Radius ? cornerRadiusToCss(row1Radius) : "1rem" }}>
             {row1ImageUrl ? (
               <img src={row1ImageUrl} alt="" className="w-full h-72 object-cover" />
             ) : (
-              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">
-                Ảnh hàng 1
-              </div>
+              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">Ảnh hàng 1</div>
             )}
           </div>
-          <p className="leading-relaxed" style={{ fontSize: row1TextSize ? `${row1TextSize}px` : undefined, color: row1TextColor || "#374151" }}>{row1Text}</p>
+          <p className={`leading-relaxed ${r1 ? "order-first" : "order-last"}`} style={{ fontSize: row1TextSize ? `${row1TextSize}px` : undefined, color: row1TextColor || "#374151" }}>{row1Text}</p>
         </div>
 
-        {/* Row 2: bullets left, factory image right */}
+        {/* Row 2: bullets / image */}
         <div className="grid grid-cols-2 gap-12 items-center mb-14">
-          <ul className="list-disc pl-5 space-y-4">
+          <ul className={`list-disc pl-5 space-y-4 ${r2 ? "order-last" : "order-first"}`}>
             {(row2Bullets || []).map((bullet, i) => (
               <li key={i} className="leading-relaxed" style={{ fontSize: bulletSize ? `${bulletSize}px` : undefined, color: bulletColor || "#4b5563" }}>
                 {bullet}
               </li>
             ))}
           </ul>
-          <div className="overflow-hidden" style={{ borderRadius: row2Radius ? cornerRadiusToCss(row2Radius) : "1rem" }}>
+          <div className={`overflow-hidden ${r2 ? "order-first" : "order-last"}`} style={{ borderRadius: row2Radius ? cornerRadiusToCss(row2Radius) : "1rem" }}>
             {row2ImageUrl ? (
               <img src={row2ImageUrl} alt="" className="w-full h-72 object-cover" />
             ) : (
-              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">
-                Ảnh nhà máy
-              </div>
+              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">Ảnh nhà máy</div>
             )}
           </div>
         </div>
 
-        {/* Row 3: person image left, text right */}
+        {/* Row 3: image / text */}
         <div className="grid grid-cols-2 gap-12 items-center">
-          <div className="overflow-hidden" style={{ borderRadius: row3Radius ? cornerRadiusToCss(row3Radius) : "1rem" }}>
+          <div className={`overflow-hidden ${r3 ? "order-last" : "order-first"}`} style={{ borderRadius: row3Radius ? cornerRadiusToCss(row3Radius) : "1rem" }}>
             {row3ImageUrl ? (
               <img src={row3ImageUrl} alt="" className="w-full h-72 object-cover" />
             ) : (
-              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">
-                Ảnh hàng 3
-              </div>
+              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">Ảnh hàng 3</div>
             )}
           </div>
-          <p className="leading-relaxed" style={{ fontSize: row3TextSize ? `${row3TextSize}px` : undefined, color: row3TextColor || "#374151" }}>{row3Text}</p>
+          <p className={`leading-relaxed ${r3 ? "order-first" : "order-last"}`} style={{ fontSize: row3TextSize ? `${row3TextSize}px` : undefined, color: row3TextColor || "#374151" }}>{row3Text}</p>
         </div>
       </div>
     </section>

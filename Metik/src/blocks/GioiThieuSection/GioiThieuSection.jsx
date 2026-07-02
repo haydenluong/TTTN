@@ -1,7 +1,7 @@
 import { useScrollReveal } from "../shared/useScrollReveal";
 import { getBackgroundStyle } from "../shared/background";
 
-export default function GioiThieuSection({ paragraph1, paragraph1Size, paragraph1Color, paragraph2, paragraph2Size, paragraph2Color, videoUrl, background }) {
+export default function GioiThieuSection({ paragraph1, paragraph1Size, paragraph1Color, paragraph2, paragraph2Size, paragraph2Color, videoUrl, background, reverse }) {
   const ref = useScrollReveal();
   const bgStyle = background?.type ? getBackgroundStyle(background) : { backgroundColor: "#ffffff" };
 
@@ -13,8 +13,8 @@ export default function GioiThieuSection({ paragraph1, paragraph1Size, paragraph
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 gap-12 items-center">
-          {/* Video - left */}
-          <div className="overflow-hidden rounded-2xl bg-gray-900 aspect-video flex items-center justify-center">
+          {/* Video */}
+          <div className={`overflow-hidden rounded-2xl bg-gray-900 aspect-video flex items-center justify-center ${reverse === "true" ? "order-last" : "order-first"}`}>
             {videoUrl ? (
               <video src={videoUrl} controls className="w-full h-full object-cover rounded-2xl" />
             ) : (
@@ -22,8 +22,8 @@ export default function GioiThieuSection({ paragraph1, paragraph1Size, paragraph
             )}
           </div>
 
-          {/* Text - right */}
-          <div className="flex flex-col gap-6 leading-relaxed">
+          {/* Text */}
+          <div className={`flex flex-col gap-6 leading-relaxed ${reverse === "true" ? "order-first" : "order-last"}`}>
             {paragraph1 && <p style={{ fontSize: paragraph1Size ? `${paragraph1Size}px` : undefined, color: paragraph1Color || "#374151" }}>{paragraph1}</p>}
             {paragraph2 && <p style={{ fontSize: paragraph2Size ? `${paragraph2Size}px` : undefined, color: paragraph2Color || "#374151" }}>{paragraph2}</p>}
           </div>
