@@ -22,46 +22,43 @@ function LocationIcon() {
   );
 }
 
-export default function Footer({
-  logoUrl, tagline,
-  phone, email, address,
-  copyright,
-}) {
+export default function Footer({ logoUrl, tagline, phone, email, address, copyright }) {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer style={{ backgroundColor: "#ffd600" }}>
-      <div className="max-w-7xl mx-auto px-8 py-12 grid grid-cols-2 gap-16">
+    <footer style={{ backgroundColor: "#F2BF09" }}>
+      <div className="max-w-7xl mx-auto px-8 py-10 grid grid-cols-2 gap-16">
+
         {/* Left: logo + tagline */}
         <div>
           {logoUrl
-            ? <img src={logoUrl} alt="Metik" className="h-64 w-auto mb-4" />
+            ? <img src={logoUrl} alt="Metik" className="h-64 -mt-16 w-auto mb-4" />
             : <span className="text-4xl font-black block mb-4" style={{ color: "#f5a100" }}>metik</span>
           }
-          <p className="text-gray-800 leading-relaxed max-w-xs">{tagline}</p>
+          <p className="text-sm text-gray-800 leading-relaxed max-w-xs">{tagline}</p>
         </div>
 
         {/* Right: contact */}
         <div>
-          <h3 className="font-extrabold uppercase tracking-wide mb-2" style={{ color: "#1a7a2e", fontSize: 16 }}>
+          <h3 className="text-sm font-bold uppercase tracking-wide mb-2" style={{ color: "#1a7a2e" }}>
             THÔNG TIN LIÊN HỆ
           </h3>
-          <div className="border-t border-yellow-500 mb-6" />
-          <div className="flex flex-col gap-4 text-gray-800">
+          <div className="border-t mb-5" style={{ borderColor: "#e6b800" }} />
+          <div className="flex flex-col gap-5 text-sm text-gray-800">
             {phone && (
-              <div className="flex items-start gap-3">
+              <div className="flex items-center gap-3">
                 <PhoneIcon />
                 <span>{phone}</span>
               </div>
             )}
             {email && (
-              <div className="flex items-start gap-3">
+              <div className="flex items-center gap-3">
                 <EmailIcon />
                 <span>{email}</span>
               </div>
             )}
             {address && (
-              <div className="flex items-start gap-3">
+              <div className="flex items-center gap-3">
                 <LocationIcon />
                 <span>{address}</span>
               </div>
@@ -75,7 +72,7 @@ export default function Footer({
         <p className="text-center text-white text-sm py-3 font-medium">{copyright}</p>
         <button
           onClick={scrollToTop}
-          className="absolute right-6 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/30 hover:bg-white/50 flex items-center justify-center text-white transition"
+          className="absolute right-6 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/30 hover:bg-white/50 flex items-center justify-center transition"
         >
           <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
             <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />

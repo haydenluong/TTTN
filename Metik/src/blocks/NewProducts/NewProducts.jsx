@@ -1,23 +1,17 @@
 import { useScrollReveal } from "../shared/useScrollReveal";
 import { getBackgroundStyle } from "../shared/background";
 import { cornerRadiusToCss } from "../shared/cornerRadius";
-import { dividerMarginStyle } from "../shared/titleDivider";
+import { TitleWithDivider } from "../shared/titleDivider";
 
 export default function NewProducts({ title, titleStyle = {}, divider, products = [], background, imageRadius }) {
   const ref = useScrollReveal();
-  const bgStyle = background?.type ? getBackgroundStyle(background) : { backgroundColor: "#fdf5e8" };
+  const bgStyle = background?.type ? getBackgroundStyle(background) : {};
   return (
     <section className="reveal relative" ref={ref}>
       <div className="absolute inset-0" style={bgStyle} />
       <div className="relative z-10 px-6 py-12">
         <div className="max-w-7xl mx-auto">
-          {/* Title */}
-          <div className="mb-8">
-            <h2 className="uppercase mb-2" style={{ color: titleStyle.textColor || "#1a7a2e", fontSize: titleStyle.fontSize ? `${titleStyle.fontSize}px` : "1.5rem", fontWeight: "bold" }}>
-              {title}
-            </h2>
-            <div className="h-[4px] rounded" style={{ backgroundColor: divider?.color || "#f5a100", width: divider?.width ? `${divider.width}px` : "56px", ...dividerMarginStyle(divider?.align || "left") }} />
-          </div>
+          <TitleWithDivider title={title} titleStyle={titleStyle} divider={divider} />
 
           {/* Grid */}
           <div className="grid grid-cols-4 gap-6">

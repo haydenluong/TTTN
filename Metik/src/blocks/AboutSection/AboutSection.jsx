@@ -1,7 +1,7 @@
 import { cornerRadiusToCss } from "../shared/cornerRadius";
 import { useScrollReveal } from "../shared/useScrollReveal";
 import { getBackgroundStyle } from "../shared/background";
-import { dividerMarginStyle } from "../shared/titleDivider";
+import { TitleWithDivider } from "../shared/titleDivider";
 
 export default function AboutSection({
   title,
@@ -32,23 +32,14 @@ export default function AboutSection({
   bgColor,
 }) {
   const ref = useScrollReveal();
-  const bgStyle = background?.type ? getBackgroundStyle(background) : { backgroundColor: bgColor || "#fdf5e8" };
+  const bgStyle = background?.type ? getBackgroundStyle(background) : (bgColor ? { backgroundColor: bgColor } : {});
   const r1 = row1Reverse === "true";
   const r2 = row2Reverse === "true";
   const r3 = row3Reverse === "true";
   return (
     <section className="reveal px-6 py-14" ref={ref} style={bgStyle}>
       <div className="max-w-7xl mx-auto">
-        {/* Title */}
-        <div className="mb-8">
-          <h2
-            className="uppercase mb-2"
-            style={{ color: titleStyle.textColor || "#1a7a2e", fontSize: titleStyle.fontSize ? `${titleStyle.fontSize}px` : "1.5rem", fontWeight: "bold" }}
-          >
-            {title}
-          </h2>
-          <div className="h-[4px] rounded" style={{ backgroundColor: divider?.color || "#f5a100", width: divider?.width ? `${divider.width}px` : "56px", ...dividerMarginStyle(divider?.align || "left") }} />
-        </div>
+        <TitleWithDivider title={title} titleStyle={titleStyle} divider={divider} />
 
         {/* Intro */}
         {introText && (
@@ -57,11 +48,11 @@ export default function AboutSection({
 
         {/* Row 1: image / text */}
         <div className="grid grid-cols-2 gap-12 items-center mb-14">
-          <div className={`overflow-hidden ${r1 ? "order-last" : "order-first"}`} style={{ borderRadius: row1Radius ? cornerRadiusToCss(row1Radius) : "1rem" }}>
+          <div className={r1 ? "order-last" : "order-first"}>
             {row1ImageUrl ? (
-              <img src={row1ImageUrl} alt="" className="w-full h-72 object-cover" />
+              <img src={row1ImageUrl} alt="" className="w-full h-72 object-cover" style={{ borderRadius: row1Radius ? cornerRadiusToCss(row1Radius) : "1rem" }} />
             ) : (
-              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">Ảnh hàng 1</div>
+              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400" style={{ borderRadius: row1Radius ? cornerRadiusToCss(row1Radius) : "1rem" }}>Ảnh hàng 1</div>
             )}
           </div>
           <p className={`leading-relaxed ${r1 ? "order-first" : "order-last"}`} style={{ fontSize: row1TextSize ? `${row1TextSize}px` : undefined, color: row1TextColor || "#374151" }}>{row1Text}</p>
@@ -76,22 +67,22 @@ export default function AboutSection({
               </li>
             ))}
           </ul>
-          <div className={`overflow-hidden ${r2 ? "order-first" : "order-last"}`} style={{ borderRadius: row2Radius ? cornerRadiusToCss(row2Radius) : "1rem" }}>
+          <div className={r2 ? "order-first" : "order-last"}>
             {row2ImageUrl ? (
-              <img src={row2ImageUrl} alt="" className="w-full h-72 object-cover" />
+              <img src={row2ImageUrl} alt="" className="w-full h-72 object-cover" style={{ borderRadius: row2Radius ? cornerRadiusToCss(row2Radius) : "1rem" }} />
             ) : (
-              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">Ảnh nhà máy</div>
+              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400" style={{ borderRadius: row2Radius ? cornerRadiusToCss(row2Radius) : "1rem" }}>Ảnh nhà máy</div>
             )}
           </div>
         </div>
 
         {/* Row 3: image / text */}
         <div className="grid grid-cols-2 gap-12 items-center">
-          <div className={`overflow-hidden ${r3 ? "order-last" : "order-first"}`} style={{ borderRadius: row3Radius ? cornerRadiusToCss(row3Radius) : "1rem" }}>
+          <div className={r3 ? "order-last" : "order-first"}>
             {row3ImageUrl ? (
-              <img src={row3ImageUrl} alt="" className="w-full h-72 object-cover" />
+              <img src={row3ImageUrl} alt="" className="w-full h-72 object-cover" style={{ borderRadius: row3Radius ? cornerRadiusToCss(row3Radius) : "1rem" }} />
             ) : (
-              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400">Ảnh hàng 3</div>
+              <div className="w-full h-72 bg-gray-100 flex items-center justify-center text-gray-400" style={{ borderRadius: row3Radius ? cornerRadiusToCss(row3Radius) : "1rem" }}>Ảnh hàng 3</div>
             )}
           </div>
           <p className={`leading-relaxed ${r3 ? "order-first" : "order-last"}`} style={{ fontSize: row3TextSize ? `${row3TextSize}px` : undefined, color: row3TextColor || "#374151" }}>{row3Text}</p>

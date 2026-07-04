@@ -86,8 +86,7 @@ export const puckConfig = {
       defaultProps: {
         title: "SẢN PHẨM MỚI",
         titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
-        divider: { width: 56, color: "#f5a100", align: "left" },
-        background: { type: "color", color: "#fdf5e8" },
+        divider: { color: "#FFD000", align: "left" },
         imageRadius: { mode: "all", all: 12, topLeft: 12, topRight: 12, bottomRight: 12, bottomLeft: 12 },
         products: [
           { imageUrl: "", name: "Sản phẩm 1", nameSize: 14, nameColor: "#f5a100", href: "#" },
@@ -136,21 +135,21 @@ export const puckConfig = {
       defaultProps: {
         title: "GIỚI THIỆU VỀ METIK",
         titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
-        divider: { width: 56, color: "#f5a100", align: "left" },
+        divider: { color: "#FFD000", align: "left" },
         row1Reverse: "false",
         row2Reverse: "false",
         row3Reverse: "false",
-        introTextSize: 15,
+        introTextSize: 32,
         introTextColor: "#374151",
-        row1TextSize: 15,
+        row1TextSize: 32,
         row1TextColor: "#374151",
-        bulletSize: 15,
+        bulletSize: 32,
         bulletColor: "#374151",
-        row3TextSize: 15,
+        row3TextSize: 32,
         row3TextColor: "#374151",
         introText:
           "metik là thương hiệu snack thuộc OCHAO, được phát triển trong hệ sinh thái HUNGHAU Holdings với định hướng mang đến những sản phẩm ăn vặt thơm ngon, vui tươi và phù hợp với nhịp sống hiện đại.",
-        row1Radius: { mode: "all", all: 16, topLeft: 16, topRight: 16, bottomRight: 16, bottomLeft: 16 },
+        row1Radius: { mode: "all", all: 24, topLeft: 24, topRight: 24, bottomRight: 24, bottomLeft: 24 },
         row1Text:
           "Ra đời từ nền tảng sản xuất bánh kẹo của OCHAO, METIK kế thừa hệ thống nhà máy hiện đại, quy trình sản xuất khép kín và tiêu chuẩn kiểm soát chất lượng nghiêm ngặt. METIK tập trung phát triển các dòng snack giòn, nhẹ, dễ ăn và phù hợp với nhiều nhóm khách hàng. Sản phẩm được nghiên cứu với nhiều hương vị hấp dẫn như rong biển, bắp, phô mai, BBQ và các hương vị đặc trưng khác.",
         row2Bullets: [
@@ -158,11 +157,10 @@ export const puckConfig = {
           { value: "Quy trình sản xuất hiện đại, khép kín và đảm bảo vệ sinh an toàn thực phẩm." },
           { value: "Kiểm soát chất lượng chặt chẽ trong từng công đoạn, từ nguyên liệu đầu vào đến thành phẩm." },
         ],
-        row2Radius: { mode: "all", all: 16, topLeft: 16, topRight: 16, bottomRight: 16, bottomLeft: 16 },
-        row3Radius: { mode: "all", all: 16, topLeft: 16, topRight: 16, bottomRight: 16, bottomLeft: 16 },
+        row2Radius: { mode: "all", all: 24, topLeft: 24, topRight: 24, bottomRight: 24, bottomLeft: 24 },
+        row3Radius: { mode: "all", all: 24, topLeft: 24, topRight: 24, bottomRight: 24, bottomLeft: 24 },
         row3Text:
           "Với hương vị hấp dẫn, phong cách trẻ trung và tinh thần vui nhộn, METIK hướng đến hình ảnh một thương hiệu snack năng động, gắn gũi và dễ tạo thiện cảm với người tiêu dùng Việt Nam.",
-        background: { type: "color", color: "#fdf5e8" },
       },
       render: (props) => (
         <AboutSection
@@ -191,7 +189,7 @@ export const puckConfig = {
       defaultProps: {
         title: "VỀ CHÚNG TÔI",
         titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
-        divider: { width: 56, color: "#f5a100", align: "left" },
+        divider: { color: "#FFD000", align: "left" },
         reverse: "false",
         paragraph1Size: 15,
         paragraph1Color: "#374151",
@@ -232,7 +230,7 @@ export const puckConfig = {
       defaultProps: {
         title: "KHÁCH HÀNG NÓI GÌ?",
         titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
-        divider: { width: 56, color: "#f5a100", align: "left" },
+        divider: { color: "#FFD000", align: "left" },
         background: { type: "color", color: "#fdf5e8" },
         testimonials: [
           {
@@ -371,6 +369,14 @@ export const puckConfig = {
     fields: {
       header: headerField,
       footer: footerField,
+      pageGradient: {
+        type: "select",
+        label: "Màu nền trang",
+        options: [
+          { label: "Trắng phẳng", value: "none" },
+          { label: "Trắng → Cam nhạt (#FFDFA9)", value: "cream" },
+        ],
+      },
     },
     defaultProps: {
       header: {
@@ -387,14 +393,20 @@ export const puckConfig = {
         address: "Lô C3-1, Đường D2-N7, KCN Tân Phú Trung, Xã Củ Chi, TP.HCM..",
         copyright: "Copyright © Metik. All rights reserved.",
       },
+      pageGradient: "cream",
     },
-    render: ({ children, header, footer }) => (
-      <div className="min-h-screen">
-        <Header {...header} />
-        <main style={{ paddingTop: 72 }}>{children}</main>
-        <Footer {...footer} />
-      </div>
-    ),
+    render: ({ children, header, footer, pageGradient }) => {
+      const bgStyle = pageGradient === "cream"
+        ? { background: "linear-gradient(to bottom, #ffffff 0%, #FFDFA9 100%)" }
+        : {};
+      return (
+        <div className="min-h-screen" style={bgStyle}>
+          <Header {...header} />
+          <main style={{ paddingTop: 72 }}>{children}</main>
+          <Footer {...footer} />
+        </div>
+      );
+    },
   },
 };
 

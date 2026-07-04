@@ -1,27 +1,28 @@
 import { useScrollReveal } from "../shared/useScrollReveal";
 import { getBackgroundStyle } from "../shared/background";
-import { dividerMarginStyle } from "../shared/titleDivider";
+import { TitleWithDivider } from "../shared/titleDivider";
+
+function boldMetik(text) {
+  if (!text) return null;
+  return text.split(/\b(metik)\b/gi).map((part, i) =>
+    part.toLowerCase() === "metik" ? <strong key={i}>{part}</strong> : part
+  );
+}
 
 export default function AboutVideo({ title, titleStyle = {}, divider, reverse, paragraph1, paragraph1Size, paragraph1Color, paragraph2, paragraph2Size, paragraph2Color, videoUrl, background, bgColor }) {
   const ref = useScrollReveal();
-  const bgStyle = background?.type ? getBackgroundStyle(background) : { backgroundColor: bgColor || "#fef6e0" };
+  const bgStyle = background?.type ? getBackgroundStyle(background) : (bgColor ? { backgroundColor: bgColor } : {});
   const rev = reverse === "true";
   return (
     <section className="reveal px-6 py-14" ref={ref} style={bgStyle}>
       <div className="max-w-7xl mx-auto">
-        {/* Title */}
-        <div className="mb-10">
-          <h2 className="uppercase mb-2" style={{ color: titleStyle.textColor || "#1a7a2e", fontSize: titleStyle.fontSize ? `${titleStyle.fontSize}px` : "1.5rem", fontWeight: "bold" }}>
-            {title}
-          </h2>
-          <div className="h-[4px] rounded" style={{ backgroundColor: divider?.color || "#f5a100", width: divider?.width ? `${divider.width}px` : "56px", ...dividerMarginStyle(divider?.align || "left") }} />
-        </div>
+        <TitleWithDivider title={title} titleStyle={titleStyle} divider={divider} className="mb-10" />
 
         <div className="grid grid-cols-2 gap-12 items-center">
           {/* Text */}
           <div className={`flex flex-col gap-5 ${rev ? "order-last" : "order-first"}`}>
-            {paragraph1 && <p className="leading-relaxed" style={{ fontSize: paragraph1Size ? `${paragraph1Size}px` : undefined, color: paragraph1Color || "#374151" }}>{paragraph1}</p>}
-            {paragraph2 && <p className="leading-relaxed" style={{ fontSize: paragraph2Size ? `${paragraph2Size}px` : undefined, color: paragraph2Color || "#374151" }}>{paragraph2}</p>}
+            {paragraph1 && <p className="leading-relaxed" style={{ fontSize: paragraph1Size ? `${paragraph1Size}px` : undefined, color: paragraph1Color || "#374151" }}>{boldMetik(paragraph1)}</p>}
+            {paragraph2 && <p className="leading-relaxed" style={{ fontSize: paragraph2Size ? `${paragraph2Size}px` : undefined, color: paragraph2Color || "#374151" }}>{boldMetik(paragraph2)}</p>}
           </div>
 
           {/* Video */}

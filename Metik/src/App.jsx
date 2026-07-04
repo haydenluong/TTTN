@@ -57,7 +57,6 @@ const initialDataByPage = {
           ],
           row3Text:
             "Với hương vị hấp dẫn, phong cách trẻ trung và tinh thần vui nhộn, METIK hướng đến hình ảnh một thương hiệu snack năng động, gắn gũi và dễ tạo thiện cảm với người tiêu dùng Việt Nam.",
-          bgColor: "#fdf5e8",
         },
       },
       {
@@ -70,7 +69,6 @@ const initialDataByPage = {
           paragraph2:
             "metik không chỉ là một sản phẩm snack. metik là cảm giác giòn vui khi mở gói, là hương vị dễ mê trong từng miếng bánh và là nguồn năng lượng tích cực cho những khoảnh khắc thường ngày.",
           videoUrl: "",
-          bgColor: "#fef6e0",
         },
       },
       {
@@ -79,7 +77,6 @@ const initialDataByPage = {
           id: "testimonials-1",
           title: "KHÁCH HÀNG NÓI GÌ?",
           titleStyle: { fontSize: 24, textColor: "#1a7a2e" },
-          background: { type: "color", color: "#fdf5e8" },
           testimonials: [
             {
               avatarUrl: "",
@@ -103,7 +100,7 @@ const initialDataByPage = {
         },
       },
     ],
-    root: {},
+    root: { props: { pageGradient: "cream" } },
   },
   "gioi-thieu": {
     content: [

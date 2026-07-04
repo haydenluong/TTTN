@@ -1,6 +1,13 @@
 import { useScrollReveal } from "../shared/useScrollReveal";
 import { getBackgroundStyle } from "../shared/background";
 
+function boldMetik(text) {
+  if (!text) return null;
+  return text.split(/\b(metik)\b/gi).map((part, i) =>
+    part.toLowerCase() === "metik" ? <strong key={i}>{part}</strong> : part
+  );
+}
+
 export default function GioiThieuSection({ paragraph1, paragraph1Size, paragraph1Color, paragraph2, paragraph2Size, paragraph2Color, videoUrl, background, reverse }) {
   const ref = useScrollReveal();
   const bgStyle = background?.type ? getBackgroundStyle(background) : { backgroundColor: "#ffffff" };
@@ -24,8 +31,8 @@ export default function GioiThieuSection({ paragraph1, paragraph1Size, paragraph
 
           {/* Text */}
           <div className={`flex flex-col gap-6 leading-relaxed ${reverse === "true" ? "order-first" : "order-last"}`}>
-            {paragraph1 && <p style={{ fontSize: paragraph1Size ? `${paragraph1Size}px` : undefined, color: paragraph1Color || "#374151" }}>{paragraph1}</p>}
-            {paragraph2 && <p style={{ fontSize: paragraph2Size ? `${paragraph2Size}px` : undefined, color: paragraph2Color || "#374151" }}>{paragraph2}</p>}
+            {paragraph1 && <p style={{ fontSize: paragraph1Size ? `${paragraph1Size}px` : undefined, color: paragraph1Color || "#374151" }}>{boldMetik(paragraph1)}</p>}
+            {paragraph2 && <p style={{ fontSize: paragraph2Size ? `${paragraph2Size}px` : undefined, color: paragraph2Color || "#374151" }}>{boldMetik(paragraph2)}</p>}
           </div>
         </div>
       </div>
