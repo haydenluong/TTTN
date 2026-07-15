@@ -11,21 +11,17 @@
 </head>
 <body>
 
-  <!-- ── HEADER ─────────────────────────────────────────────────── -->
   <header class="topbar">
     <div class="container-fluid h-100 px-4 d-flex align-items-center justify-content-between position-relative">
 
-      <!-- left: game icon + publisher name -->
       <a href="#" class="d-flex align-items-center">
         <img src="assets/img/logo-header.png" alt="Hào Khí Du Hiệp – Nhà Phát Hành MYE" class="topbar-logo">
       </a>
 
-      <!-- center: big game logo (overflows topbar downward) -->
       <a href="#" class="topbar-brand">
         <img src="assets/img/logo-splash.png" alt="Hào Khí Du Hiệp">
       </a>
 
-      <!-- right: home, facebook, login -->
       <div class="d-flex align-items-center gap-3">
         <a href="#" class="topbar-icon"><i class="bi bi-house-door-fill"></i></a>
         <a href="#" class="topbar-icon"><i class="bi bi-facebook"></i></a>
@@ -39,71 +35,55 @@
 
   <main class="game-bg">
 
-    <!-- ── HERO ───────────────────────────────────────────────────── -->
     <section class="hero text-center">
 
-      <!-- Miss Mister event logo -->
       <img src="assets/img/logo-missmister.png" alt="Miss Mister Hào Khí Du Hiệp" class="hero-logo">
 
-      <!-- Nav buttons + divider bar wrapped together so bar overlaps -->
       <div class="nav-bar-area d-flex flex-column align-items-center">
 
-        <!-- Nav pills row — Bootstrap flex + gap -->
         <div class="hero-nav d-flex align-items-end justify-content-center gap-3 gap-lg-4">
 
-          <!-- THỂ LỆ -->
           <button type="button" class="nav-pill" data-bs-toggle="modal" data-bs-target="#theleModal">
             <img src="assets/img/btn-thele.png" alt="Thể lệ">
           </button>
 
-          <!-- HƯỚNG DẪN -->
           <button type="button" class="nav-pill" data-bs-toggle="modal" data-bs-target="#huongdanModal">
             <img src="assets/img/btn-huongdan.png" alt="Hướng dẫn">
           </button>
 
-          <!-- THAM GIA NGAY — center shield -->
           <a href="#dangky" class="nav-shield">THAM GIA<br>NGAY</a>
 
-          <!-- TÀI GAME -->
           <a href="https://hkdh.mye.vn/dl" target="_blank" rel="noopener" class="nav-pill">
             <img src="assets/img/btn-taigame.png" alt="Tải game">
           </a>
 
-          <!-- NẠP THẺ -->
           <a href="https://pay.mye.vn/" target="_blank" rel="noopener" class="nav-pill">
             <img src="assets/img/btn-napthe.png" alt="Nạp thẻ">
           </a>
 
-        </div><!-- /.hero-nav -->
+        </div>
 
-        <!-- Decorative bar image — visually behind the nav pills -->
         <img src="assets/img/divider-bar.png" alt="" class="hero-divider">
 
-      </div><!-- /.nav-bar-area -->
+      </div>
 
-    </section><!-- /.hero -->
+    </section>
 
-    <!-- ── REGISTRATION ──────────────────────────────────────────── -->
     <section id="dangky" class="register-section">
 
-      <!-- Title -->
       <div class="text-center">
         <img src="assets/img/title-dangky.png" alt="Đăng ký dự thi" class="register-title">
       </div>
 
-      <!-- Two-column layout: photos (left) + form (right) -->
       <div class="container">
         <div class="row g-4 justify-content-center align-items-start">
 
-          <!-- ── LEFT: photo uploads ─────────────────────────────── -->
           <div class="col-lg-7">
 
-            <!-- Main photo upload -->
             <label class="upload-main-box" title="Nhấn để chọn ảnh dự thi chính">
               <input type="file" accept="image/*" hidden class="js-upload-preview">
             </label>
 
-            <!-- Three small photo uploads -->
             <div class="row g-2 mt-2">
               <div class="col-4">
                 <label class="upload-small-box" title="Ảnh phụ 1">
@@ -124,18 +104,15 @@
 
             <p class="upload-note mt-2 text-center">*Bắt buộc phải đăng ký đủ 4 ảnh dự thi</p>
 
-          </div><!-- /.col left -->
+          </div>
 
-          <!-- ── RIGHT: registration form ───────────────────────── -->
           <div class="col-lg-5">
             <form class="register-form" onsubmit="return false;">
 
-              <!-- Character info (pre-filled from account) -->
               <p class="char-info">Nhân vật: <span class="highlight">Lục Trà Bạc Hà</span></p>
               <p class="char-info">Bang hội: <span class="highlight">Lạc Viên</span></p>
               <p class="char-info mb-3">Máy chủ: <span class="highlight">S1 - Lý Bạch</span></p>
 
-              <!-- THI MISS / THI MISSTER radio -->
               <div class="d-flex align-items-center gap-4 mb-3 radio-group">
 
                 <label class="radio-option">
@@ -152,11 +129,9 @@
 
               </div>
 
-              <!-- Address -->
               <input type="text" class="field mb-3"
                      placeholder="Nhập địa chỉ liên hệ nhận thưởng">
 
-              <!-- Phone + Area — two columns with Bootstrap -->
               <div class="row g-2 mb-3">
                 <div class="col-6">
                   <input type="tel" class="field field-short"
@@ -172,7 +147,6 @@
                 </div>
               </div>
 
-              <!-- CMND / CCCD upload -->
               <p class="field-label mb-2">Nhập ảnh CMND/CCCD mặt trước và sau</p>
               <div class="row g-2 mb-3">
                 <div class="col-6">
@@ -187,15 +161,12 @@
                 </div>
               </div>
 
-              <!-- Bio textarea -->
               <textarea class="field mb-3" rows="4" maxlength="300"
                         placeholder="Nhập nội dung giới thiệu(không quá 300 kí tự)"></textarea>
 
-              <!-- Video link -->
               <input type="url" class="field mb-4"
                      placeholder="Nhập video dự thi">
 
-              <!-- Submit / Cancel buttons — Bootstrap flex centering -->
               <div class="d-flex justify-content-center gap-3 form-actions">
                 <button type="button" class="img-btn"
                         data-bs-toggle="modal" data-bs-target="#successModal">
@@ -207,44 +178,37 @@
               </div>
 
             </form>
-          </div><!-- /.col right -->
+          </div>
 
-        </div><!-- /.row -->
-      </div><!-- /.container -->
+        </div>
+      </div>
 
-    </section><!-- /#dangky -->
+    </section>
 
   </main>
 
-  <!-- ── POPUP: Thể lệ ──────────────────────────────────────────── -->
   <div class="modal fade" id="theleModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="popup-frame popup-thele">
           <button type="button" class="popup-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-          <div class="popup-body">
-            <!-- Nội dung thể lệ đặt ở đây -->
-          </div>
+          <div class="popup-body"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── POPUP: Hướng dẫn ───────────────────────────────────────── -->
   <div class="modal fade" id="huongdanModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="popup-frame popup-huongdan">
           <button type="button" class="popup-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-          <div class="popup-body">
-            <!-- Nội dung hướng dẫn đặt ở đây -->
-          </div>
+          <div class="popup-body"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── POPUP: Đăng ký thành công ─────────────────────────────── -->
   <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content">
