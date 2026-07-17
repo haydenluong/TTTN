@@ -55,20 +55,34 @@
         <img src="assets/img/dropdown-box.png" alt="" class="filter-bg">
         <span class="filter-label">Sắp xếp</span>
         <i class="bi bi-caret-down-fill filter-caret"></i>
+        <select class="filter-native-select" id="sel-sapxep">
+          <option value="">-- Chọn --</option>
+          <option value="az">Từ A đến Z</option>
+          <option value="za">Từ Z đến A</option>
+        </select>
       </div>
       <div class="filter-select">
         <img src="assets/img/dropdown-box.png" alt="" class="filter-bg">
         <span class="filter-label">Chọn giới tính</span>
         <i class="bi bi-caret-down-fill filter-caret"></i>
+        <select class="filter-native-select" id="sel-gioitinh">
+          <option value="">-- Chọn --</option>
+          <option value="nam">Nam</option>
+          <option value="nu">Nữ</option>
+        </select>
       </div>
       <div class="filter-select">
         <img src="assets/img/dropdown-box.png" alt="" class="filter-bg">
         <span class="filter-label">Chọn máy chủ</span>
         <i class="bi bi-caret-down-fill filter-caret"></i>
+        <select class="filter-native-select" id="sel-maychu">
+          <option value="">-- Chọn --</option>
+          <option value="s01">Server 01 - Lý Bạch</option>
+        </select>
       </div>
       <div class="filter-search">
         <img src="assets/img/search-box.png" alt="" class="filter-bg">
-        <span class="filter-label">Tìm thí sinh theo Số Báo Danh</span>
+        <input type="text" class="filter-search-input" id="input-search-sbd" placeholder="Tìm thí sinh theo Số Báo Danh">
         <i class="bi bi-search filter-search-icon"></i>
       </div>
     </div>

@@ -166,17 +166,38 @@ img { max-width: 100%; display: block; }
 /* ---- SECTION CONTENT COMMON ---- */
 .section-content {
   padding: 3% 0 2%;
+
+
 }
+
+#bxh {  margin-top: -4%; }
 
 .section-title-wrap {
   text-align: center;
   margin-bottom: 2%;
+  position: relative;
+}
+
+.section-title-wrap::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 200%;
+  background: radial-gradient(closest-side, rgba(138, 0, 143, 0.45), transparent 70%);
+  filter: blur(20px);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .section-title-img {
   width: 31.25%; /* Figma: 600/1920 */
   max-width: 600px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* ---- FILTER BAR ---- */
@@ -209,11 +230,24 @@ img { max-width: 100%; display: block; }
 .filter-label {
   position: absolute;
   left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 16px;
   font-weight: 500;
-  color: #1F46B4;
+  color: #fff;
   white-space: nowrap;
   pointer-events: none;
+  z-index: 2;
+}
+
+.filter-native-select {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 3;
 }
 
 .filter-caret {
@@ -230,6 +264,37 @@ img { max-width: 100%; display: block; }
   color: #1F46B4;
   font-size: 20px;
   pointer-events: none;
+}
+
+.filter-search-input {
+  position: absolute;
+  left: 32px;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  z-index: 2;
+}
+
+.filter-search-input::placeholder {
+  color: #1F46B4; /* Figma: matches search icon blue */
+  opacity: 1;
+}
+
+.filter-native-select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 /* ---- CANDIDATE CARDS GRID ---- */
@@ -254,11 +319,13 @@ img { max-width: 100%; display: block; }
 /* Bottom info bar overlay (~y:206/327 = 63%) */
 .card-rank-area {
   position: absolute;
-  left: 2.3%; /* Figma: x:10/430 */
+  left: 4%; /* Figma: x:10/430 */
   top: 63%; /* Figma: y:206/327 */
   display: flex;
   align-items: center;
   gap: 5px;
+  max-width: 44%; /* prevent overlap with card-vote-area on narrow cards */
+  overflow: hidden;
 }
 
 .card-rank-badge {
@@ -275,11 +342,14 @@ img { max-width: 100%; display: block; }
 
 .card-vote-area {
   position: absolute;
-  right: 3%; /* Figma: (430-386-26)/430 */
+  right: 4%; /* Figma: (430-386-26)/430 */
   top: 63%;
   display: flex;
   align-items: center;
   gap: 4px;
+  max-width: 44%; /* prevent overlap with card-rank-area on narrow cards */
+  justify-content: flex-end;
+  overflow: hidden;
 }
 
 .card-vote-count {
@@ -403,7 +473,7 @@ img { max-width: 100%; display: block; }
   position: relative;
   z-index: 2;
   /* Figma: milestones y:2904, bar y:2957 → overlap 53px below milestone top */
-  margin-bottom: -40px;
+  margin-bottom: -50px;
 }
 
 .tl-milestone {
@@ -1526,6 +1596,8 @@ img { max-width: 100%; display: block; }
   z-index: 1;
 }
 
+#tich-luy { margin-top: -2%}
+
 /* ---- RESPONSIVE ---- */
 @media (max-width: 1199px) {
   .hdr-iconapp { margin-left: 2%; }
@@ -1570,8 +1642,8 @@ img { max-width: 100%; display: block; }
   .filter-bar { flex-direction: column; align-items: center; padding: 0 4%; }
   .filter-select, .filter-search { width: 100%; max-width: 350px; }
 
-  .tl-milestones-row { flex-wrap: wrap; justify-content: center; }
-  .tl-milestone { max-width: 45%; }
+  .tl-milestones-row { flex-wrap: wrap; justify-content: center;}
+  .tl-milestone { max-width: 45%; transform: translateY(40px);}
 
   .gift-grid { flex-wrap: wrap; }
   .gift-col { max-width: 45%; }

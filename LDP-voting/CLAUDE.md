@@ -29,4 +29,46 @@ Figma designs represent different UI states of the same page (default view, moda
 
 ## Asset paths
 
-All images in `assets/img/` (create the directory when adding the first image). CSS uses `../assets/img/`, HTML uses `assets/img/`.
+All images in `assets/img/`. CSS uses `../assets/img/`, HTML uses `assets/img/`.
+
+## Page sections
+
+`index.html` is one scroll page with four sections (in order):
+1. **Hero** — background image + vote-now button
+2. **`#danh-sach`** — candidate cards grid (3-col), filter bar, pagination
+3. **`#tich-luy`** — milestone progress bar + 4 gift boxes with NHẬN buttons
+4. **`#bxh`** — leaderboard with 3 sub-tabs (Mỹ Nhân / Mỹ Nam / Phú Giáp)
+
+The **NẠP HOA** tab in the nav links to `#nap-hoa` but that section does not exist in the HTML yet.
+
+## Modals
+
+Five Bootstrap modals, triggered from the nav or card clicks:
+
+| ID | Trigger | Notes |
+|---|---|---|
+| `#modal-huong-dan` | HƯỚNG DẪN tab | Image-only popup |
+| `#modal-hoa-free` | HOA FREE tab | 5 rows absolutely positioned over bg image |
+| `#modal-profile` | Any `.candidate-card` click | Vote stepper + success overlay |
+| `#modal-ls` | `.pp-btn-ls` inside profile modal | Must close profile first — see JS pattern below |
+| `#modal-nhan-code` | `.btn-nhan` in tích lũy section | Shows gift code + clipboard copy |
+
+**JS modal chaining pattern** (`js/main.js`): opening `#modal-ls` from inside `#modal-profile` requires hiding the profile modal first and listening for `hidden.bs.modal` with `{ once: true }` before showing the LS modal. Do not change this to a direct `.show()` — Bootstrap modals cannot stack without custom config.
+
+## Figma MCP
+
+`.mcp.json` wires up `figma-developer-mcp`. Use `mcp__figma__get_figma_data` to pull node measurements and colors, and `mcp__figma__download_figma_images` to export specific nodes as images. The API key is already configured.
+
+## Overlays inside #modal-profile
+
+Two overlays live **inside** `#modal-profile` and are toggled with `element.style.display`, not Bootstrap modals:
+
+- `#pp-success` (`.pp-success-overlay`) — success confirmation after clicking TẶNG HOA
+- `.pp-history-overlay` — donation history table rendered over the profile popup
+
+The standalone `#modal-ls` (Bootstrap modal, `modal-ls-dialog`) is a separate route to the same history content, opened via the JS chaining pattern described above.
+
+## Known broken assets
+
+- `index.html` line 499 (inside `#modal-ls`): `src="TN/buttonlstang.png"` — path does not exist; correct asset should be in `assets/img/`.
+- `css/style.css` line 1335 (`.pls-table tbody tr`): `url('../TN/box.png')` — same issue; correct asset should be `../assets/img/box-item.png` or equivalent.
