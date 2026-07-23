@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SERVICE_PAGES } from "../data/servicePages";
 import { usePageManager } from "../hooks/usePageManager";
-import { findTranslatedPage } from "../data/pageModel";
+import { findTranslatedPage, PageTemplate } from "../data/pageModel";
+import { buildPageHref } from "../utils/pageUrl";
 
 // giống ServicesMiniSlider ở beta.hexagon.xyz (sidebar trang /bai-viet và bài viết chi tiết):
 // 1 thẻ dịch vụ hiện tại + nút prev/next + chấm chỉ vị trí, dùng luôn SERVICE_PAGES thay vì gọi API
@@ -11,15 +12,22 @@ export default function ServicesSidebar({ lang = "vi" }) {
   const { pages } = usePageManager();
 
   const servicePages = SERVICE_PAGES.map((sp) => {
-    if (lang !== "en") return sp;
-    const viPage = pages.find((p) => p.slug === sp.slug && p.lang === "vi");
+    // slug trong Page Manager có thể có tiền tố "dich-vu/" nên so theo phần cuối
+    const viPage = pages.find(
+      (p) => p.lang === "vi" && (p.slug === sp.slug || p.slug.endsWith(`/${sp.slug}`))
+    );
     const enPage = viPage ? findTranslatedPage(viPage, pages, { publishedOnly: true }) : null;
-    return enPage ? { ...sp, slug: enPage.slug, title: enPage.title } : { ...sp, title: sp.titleEn ?? sp.title };
+    const targetPage = lang === "en" ? enPage : viPage;
+    return {
+      ...sp,
+      title: lang === "en" ? (enPage?.title ?? sp.titleEn ?? sp.title) : sp.title,
+      href: targetPage ? buildPageHref(targetPage) : `/${sp.slug}`,
+    };
   });
 
-  const homeVi = pages.find((p) => p.slug === "trang-chu");
+  const homeVi = pages.find((p) => p.lang === "vi" && p.template === PageTemplate.HOME);
   const homeEn = homeVi ? findTranslatedPage(homeVi, pages, { publishedOnly: true }) : null;
-  const servicesHref = lang === "en" && homeEn ? `/${homeEn.slug}#dich-vu` : "/#dich-vu";
+  const servicesHref = `${buildPageHref(lang === "en" ? homeEn : homeVi)}#dich-vu`;
 
   const page = servicePages[index];
   const go = (delta) => setIndex((i) => (i + delta + servicePages.length) % servicePages.length);
@@ -32,7 +40,7 @@ export default function ServicesSidebar({ lang = "vi" }) {
         </h3>
       </div>
       <div className="relative">
-        <Link to={`/${page.slug}`} className="block group">
+        <Link to={page.href} className="block group">
           <div className="aspect-[16/9] overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">
             {page.image && (
               <img

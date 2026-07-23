@@ -4,18 +4,26 @@ import { Puck } from "@puckeditor/core";
 import "@puckeditor/core/puck.css";
 import { puckConfig } from "../puck.config";
 import { PuckNumberFieldOverride } from "../blocks/shared/fieldStyles";
-import { PageLanguage, PageStatus } from "../data/pageModel";
+import { PageLanguage, PageStatus, uniqueSlug } from "../data/pageModel";
 import { usePageManager } from "../hooks/usePageManager";
+import { slugify } from "../utils/slugify";
+import { buildPageHref, childSegment } from "../utils/pageUrl";
 
 const puckOverrides = { fieldTypes: { number: PuckNumberFieldOverride } };
 
 export default function PageEditor() {
-  const { id } = useParams();
+  const { id, lang } = useParams();
   const navigate = useNavigate();
   const { pages, updatePage } = usePageManager();
   const [settingsOpen, setSettingsOpen] = useState(false);
 
-  const page = pages.find((p) => p.id === id);
+  const page = pages.find((p) => p.id === id && p.lang === lang);
+
+  // title/slug là controlled vì auto-slug cần cập nhật slug ngay khi gõ tiêu đề,
+  // không đợi tới lúc rời khỏi ô input (onBlur) như trước
+  const [title, setTitle] = useState(page?.title ?? "");
+  const [slug, setSlug] = useState(page?.slug ?? "");
+  const [autoSlug, setAutoSlug] = useState(page?.autoSlug ?? true);
 
   if (!page) {
     return (
@@ -33,15 +41,52 @@ export default function PageEditor() {
     );
   }
 
-  // lưu xong quay về bảng quản lý — đúng flow "bấm publish thì nó sẽ lưu vào đây";
-  // an toàn vì commit trong hook đã ghi localStorage đồng bộ trước khi navigate
   function handlePublish(data) {
-    updatePage(page.id, { puckData: data, status: PageStatus.PUBLISHED });
+    updatePage(page.id, page.lang, { puckData: data, status: PageStatus.PUBLISHED });
     navigate("/admin/pages");
   }
 
   function handleMetaChange(field, value) {
-    updatePage(page.id, { [field]: value });
+    updatePage(page.id, page.lang, { [field]: value });
+  }
+
+  // trang con (dịch vụ/bài viết) thì slug phải có sẵn đoạn cha ở trước
+  // (vd "dich-vu/ten-trang"), đúng url thật của trang — không chỉ mỗi phần lá
+  function regenerateSlug(fromTitle) {
+    const parent = page.parentId ? pages.find((p) => p.id === page.parentId) : null;
+    const segment = parent ? childSegment(parent.template, page.lang) : null;
+    const leaf = slugify(fromTitle);
+    const base = segment ? `${segment}/${leaf}` : leaf;
+    return uniqueSlug(base, { lang: page.lang, parentId: page.parentId }, pages, page.id);
+  }
+
+  function handleTitleChange(value) {
+    setTitle(value);
+    if (autoSlug) setSlug(regenerateSlug(value));
+  }
+
+  function handleTitleBlur() {
+    updatePage(page.id, page.lang, autoSlug ? { title, slug } : { title });
+  }
+
+  function handleSlugChange(value) {
+    setSlug(value);
+    if (autoSlug) setAutoSlug(false); // sửa tay thì tắt auto, tránh bị ghi đè lại
+  }
+
+  function handleSlugBlur() {
+    updatePage(page.id, page.lang, { slug, autoSlug });
+  }
+
+  function handleAutoToggle(checked) {
+    setAutoSlug(checked);
+    if (checked) {
+      const regenerated = regenerateSlug(title);
+      setSlug(regenerated);
+      updatePage(page.id, page.lang, { autoSlug: true, slug: regenerated });
+    } else {
+      updatePage(page.id, page.lang, { autoSlug: false });
+    }
   }
 
   return (
@@ -67,7 +112,7 @@ export default function PageEditor() {
         <div className="flex items-center gap-4">
           {page.status === PageStatus.PUBLISHED && (
             <a
-              href={`/${page.slug}`}
+              href={buildPageHref(page)}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-blue-600 hover:underline"
@@ -90,8 +135,9 @@ export default function PageEditor() {
             <label className="block text-xs text-gray-500 mb-1">Tiêu đề</label>
             <input
               type="text"
-              defaultValue={page.title}
-              onBlur={(e) => handleMetaChange("title", e.target.value)}
+              value={title}
+              onChange={(e) => handleTitleChange(e.target.value)}
+              onBlur={handleTitleBlur}
               className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm"
             />
           </div>
@@ -105,11 +151,22 @@ export default function PageEditor() {
             />
           </div>
           <div>
-            <label className="block text-xs text-gray-500 mb-1">Slug</label>
+            <label className="flex items-center justify-between text-xs text-gray-500 mb-1">
+              <span>Slug</span>
+              <label className="flex items-center gap-1 font-normal normal-case">
+                <input
+                  type="checkbox"
+                  checked={autoSlug}
+                  onChange={(e) => handleAutoToggle(e.target.checked)}
+                />
+                Tự động
+              </label>
+            </label>
             <input
               type="text"
-              defaultValue={page.slug}
-              onBlur={(e) => handleMetaChange("slug", e.target.value)}
+              value={slug}
+              onChange={(e) => handleSlugChange(e.target.value)}
+              onBlur={handleSlugBlur}
               className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm"
             />
           </div>
@@ -140,7 +197,7 @@ export default function PageEditor() {
 
       <div className="flex-1 min-h-0">
         <Puck
-          key={page.id}
+          key={`${page.id}-${page.lang}`}
           config={puckConfig}
           data={page.puckData}
           overrides={puckOverrides}

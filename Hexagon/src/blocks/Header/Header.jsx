@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePageManager } from "../../hooks/usePageManager";
-import { findTranslatedPage } from "../../data/pageModel";
+import { findTranslatedPage, PageTemplate } from "../../data/pageModel";
+import { buildPageHref, resolvePageFromPath } from "../../utils/pageUrl";
 
 function LangSwitcher({ lang, setLang }) {
   return (
@@ -48,8 +49,7 @@ export default function Header({ logoUrl, logoAlt, siteName, navLinks }) {
   const { pages } = usePageManager();
 
 
-  const currentSlug = location.pathname === "/" ? "trang-chu" : location.pathname.replace(/^\//, "");
-  const currentPage = pages.find((p) => p.slug === currentSlug);
+  const currentPage = resolvePageFromPath(location.pathname, pages);
   const [lang, setLangState] = useState(currentPage?.lang ?? "vi");
 
   
@@ -64,7 +64,7 @@ export default function Header({ logoUrl, logoAlt, siteName, navLinks }) {
     if (!currentPage || currentPage.lang === prefLang) return;
     const translated = findTranslatedPage(currentPage, pages, { publishedOnly: true });
     if (translated) {
-      navigate(translated.slug === "trang-chu" ? "/" : `/${translated.slug}`, { replace: true });
+      navigate(buildPageHref(translated), { replace: true });
     }
   }, [currentPage, prefLang, pages, navigate]);
 
@@ -81,15 +81,14 @@ export default function Header({ logoUrl, logoAlt, siteName, navLinks }) {
 
     const translated = findTranslatedPage(currentPage, pages, { publishedOnly: true });
     if (translated) {
-      // về VI trang chủ thì dùng URL gốc "/" thay vì /trang-chu
-      navigate(translated.slug === "trang-chu" ? "/" : `/${translated.slug}`);
+      navigate(buildPageHref(translated));
     }
     // không tìm thấy bản dịch: giữ nguyên trang hiện tại, không điều hướng
   }
 
-  const homeVi = pages.find((p) => p.slug === "trang-chu");
+  const homeVi = pages.find((p) => p.lang === "vi" && p.template === PageTemplate.HOME);
   const homeEn = homeVi ? findTranslatedPage(homeVi, pages, { publishedOnly: true }) : null;
-  const homeBase = lang === "en" && homeEn ? `/${homeEn.slug}` : "/";
+  const homeBase = buildPageHref(lang === "en" ? homeEn : homeVi);
   const resolveHref = (href) => (href?.startsWith("#") ? `${homeBase}${href}` : href);
 
   // toggle navbar background once the page scrolls past the hero

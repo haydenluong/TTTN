@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { Puck, Render } from "@puckeditor/core";
 import "@puckeditor/core/puck.css";
@@ -25,6 +25,7 @@ import NewsArticlePage from "./components/NewsArticlePage";
 import NewsListPage from "./components/NewsListPage";
 import PageManager from "./pages/PageManager";
 import PageEditor from "./pages/PageEditor";
+import PageRestore from "./pages/PageRestore";
 import PublicPageView from "./pages/PublicPageView";
 import { usePageManager } from "./hooks/usePageManager";
 import { PageStatus } from "./data/pageModel";
@@ -32,11 +33,12 @@ import { PageStatus } from "./data/pageModel";
 // sửa lỗi backspace số nhảy về "0" của field type:"number" gốc của Puck
 const puckOverrides = { fieldTypes: { number: PuckNumberFieldOverride } };
 
-// nếu slug này đã có bản publish trong Page Manager thì dùng bản đó,
-// không thì fallback về dữ liệu tĩnh cũ (chưa từng mở Page Manager để sửa)
+// nếu slug này (bản vi) đã có bản publish trong Page Manager thì dùng bản đó,
+// không thì fallback về dữ liệu tĩnh cũ (chưa từng mở Page Manager để sửa) —
+// các route legacy này luôn là vi, bản en đi qua PublicPageView (path="*")
 function useManagedPuckData(slug, fallbackLoader) {
   const { pages } = usePageManager();
-  const managed = pages.find((p) => p.slug === slug && p.status === PageStatus.PUBLISHED);
+  const managed = pages.find((p) => p.slug === slug && p.lang === "vi" && p.status === PageStatus.PUBLISHED);
   return managed ? managed.puckData : fallbackLoader();
 }
 
@@ -235,17 +237,22 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/editor" element={<Editor />} />
         <Route path="/admin/pages" element={<PageManager />} />
-        <Route path="/admin/pages/:id/edit" element={<PageEditor />} />
+        <Route path="/admin/pages/:id/:lang/edit" element={<PageEditor />} />
+        <Route path="/admin/khoi-phuc" element={<PageRestore />} />
+        {/* /dich-vu/slug là đường dẫn chính thức mới; /slug (cũ) giữ lại làm alias
+            để link/href cũ đã lưu trong nội dung Puck (vd thẻ ở block Services) không bị gãy */}
         {SERVICE_PAGES.map((page) => (
-          <Route key={page.slug} path={`/${page.slug}`} element={<ServicePageView page={page} />} />
+          <Fragment key={page.slug}>
+            <Route path={`/dich-vu/${page.slug}`} element={<ServicePageView page={page} />} />
+            <Route path={`/${page.slug}`} element={<ServicePageView page={page} />} />
+          </Fragment>
         ))}
         <Route path="/bai-viet" element={<NewsListRoute />} />
         {NEWS_ARTICLES.map((article) => (
-          <Route
-            key={article.slug}
-            path={`/${article.slug}`}
-            element={<NewsArticleRoute article={article} />}
-          />
+          <Fragment key={article.slug}>
+            <Route path={`/tin-tuc/${article.slug}`} element={<NewsArticleRoute article={article} />} />
+            <Route path={`/${article.slug}`} element={<NewsArticleRoute article={article} />} />
+          </Fragment>
         ))}
         <Route path="*" element={<PublicPageView />} />
       </Routes>

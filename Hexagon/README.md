@@ -1,7 +1,6 @@
 ## Các trang quan trọng
 
 - `/` — trang chủ
-- `/editor` — chỉnh sửa nội dung tĩnh cũ (trang chủ, dịch vụ, tin tức, header, footer)
 - `/admin/pages` — Quản lý Pages: tạo, sửa, publish, xóa và tạo bản dịch (VI/EN) cho các trang mới bằng Puck
 
 ## Cài đặt

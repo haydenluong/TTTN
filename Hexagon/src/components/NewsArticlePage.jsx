@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Render } from "@puckeditor/core";
 import { puckConfig } from "../puck.config";
 import SiteHeader from "./SiteHeader";
@@ -7,23 +7,35 @@ import ScrollToTopButton from "./ScrollToTopButton";
 import ServicesSidebar from "./ServicesSidebar";
 import { NEWS_ARTICLES, formatDateEn } from "../data/newsArticles";
 import { usePageManager } from "../hooks/usePageManager";
-import { findTranslatedPage } from "../data/pageModel";
+import { findTranslatedPage, PageTemplate } from "../data/pageModel";
+import { buildPageHref, getLangFromPath } from "../utils/pageUrl";
 
 export default function NewsArticlePage({ article, puckData }) {
   const { title } = article;
   const { pages } = usePageManager();
-  const lang = pages.find((p) => p.slug === article.slug)?.lang ?? "vi";
+  const lang = getLangFromPath(useLocation().pathname);
   const category = lang === "en" ? "News" : article.category;
 
-  const listVi = pages.find((p) => p.slug === "bai-viet" && p.lang === "vi");
+  const homeVi = pages.find((p) => p.lang === "vi" && p.template === PageTemplate.HOME);
+  const homeEn = homeVi ? findTranslatedPage(homeVi, pages, { publishedOnly: true }) : null;
+  const homeHref = buildPageHref(lang === "en" ? homeEn : homeVi);
+
+  const listVi = pages.find((p) => p.lang === "vi" && p.template === PageTemplate.NEWS_LIST);
   const listEn = listVi ? findTranslatedPage(listVi, pages, { publishedOnly: true }) : null;
-  const listHref = lang === "en" && listEn ? `/${listEn.slug}` : "/bai-viet";
+  const listHref = buildPageHref(lang === "en" ? listEn : listVi);
 
   const related = NEWS_ARTICLES.map((item) => {
-      if (lang !== "en") return item;
-      const viPage = pages.find((p) => p.slug === item.slug && p.lang === "vi");
+      // slug trong Page Manager có thể có tiền tố "tin-tuc/" nên so theo phần cuối
+      const viPage = pages.find(
+        (p) => p.lang === "vi" && (p.slug === item.slug || p.slug.endsWith(`/${item.slug}`))
+      );
       const enPage = viPage ? findTranslatedPage(viPage, pages, { publishedOnly: true }) : null;
-      return enPage ? { ...item, slug: enPage.slug, title: enPage.title } : item;
+      const targetPage = lang === "en" ? enPage : viPage;
+      return {
+        ...item,
+        title: lang === "en" ? (enPage?.title ?? item.title) : item.title,
+        href: targetPage ? buildPageHref(targetPage) : `/${item.slug}`,
+      };
     })
     .filter((item) => item.slug !== article.slug)
     .slice(0, 4);
@@ -35,7 +47,7 @@ export default function NewsArticlePage({ article, puckData }) {
       <main className="pt-28 md:pt-32 bg-[#F8FAFC] min-h-screen">
         <div className="container mx-auto px-6 py-6">
           <nav className="text-sm text-gray-400 mb-6 flex items-center gap-1.5 flex-wrap">
-            <Link to="/" className="hover:text-yellow-500 transition-colors">
+            <Link to={homeHref} className="hover:text-yellow-500 transition-colors">
               {lang === "en" ? "Home" : "Trang chủ"}
             </Link>
             <span>›</span>
@@ -79,7 +91,7 @@ export default function NewsArticlePage({ article, puckData }) {
                 {related.map((item) => (
                   <Link
                     key={item.slug}
-                    to={`/${item.slug}`}
+                    to={item.href}
                     className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md hover:border-yellow-300 transition-all"
                   >
                     <div className="aspect-[16/9] overflow-hidden bg-gradient-to-br from-slate-200 to-slate-300">

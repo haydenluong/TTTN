@@ -7,12 +7,14 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import NewsArticlePage from "../components/NewsArticlePage";
 import NewsListPage from "../components/NewsListPage";
 import { usePageManager } from "../hooks/usePageManager";
-import { PageStatus, PageTemplate } from "../data/pageModel";
+import { PageTemplate } from "../data/pageModel";
+import { buildPageHref, getLangFromPath, resolvePageFromPath } from "../utils/pageUrl";
 
 export default function PublicPageView() {
-  const slug = useLocation().pathname.replace(/^\//, "");
+  const { pathname } = useLocation();
   const { pages } = usePageManager();
-  const page = pages.find((p) => p.slug === slug && p.status === PageStatus.PUBLISHED);
+  const page = resolvePageFromPath(pathname, pages);
+  const lang = getLangFromPath(pathname);
 
   if (!page) {
     return (
@@ -57,6 +59,8 @@ export default function PublicPageView() {
 
   // trang dịch vụ: container + breadcrumb — giống hệt ServicePageView ở App.jsx
   if (page.template === PageTemplate.SERVICE) {
+    const homePage = page.parentId ? pages.find((p) => p.id === page.parentId && p.lang === lang) : null;
+    const homeHref = buildPageHref(homePage);
     return (
       <>
         <SiteHeader />
@@ -64,12 +68,12 @@ export default function PublicPageView() {
         <main className="pt-28 md:pt-32 bg-[#F8FAFC] min-h-screen">
           <div className="container mx-auto px-6 py-6">
             <nav className="text-sm mb-10 text-gray-400">
-              <Link to="/" className="hover:text-gold-accent">
-                Trang chủ
+              <Link to={homeHref} className="hover:text-gold-accent">
+                {lang === "en" ? "Home" : "Trang chủ"}
               </Link>{" "}
               &gt;{" "}
-              <Link to="/#dich-vu" className="hover:text-gold-accent">
-                Dịch vụ
+              <Link to={`${homeHref}#dich-vu`} className="hover:text-gold-accent">
+                {lang === "en" ? "Services" : "Dịch vụ"}
               </Link>{" "}
               &gt; <span className="text-gray-700">{page.title}</span>
             </nav>

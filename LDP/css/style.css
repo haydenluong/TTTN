@@ -151,7 +151,7 @@ img { max-width: 100%; display: block; }
 
 /* ── UPLOAD BOXES ────────────────────────────────────────────────── */
 /* Bootstrap: col-lg-7 for the photo column */
-.upload-main-box {
+.upload-main-box {  b
   display: block;
   aspect-ratio: 803 / 503;
   background-image: url(../assets/img/upload-main.png);

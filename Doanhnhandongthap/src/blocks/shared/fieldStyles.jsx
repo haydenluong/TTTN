@@ -10,7 +10,7 @@ export const fieldInputStyle = {
   fontFamily: "inherit",
   fontSize: 14,
   padding: "12px 15px",
-  width: "100%",
+  width: "100%",/usa
 };
 
 export const fieldSelectStyle = {

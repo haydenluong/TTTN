@@ -80,7 +80,7 @@ export default function Header({ logo, menu, styles, isHome }) {
     <header id="navbar" className="fixed top-0 left-0 w-full z-50 flex items-center" style={headerStyle}>
       <div className="max-w-[1750px] mx-auto px-4 md:px-[85px] w-full flex items-center justify-between">
         <a href={logo.link} className="flex items-center gap-3 flex-shrink-0 no-underline">
-          <img src={logo.imageUrl} alt={logo.imageAlt} className="h-12 w-auto object-contain" />
+          <img src={logo.imageUrl} alt={logo.imageAlt} className="h-48 w-auto object-contain" />
           <div className="flex flex-col leading-tight" style={{ gap: `${logo.lineGap}px` }}>
             {logo.lines.map((line, i) => (
               <span

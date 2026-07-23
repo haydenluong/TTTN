@@ -171,7 +171,7 @@ export const puckConfig = {
           arrayFields: {
             title: { type: "text", contentEditable: true, label: "Tiêu đề thẻ" },
             desc: { type: "textarea", contentEditable: true, label: "Mô tả (hiện khi hover)" },
-            href: { type: "text", label: "Đường dẫn trang con (vd: /giai-phap-cong-nghe)" },
+            href: { type: "text", label: "Đường dẫn trang con (vd: /dich-vu/giai-phap-cong-nghe)" },
             background: backgroundField,
           },
           getItemSummary: (item) => item.title,
@@ -196,7 +196,7 @@ export const puckConfig = {
           {
             title: "Giải pháp công nghệ",
             desc: "Phát triển và triển khai các giải pháp phần mềm tùy chỉnh, tối ưu vận hành doanh nghiệp, nâng cao hiệu suất, đáp ứng linh hoạt theo nhu cầu và định hướng phát triển dài hạn.",
-            href: "/giai-phap-cong-nghe",
+            href: "/dich-vu/giai-phap-cong-nghe",
             background: {
               type: "image+gradient",
               imageUrl: "/images/services/giai-phap-cong-nghe.jpg",
@@ -209,7 +209,7 @@ export const puckConfig = {
           {
             title: "Giải pháp thi công & lắp đặt",
             desc: "Tư vấn chiến lược chuyển đổi số toàn diện, giúp doanh nghiệp tối ưu quy trình, nâng cao trải nghiệm khách hàng và tăng trưởng bền vững trong môi trường số hóa.",
-            href: "/giai-phap-thi-cong-lap-dat",
+            href: "/dich-vu/giai-phap-thi-cong-lap-dat",
             background: {
               type: "image+gradient",
               imageUrl: "/images/services/giai-phap-thi-cong.jpg",
@@ -222,7 +222,7 @@ export const puckConfig = {
           {
             title: "Cung cấp thiết bị CNTT",
             desc: "Cung cấp giải pháp trí tuệ nhân tạo và phân tích dữ liệu, hỗ trợ ra quyết định thông minh, tự động hóa quy trình và khai thác tối đa giá trị từ dữ liệu doanh nghiệp.",
-            href: "/cung-cap-thiet-bi-cntt",
+            href: "/dich-vu/cung-cap-thiet-bi-cntt",
             background: {
               type: "image+gradient",
               imageUrl: "/images/services/cung-cap-thiet-bi.jpg",
@@ -235,7 +235,7 @@ export const puckConfig = {
           {
             title: "Dịch vụ Công nghệ thông tin",
             desc: "Thi công và lắp đặt hệ thống camera giám sát, mạng wifi chuyên nghiệp, đảm bảo an ninh, ổn định kết nối và phù hợp với mọi quy mô doanh nghiệp.",
-            href: "/dich-vu-cong-nghe-thong-tin",
+            href: "/dich-vu/dich-vu-cong-nghe-thong-tin",
             background: {
               type: "image+gradient",
               imageUrl: "/images/services/dich-vu-cntt.jpg",

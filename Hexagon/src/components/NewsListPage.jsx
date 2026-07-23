@@ -7,7 +7,8 @@ import ScrollToTopButton from "./ScrollToTopButton";
 import ServicesSidebar from "./ServicesSidebar";
 import { NEWS_ARTICLES, formatDateEn, translateCategory } from "../data/newsArticles";
 import { usePageManager } from "../hooks/usePageManager";
-import { findTranslatedPage } from "../data/pageModel";
+import { findTranslatedPage, PageTemplate } from "../data/pageModel";
+import { buildPageHref, getLangFromPath } from "../utils/pageUrl";
 
 function CalendarIcon() {
   return (
@@ -33,14 +34,24 @@ function ClockIcon() {
 export default function NewsListPage({ puckData }) {
   const { pages } = usePageManager();
   const location = useLocation();
-  const currentSlug = location.pathname === "/" ? "trang-chu" : location.pathname.replace(/^\//, "");
-  const lang = pages.find((p) => p.slug === currentSlug)?.lang ?? "vi";
+  const lang = getLangFromPath(location.pathname);
+
+  const homeVi = pages.find((p) => p.lang === "vi" && p.template === PageTemplate.HOME);
+  const homeEn = homeVi ? findTranslatedPage(homeVi, pages, { publishedOnly: true }) : null;
+  const homeHref = buildPageHref(lang === "en" ? homeEn : homeVi);
 
   const articles = NEWS_ARTICLES.map((article) => {
-    if (lang !== "en") return article;
-    const viPage = pages.find((p) => p.slug === article.slug && p.lang === "vi");
+    // slug trong Page Manager có thể có tiền tố "tin-tuc/" nên so theo phần cuối
+    const viPage = pages.find(
+      (p) => p.lang === "vi" && (p.slug === article.slug || p.slug.endsWith(`/${article.slug}`))
+    );
     const enPage = viPage ? findTranslatedPage(viPage, pages, { publishedOnly: true }) : null;
-    return enPage ? { ...article, slug: enPage.slug, title: enPage.title } : article;
+    const targetPage = lang === "en" ? enPage : viPage;
+    return {
+      ...article,
+      title: lang === "en" ? (enPage?.title ?? article.title) : article.title,
+      href: targetPage ? buildPageHref(targetPage) : `/${article.slug}`,
+    };
   });
 
   return (
@@ -51,7 +62,7 @@ export default function NewsListPage({ puckData }) {
         <div className="container mx-auto px-6 py-6">
           <section className="text-left mb-8 text-base">
             <nav className="text-sm text-gray-400 flex items-center gap-1 flex-wrap">
-              <Link to="/" className="hover:text-gold-accent transition-colors">
+              <Link to={homeHref} className="hover:text-gold-accent transition-colors">
                 {lang === "en" ? "Home" : "Trang chủ"}
               </Link>
               <span className="mx-1 text-gray-300">&gt;</span>
@@ -68,7 +79,7 @@ export default function NewsListPage({ puckData }) {
                   {articles.map((article) => (
                     <Link
                       key={article.slug}
-                      to={`/${article.slug}`}
+                      to={article.href}
                       className="group bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden transition-all hover:shadow-md hover:border-gold-accent/40 flex flex-col"
                     >
                       <div className="relative overflow-hidden aspect-[16/9] bg-gradient-to-br from-slate-200 to-slate-300">
