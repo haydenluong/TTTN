@@ -126,22 +126,8 @@
 
 .trust-mascot {
   position: absolute;
-  right: 0;
+  right: -60px;
   bottom: 0;
-  width: 160px;
+  width: 200px;
   pointer-events: none;
-}
-
-.user-menu-toggle {
-  border: none;
-  background: transparent;
-}
-
-.user-menu-toggle::after {
-  display: none;
-}
-
-.user-coin-badge {
-  font-size: 0.85rem;
-  font-weight: 600;
 }

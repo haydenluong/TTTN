@@ -13,18 +13,6 @@
   justify-content: center;
 }
 
-.profile-avatar-sm {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #34c9ce;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
 .profile-meta-icon {
   width: 16px;
   text-align: center;

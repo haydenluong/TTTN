@@ -33,7 +33,7 @@
   color: #fff;
 }
 
-/* ===== Chung ===== */
+
 .section-title {
   color: #093a88;
   font-weight: 600;
@@ -107,7 +107,6 @@
   font-weight: 600;
 }
 
-/* ===== Trust bar ===== */
 .trust-icon {
   display: inline-flex;
   align-items: center;
@@ -136,8 +135,8 @@
 
 .trust-mascot {
   position: absolute;
-  right: 0;
+  right: -60px;
   bottom: 0;
-  width: 160px;
+  width: 200px;
   pointer-events: none;
 }

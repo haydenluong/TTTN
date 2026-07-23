@@ -44,14 +44,6 @@ document.querySelectorAll('.provider-switch-btn').forEach((btn) => {
   });
 });
 
-function initHeaderActive() {
-  const fileName = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
-  document.querySelectorAll('header nav a').forEach((link) => {
-    link.classList.toggle('active', link.getAttribute('href') === fileName);
-  });
-}
-document.addEventListener('DOMContentLoaded', initHeaderActive);
-
 const syncToggle = document.getElementById('sync-toggle');
 const syncSummary = document.getElementById('sync-summary');
 const syncForm = document.getElementById('sync-form');
