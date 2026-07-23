@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miss &amp; Mister Hào Khí Du Hiệp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container-fluid h-100 px-4 d-flex align-items-center justify-content-between position-relative">
+
+      <a href="#" class="d-flex align-items-center">
+        <img src="assets/img/logo-header.png" alt="Hào Khí Du Hiệp – Nhà Phát Hành MYE" class="topbar-logo">
+      </a>
+
+      <a href="#" class="topbar-brand">
+        <img src="assets/img/logo-splash.png" alt="Hào Khí Du Hiệp">
+      </a>
+
+      <div class="d-flex align-items-center gap-3">
+        <a href="#" class="topbar-icon"><i class="bi bi-house-door-fill"></i></a>
+        <a href="#" class="topbar-icon"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="btn-login">
+          <img src="assets/img/btn-dangnhap.png" alt="Đăng nhập">
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="game-bg">
+
+    <section class="hero text-center">
+
+      <img src="assets/img/logo-missmister.png" alt="Miss Mister Hào Khí Du Hiệp" class="hero-logo">
+
+      <div class="nav-bar-area d-flex flex-column align-items-center">
+
+        <div class="hero-nav d-flex align-items-end justify-content-center gap-3 gap-lg-4">
+
+          <button type="button" class="nav-pill" data-bs-toggle="modal" data-bs-target="#theleModal">
+            <img src="assets/img/btn-thele.png" alt="Thể lệ">
+          </button>
+
+          <button type="button" class="nav-pill" data-bs-toggle="modal" data-bs-target="#huongdanModal">
+            <img src="assets/img/btn-huongdan.png" alt="Hướng dẫn">
+          </button>
+
+          <a href="#dangky" class="nav-shield">THAM GIA<br>NGAY</a>
+
+          <a href="https://hkdh.mye.vn/dl" target="_blank" rel="noopener" class="nav-pill">
+            <img src="assets/img/btn-taigame.png" alt="Tải game">
+          </a>
+
+          <a href="https://pay.mye.vn/" target="_blank" rel="noopener" class="nav-pill">
+            <img src="assets/img/btn-napthe.png" alt="Nạp thẻ">
+          </a>
+
+        </div>
+
+        <img src="assets/img/divider-bar.png" alt="" class="hero-divider">
+
+      </div>
+
+    </section>
+
+    <section id="dangky" class="register-section">
+
+      <div class="text-center">
+        <img src="assets/img/title-dangky.png" alt="Đăng ký dự thi" class="register-title">
+      </div>
+
+      <div class="container">
+        <div class="row g-4 justify-content-center align-items-start">
+
+          <div class="col-lg-7">
+
+            <label class="upload-main-box" title="Nhấn để chọn ảnh dự thi chính">
+              <input type="file" accept="image/*" hidden class="js-upload-preview">
+            </label>
+
+            <div class="row g-2 mt-2">
+              <div class="col-4">
+                <label class="upload-small-box" title="Ảnh phụ 1">
+                  <input type="file" accept="image/*" hidden class="js-upload-preview">
+                </label>
+              </div>
+              <div class="col-4">
+                <label class="upload-small-box" title="Ảnh phụ 2">
+                  <input type="file" accept="image/*" hidden class="js-upload-preview">
+                </label>
+              </div>
+              <div class="col-4">
+                <label class="upload-small-box" title="Ảnh phụ 3">
+                  <input type="file" accept="image/*" hidden class="js-upload-preview">
+                </label>
+              </div>
+            </div>
+
+            <p class="upload-note mt-2 text-center">*Bắt buộc phải đăng ký đủ 4 ảnh dự thi</p>
+
+          </div>
+
+          <div class="col-lg-5">
+            <form class="register-form" onsubmit="return false;">
+
+              <p class="char-info">Nhân vật: <span class="highlight">Lục Trà Bạc Hà</span></p>
+              <p class="char-info">Bang hội: <span class="highlight">Lạc Viên</span></p>
+              <p class="char-info mb-3">Máy chủ: <span class="highlight">S1 - Lý Bạch</span></p>
+
+              <div class="d-flex align-items-center gap-4 mb-3 radio-group">
+
+                <label class="radio-option">
+                  <input type="radio" name="category" value="miss" checked>
+                  <span class="radio-dot"></span>
+                  <img src="assets/img/toggle-miss.png" alt="Thi Miss" class="toggle-img">
+                </label>
+
+                <label class="radio-option">
+                  <input type="radio" name="category" value="misster">
+                  <span class="radio-dot"></span>
+                  <img src="assets/img/toggle-misster.png" alt="Thi Misster" class="toggle-img">
+                </label>
+
+              </div>
+
+              <input type="text" class="field mb-3"
+                     placeholder="Nhập địa chỉ liên hệ nhận thưởng">
+
+              <div class="row g-2 mb-3">
+                <div class="col-6">
+                  <input type="tel" class="field field-short"
+                         placeholder="Nhập số điện thoại">
+                </div>
+                <div class="col-6">
+                  <select class="field field-short">
+                    <option value="">Chọn khu vực</option>
+                    <option>Miền Bắc</option>
+                    <option>Miền Trung</option>
+                    <option>Miền Nam</option>
+                  </select>
+                </div>
+              </div>
+
+              <p class="field-label mb-2">Nhập ảnh CMND/CCCD mặt trước và sau</p>
+              <div class="row g-2 mb-3">
+                <div class="col-6">
+                  <label class="cmnd-upload cmnd-front" title="Mặt trước">
+                    <input type="file" accept="image/*" hidden class="js-upload-preview">
+                  </label>
+                </div>
+                <div class="col-6">
+                  <label class="cmnd-upload cmnd-back" title="Mặt sau">
+                    <input type="file" accept="image/*" hidden class="js-upload-preview">
+                  </label>
+                </div>
+              </div>
+
+              <textarea class="field mb-3" rows="4" maxlength="300"
+                        placeholder="Nhập nội dung giới thiệu(không quá 300 kí tự)"></textarea>
+
+              <input type="url" class="field mb-4"
+                     placeholder="Nhập video dự thi">
+
+              <div class="d-flex justify-content-center gap-3 form-actions">
+                <button type="button" class="img-btn"
+                        data-bs-toggle="modal" data-bs-target="#successModal">
+                  <img src="assets/img/btn-dongy.png" alt="Đồng ý">
+                </button>
+                <button type="reset" class="img-btn">
+                  <img src="assets/img/btn-huybo.png" alt="Hủy bỏ">
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <div class="modal fade" id="theleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="popup-frame popup-thele">
+          <button type="button" class="popup-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+          <div class="popup-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="huongdanModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="popup-frame popup-huongdan">
+          <button type="button" class="popup-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+          <div class="popup-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="neon-box">
+          <button type="button" class="btn-close btn-close-white"
+                  data-bs-dismiss="modal" aria-label="Đóng"></button>
+          <p>ĐÃ ĐĂNG KÝ THÀNH CÔNG</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

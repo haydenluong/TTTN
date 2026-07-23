@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nạp Game - MyE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="../assets/css/components.css" rel="stylesheet">
+  <link href="../assets/css/Nap_game.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Montserrat', sans-serif; }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <main>
+    <section class="banner-section">
+      <div class="banner-container mx-auto">
+        <img src="../assets/images/Nap_Game/Hero-banner.png" alt="Cổng nạp chính thức" class="main-banner">
+        <button type="button" class="btn btn-history">Lịch sử giao dịch</button>
+      </div>
+    </section>
+
+    <!-- Danh sach game -->
+    <section class="container" style="max-width: 1080px; margin: 80px auto 56px;">
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        <h2 class="section-title mb-0">DANH SÁCH GAME</h2>
+        <div class="search-box input-group border rounded-2" style="width: 240px;">
+          <span class="input-group-text bg-white border-0">
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8C16 3.59 12.41 0 8 0C3.59 0 0 3.59 0 8C0 12.41 3.59 16 8 16C9.85 16 11.54 15.37 12.9 14.31L18 19.41L19.41 18L14.31 12.9C15.4015 11.4995 15.9961 9.77562 16 8ZM2 8C2 4.69 4.69 2 8 2C11.31 2 14 4.69 14 8C14 11.31 11.31 14 8 14C4.69 14 2 11.31 2 8Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <input type="text" class="form-control border-0" placeholder="Tìm kiếm...">
+        </div>
+      </div>
+
+      <div class="category-tabs d-flex gap-2 mb-4"></div>
+
+      <div id="game-grid-container" class="row g-3 gy-4"></div>
+
+      <div class="pagination-dots d-flex justify-content-center gap-2 mt-4">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/Nap_game.js"></script>
+</body>
+</html>

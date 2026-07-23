@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MYE-Coin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="../assets/css/components.css" rel="stylesheet">
+  <link href="../assets/css/MyE_Coin.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Montserrat', sans-serif; }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <main>
+    <section class="banner-section">
+      <div class="banner-container mx-auto">
+        <img src="../assets/images/MyE_Coin/Hero-banner.png" alt="MyE Coin" class="main-banner">
+        <button type="button" class="btn btn-history">Lịch sử giao dịch</button>
+      </div>
+    </section>
+
+    <div class="container py-4" style="max-width: 1080px;">
+
+      <!-- Tai khoan / Mye ID / So du -->
+      <div class="account-info-card d-flex flex-wrap justify-content-around align-items-center bg-white py-4 px-3 my-4">
+        <div class="info-item text-center px-4 py-2">
+          <h3 class="section-title fs-5 mb-1">Tài khoản</h3>
+          <p class="mb-0 fs-5">myepro123</p>
+        </div>
+        <div class="info-item text-center px-4 py-2">
+          <h3 class="section-title fs-5 mb-1">Mye ID</h3>
+          <p class="mb-0 fs-5">122335448</p>
+        </div>
+        <div class="info-item text-center px-4 py-2">
+          <h3 class="section-title fs-5 mb-1">Số dư</h3>
+          <p class="mb-0 fs-5 d-flex align-items-center justify-content-center gap-2">
+            1200 <img src="../assets/images/MyE_Coin/coin_M.png" alt="coin" style="width: 20px; height: 20px;">
+          </p>
+        </div>
+      </div>
+
+      <!-- Chon hinh thuc nap -->
+      <h1 class="section-title my-4">CHỌN HÌNH THỨC NẠP</h1>
+      <div class="row g-3 my-4">
+        <div class="col-6 col-md-3">
+          <div class="method-card d-flex flex-column align-items-center justify-content-center">
+            <img src="../assets/images/MyE_Coin/Hinh_thuc_nap/Thanh_toan_truc_tiep.png" alt="Thanh toán trực tiếp" style="height: 96px; width: 96px;">
+            <h4 class="method-title fs-6 fw-semibold mt-2">Thanh toán trực tiếp</h4>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="method-card d-flex flex-column align-items-center justify-content-center">
+            <img src="../assets/images/MyE_Coin/Hinh_thuc_nap/ZaloPay.png" alt="ZaloPay" style="height: 80px; width: 80px;">
+            <h4 class="method-title fs-6 fw-semibold mt-2">ZaloPay</h4>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="method-card d-flex flex-column align-items-center justify-content-center">
+            <img src="../assets/images/MyE_Coin/Hinh_thuc_nap/MOMO.png" alt="MOMO" style="height: 80px; width: 80px;">
+            <h4 class="method-title fs-6 fw-semibold mt-2">MOMO</h4>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="method-card d-flex flex-column align-items-center justify-content-center">
+            <img src="../assets/images/MyE_Coin/Hinh_thuc_nap/ATM.png" alt="ATM/Banking" class="rounded-3" style="height: 80px; width: 80px;">
+            <h4 class="method-title fs-6 fw-semibold mt-2">ATM/Banking</h4>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="method-card d-flex flex-column align-items-center justify-content-center">
+            <img src="../assets/images/MyE_Coin/Hinh_thuc_nap/Visa.png" alt="Visa/Master" class="rounded-3" style="height: 80px; width: 80px;">
+            <h4 class="method-title fs-6 fw-semibold mt-2">Visa/Master</h4>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="method-card d-flex flex-column align-items-center justify-content-center text-center">
+            <img src="../assets/images/MyE_Coin/Hinh_thuc_nap/Tai_khoan_dinh_danh.png" alt="Tài khoản định danh" class="rounded-3" style="height: 80px; width: 96px;">
+            <h4 class="method-title fs-6 fw-semibold mt-2">Tài khoản định danh <br><span class="fw-semibold">(Bank Visa)</span></h4>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="method-card d-flex flex-column align-items-center justify-content-center">
+            <img src="../assets/images/MyE_Coin/Hinh_thuc_nap/icon_qr.png" alt="QR Code" class="rounded-3" style="height: 80px; width: 80px;">
+            <h4 class="method-title fs-6 fw-semibold mt-2">QR Code</h4>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="section-title my-4">CHỌN GÓI NẠP</h1>
+      <div class="row g-3 my-4">
+        <div class="col-6 col-md-3">
+          <div class="package-card h-100">
+            <img src="../assets/images/MyE_Coin/Chon_goi_nap/20_MYE_COIN.png" alt="20 Mye Coin">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+              <div>
+                <p class="mb-0 fw-semibold small">20 Mye Coin</p>
+                <p class="mb-0 package-price small">20.000 VNĐ</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-warning text-white" onclick="location.href='Thong_tin_giao_dich.html?coin=20&price=20000'">Mua</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="package-card h-100">
+            <img src="../assets/images/MyE_Coin/Chon_goi_nap/50_MYE_COIN.png" alt="50 Mye Coin">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+              <div>
+                <p class="mb-0 fw-semibold small">50 Mye Coin</p>
+                <p class="mb-0 package-price small">50.000 VNĐ</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-warning text-white" onclick="location.href='Thong_tin_giao_dich.html?coin=50&price=50000'">Mua</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="package-card h-100">
+            <img src="../assets/images/MyE_Coin/Chon_goi_nap/100_MYE_COIN.png" alt="100 Mye Coin">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+              <div>
+                <p class="mb-0 fw-semibold small">100 Mye Coin</p>
+                <p class="mb-0 package-price small">100.000 VNĐ</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-warning text-white" onclick="location.href='Thong_tin_giao_dich.html?coin=100&price=100000'">Mua</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="package-card h-100">
+            <img src="../assets/images/MyE_Coin/Chon_goi_nap/500_MYE_COIN.png" alt="500 Mye Coin">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+              <div>
+                <p class="mb-0 fw-semibold small">500 Mye Coin</p>
+                <p class="mb-0 package-price small">500.000 VNĐ</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-warning text-white" onclick="location.href='Thong_tin_giao_dich.html?coin=500&price=500000'">Mua</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="package-card h-100">
+            <img src="../assets/images/MyE_Coin/Chon_goi_nap/1000_MYE_COIN.png" alt="1000 Mye Coin">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+              <div>
+                <p class="mb-0 fw-semibold small">1000 Mye Coin</p>
+                <p class="mb-0 package-price small">1.000.000 VNĐ</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-warning text-white" onclick="location.href='Thong_tin_giao_dich.html?coin=1000&price=1000000'">Mua</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="package-card h-100">
+            <img src="../assets/images/MyE_Coin/Chon_goi_nap/2000_MYE_COIN.png" alt="2000 Mye Coin">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+              <div>
+                <p class="mb-0 fw-semibold small">2000 Mye Coin</p>
+                <p class="mb-0 package-price small">2.000.000 VNĐ</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-warning text-white" onclick="location.href='Thong_tin_giao_dich.html?coin=2000&price=2000000'">Mua</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="package-card h-100">
+            <img src="../assets/images/MyE_Coin/Chon_goi_nap/5000_MYE_COIN.png" alt="5000 Mye Coin">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+              <div>
+                <p class="mb-0 fw-semibold small">5000 Mye Coin</p>
+                <p class="mb-0 package-price small">5.000.000 VNĐ</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-warning text-white" onclick="location.href='Thong_tin_giao_dich.html?coin=5000&price=5000000'">Mua</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="package-card h-100">
+            <img src="../assets/images/MyE_Coin/Chon_goi_nap/10000_MYE_COIN.png" alt="10.000 Mye Coin">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+              <div>
+                <p class="mb-0 fw-semibold small">10.000 Mye Coin</p>
+                <p class="mb-0 package-price small">10.000.000 VNĐ</p>
+              </div>
+              <button type="button" class="btn btn-sm btn-warning text-white" onclick="location.href='Thong_tin_giao_dich.html?coin=10000&price=10000000'">Mua</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- Huong dan nap game -->
+      <div class="bg-white rounded-4 shadow-sm my-4 px-4 px-md-5 py-4">
+        <h1 class="section-title fs-3 my-2">HƯỚNG DẪN NẠP GAME</h1>
+        <div class="row g-4 bg-white">
+          <div class="col-md-6 d-flex flex-column gap-3">
+            <div class="d-flex align-items-center">
+              <span class="guide-step-num">1</span>
+              <p class="mb-0 ms-3 small">Chọn hình thức nạp phù hợp.</p>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="guide-step-num">2</span>
+              <p class="mb-0 ms-3 small">Chọn gói Mye Coin muốn nạp.</p>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="guide-step-num">3</span>
+              <p class="mb-0 ms-3 small">Thanh toán theo hướng dẫn.</p>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex flex-column gap-3">
+            <div class="d-flex align-items-center">
+              <span class="guide-step-num">4</span>
+              <p class="mb-0 ms-3 small">MyE Coin sẽ được cộng vào tài khoản ngay sau khi giao dịch thanh toán thành công.</p>
+            </div>
+            <div class="d-flex align-items-start">
+              <span class="guide-step-num">5</span>
+              <p class="mb-0 ms-3 small">Sử dụng MyE Coin:<br>Đăng nhập vào app game.<br>Chọn mua gói vật phẩm mong muốn trong game.<br>MyE Coin sẽ tự động được trừ ngay khi bấm xác nhận mua trong game.</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-4 text-primary">
+          <i class="fa-solid fa-lock"></i>
+          <p class="mb-0 small">Giao dịch an toàn, bảo mật và được xử lý tự động 24/7.</p>
+        </div>
+      </div>
+
+      <div class="position-relative bg-white shadow-sm rounded-4 my-4 py-4 px-3">
+        <div class="row g-4">
+          <div class="col-md-4 d-flex align-items-start gap-2">
+            <span class="trust-icon trust-icon-blue"><i class="fa-solid fa-shield"></i></span>
+            <div>
+              <p class="mb-0 fw-semibold small text-primary">An toàn &amp; Bảo mật</p>
+              <p class="mb-0 small">Giao dịch được mã hoá, thông tin của bạn luôn được bảo vệ</p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex align-items-start gap-2">
+            <span class="trust-icon trust-icon-orange"><i class="fa-solid fa-clock"></i></span>
+            <div>
+              <p class="mb-0 fw-semibold small text-warning">Nạp tự động 24/7</p>
+              <p class="mb-0 small">Thanh toán thành công, MyE Coin sẽ được cộng ngay vào tài khoản.</p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex align-items-start gap-2">
+            <span class="trust-icon trust-icon-green"><i class="fa-solid fa-headset"></i></span>
+            <div>
+              <p class="mb-0 fw-semibold small text-success">Hỗ trợ nhanh chóng</p>
+              <p class="mb-0 small">Email: hotro@mye.vn<br>Hotline: 0902 500 198</p>
+            </div>
+          </div>
+        </div>
+        <img src="../assets/images/MyE_Coin/girlMye.png" alt="MyE girl" class="trust-mascot d-none d-md-block">
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/MyE_Coin.js"></script>
+</body>
+</html>

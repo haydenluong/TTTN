@@ -1,0 +1,215 @@
+.profile-banner {
+  background: url('../images/tai_khoan/bannerdautrang.png') center / cover no-repeat;
+}
+
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #34c9ce;
+  font-size: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-meta-icon {
+  width: 16px;
+  text-align: center;
+}
+
+.btn-profile-tab {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+.btn-profile-tab.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.security-ring {
+  width: 130px;
+  height: 130px;
+}
+
+.info-card {
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-row {
+  border-bottom: 1px solid #eee;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row .info-icon {
+  width: 20px;
+  color: #093a88;
+}
+
+.info-row .info-label {
+  color: #093a88;
+  font-weight: 600;
+}
+
+.info-row .info-value {
+  color: #555;
+}
+
+.badge-incomplete {
+  color: #ff7900;
+  font-size: 0.85rem;
+}
+
+.chevron-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #093a88;
+  color: #093a88;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sync-account-box {
+  border: 1px solid #eee;
+  border-radius: 12px;
+}
+
+.linked-provider-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.linked-provider-icon.provider-facebook {
+  background: #1877f2;
+  color: #fff;
+}
+
+.linked-provider-icon.provider-google {
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.mye-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #e9eef5;
+  color: #6c7a91;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.badge-not-synced {
+  background: #ffd9d9;
+  color: #d94848;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  padding: 4px 14px;
+}
+
+.badge-synced {
+  background: #d7f2df;
+  color: #2e9e52;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  padding: 4px 14px;
+}
+
+.badge-unavailable {
+  background: #e6e6e6;
+  color: #6c757d;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  padding: 4px 14px;
+}
+
+.sync-native-banner {
+  background: #fdf3d7;
+  color: #6b5f3e;
+  border-radius: 12px;
+}
+
+.sync-native-banner i {
+  font-size: 1.1rem;
+}
+
+.activity-revoke-box {
+  border: 1px solid #eee;
+  border-radius: 12px;
+}
+
+.activity-table th {
+  color: #093a88;
+  font-weight: 600;
+  border-bottom: 2px solid #ff7900;
+  font-size: 0.85rem;
+}
+
+.activity-table td {
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.sync-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sync-divider::before,
+.sync-divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px dashed #ccc;
+}
+
+.sync-success-banner {
+  background: #eaf7ee;
+  color: #2e9e52;
+  border-radius: 12px;
+}
+
+.sync-success-banner i {
+  font-size: 1.1rem;
+}
+
+.chevron-btn {
+  background: none;
+  cursor: pointer;
+}
+
+.chevron-btn.open i {
+  transform: rotate(90deg);
+}
+
+.chevron-btn i {
+  transition: transform 0.2s ease;
+}
+
+.btn-sync-confirm {
+  background: #093a88;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-sync-confirm:hover {
+  background: #072c68;
+  color: #fff;
+}

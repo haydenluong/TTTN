@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Tài Khoản - MyE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="../assets/css/components.css" rel="stylesheet">
+  <link href="../assets/css/Quan_ly_tai_khoan.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background: #fff; }
+  </style>
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <main>
+    <section class="profile-banner py-5">
+      <div class="container d-flex flex-wrap align-items-center justify-content-between gap-4" style="max-width: 1080px;">
+        <div class="d-flex align-items-center gap-4">
+          <span class="profile-avatar">😝</span>
+          <div class="text-white">
+            <h2 class="fw-bold mb-2">Nguyễn Văn A</h2>
+            <p class="mb-1 small"><i class="bi bi-person-fill profile-meta-icon"></i> Tài khoản: fb.112314335</p>
+            <p class="mb-1 small"><i class="bi bi-lock-fill profile-meta-icon"></i> MYE ID: 1123123214</p>
+            <p class="mb-0 small"><i class="bi bi-calendar-fill profile-meta-icon"></i> Ngày tạo tài khoản: 19/06/2026</p>
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-profile-tab active btn-sm px-3">Tài khoản</button>
+          <button type="button" class="btn btn-profile-tab btn-sm px-3">Bảo mật</button>
+          <button type="button" class="btn btn-profile-tab btn-sm px-3">Lịch sử giao dịch</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="container py-5" style="max-width: 1080px;">
+
+      <div class="d-flex align-items-center gap-4 mb-5">
+        <img src="../assets/images/tai_khoan/20_percent.png" alt="20%" class="security-ring">
+        <div>
+          <h3 class="fw-bold mb-1">Mức độ bảo mật</h3>
+          <p class="mb-0 text-muted small">Tài khoản của bạn hiện tại có thể bị đe dọa bảo mật. Hãy hoàn thiện các thông tin bên dưới.</p>
+        </div>
+      </div>
+
+      <h2 class="fw-bold mb-2">Thông tin tài khoản</h2>
+      <p class="text-muted small mb-4">Bạn có thể cập nhật Hồ sơ Công khai của mình tại đây và thông tin sẽ tự động đồng bộ tất cả các tài khoản Game đã được kết nối.</p>
+
+      <div class="info-card bg-white p-4 mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div class="d-flex align-items-center gap-3">
+            <span class="profile-avatar-sm">😝</span>
+            <div>
+              <h4 class="fw-bold mb-0">Thông tin cá nhân</h4>
+              <span class="badge-incomplete">Chưa hoàn thiện</span>
+            </div>
+          </div>
+          <div id="personal-info-view-actions">
+            <button type="button" id="personal-info-edit-btn" class="btn btn-outline-warning btn-sm">Chỉnh Sửa</button>
+          </div>
+          <div id="personal-info-edit-actions" class="d-none gap-2">
+            <button type="button" id="personal-info-cancel-btn" class="btn btn-outline-primary btn-sm">HỦY</button>
+            <button type="button" id="personal-info-save-btn" class="btn btn-warning btn-sm text-white">LƯU</button>
+          </div>
+        </div>
+
+        <div class="row info-row align-items-center py-3">
+          <div class="col-md-4 d-flex align-items-center gap-2">
+            <i class="bi bi-person-fill info-icon"></i>
+            <span class="info-label">Họ và tên</span>
+          </div>
+          <div class="col-md-8">
+            <span class="info-value personal-info-view" id="view-fullname">Nguyễn Văn A</span>
+            <input type="text" class="form-control d-none personal-info-edit" id="edit-fullname" value="Nguyễn Văn A">
+          </div>
+        </div>
+        <div class="row info-row align-items-center py-3">
+          <div class="col-md-4 d-flex align-items-center gap-2">
+            <i class="bi bi-people-fill info-icon"></i>
+            <span class="info-label">Giới tính</span>
+          </div>
+          <div class="col-md-8">
+            <span class="info-value personal-info-view" id="view-gender">Nam</span>
+            <select class="form-select d-none personal-info-edit" id="edit-gender">
+              <option value="Nam" selected>Nam</option>
+              <option value="Nữ">Nữ</option>
+              <option value="Khác">Khác</option>
+            </select>
+          </div>
+        </div>
+        <div class="row info-row align-items-center py-3">
+          <div class="col-md-4 d-flex align-items-center gap-2">
+            <i class="bi bi-calendar-fill info-icon"></i>
+            <span class="info-label">Ngày sinh</span>
+          </div>
+          <div class="col-md-8">
+            <span class="info-value personal-info-view" id="view-birthdate">01/01/1999</span>
+            <input type="date" class="form-control d-none personal-info-edit" id="edit-birthdate" value="1999-01-01">
+          </div>
+        </div>
+        <div class="row info-row align-items-center py-3">
+          <div class="col-md-4 d-flex align-items-center gap-2">
+            <i class="bi bi-geo-alt-fill info-icon"></i>
+            <span class="info-label">Địa chỉ</span>
+          </div>
+          <div class="col-md-8">
+            <span class="info-value personal-info-view" id="view-address">TP.Hồ Chí Minh</span>
+            <input type="text" class="form-control d-none personal-info-edit" id="edit-address" value="TP. Hồ Chí Minh">
+          </div>
+        </div>
+        <div class="row info-row align-items-center py-3">
+          <div class="col-md-4 d-flex align-items-center gap-2">
+            <i class="bi bi-envelope-fill info-icon"></i>
+            <span class="info-label">Email</span>
+          </div>
+          <div class="col-md-8 info-value d-flex align-items-center gap-2">
+            Gameee@gmail.com <i class="bi bi-check-circle-fill text-success"></i>
+          </div>
+        </div>
+        <div class="row info-row align-items-center py-3">
+          <div class="col-md-4 d-flex align-items-center gap-2">
+            <i class="bi bi-telephone-fill info-icon"></i>
+            <span class="info-label">Số điện thoại</span>
+          </div>
+          <div class="col-md-6 info-value d-flex align-items-center gap-2">
+            0123456789 <i class="bi bi-check-circle-fill text-success"></i>
+          </div>
+          <div class="col-md-2 text-md-end mt-2 mt-md-0">
+            <button type="button" class="btn btn-outline-warning btn-sm">Liên kết xác thực</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card bg-white p-4 mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div class="d-flex align-items-center gap-3">
+            <span class="profile-avatar-sm">😝</span>
+            <h4 class="fw-bold mb-0">Đồng bộ tài khoản</h4>
+          </div>
+          <button type="button" id="sync-toggle" class="chevron-btn"><i class="bi bi-chevron-right"></i></button>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <p class="fw-semibold mb-0">Tài khoản hiện tại</p>
+          <div class="btn-group btn-group-sm" role="group" aria-label="Demo: đổi nhà cung cấp liên kết">
+            <button type="button" class="btn btn-outline-secondary provider-switch-btn" data-provider="facebook">Facebook</button>
+            <button type="button" class="btn btn-outline-secondary provider-switch-btn" data-provider="google">Google</button>
+            <button type="button" class="btn btn-outline-secondary provider-switch-btn" data-provider="mye">MYE</button>
+          </div>
+        </div>
+
+        <div id="sync-summary" class="sync-account-box d-flex flex-wrap align-items-center justify-content-between gap-3 p-3">
+          <div class="d-flex align-items-center gap-3">
+            <span class="linked-provider-icon"></span>
+            <div>
+              <p class="mb-0 fw-semibold linked-provider-name">Nguyễn Văn A</p>
+              <p class="mb-0 text-muted small linked-provider-id">gg.01020</p>
+            </div>
+          </div>
+          <i class="bi bi-arrow-left-right text-muted"></i>
+          <div class="d-flex align-items-center gap-3">
+            <span class="mye-icon-badge"><i class="bi bi-person-fill"></i></span>
+            <p class="mb-0 text-muted">Chưa có tài khoản MYE</p>
+          </div>
+          <span class="badge-not-synced">Chưa đồng bộ</span>
+        </div>
+
+        <div id="sync-form" class="d-none">
+          <div class="sync-account-box d-flex align-items-center justify-content-between gap-3 p-3 mb-4">
+            <div class="d-flex align-items-center gap-3">
+              <span class="linked-provider-icon"></span>
+              <p class="mb-0 fw-semibold linked-provider-name">Nguyễn Văn A</p>
+            </div>
+            <p class="mb-0 text-muted small linked-provider-id">gg.01020</p>
+          </div>
+
+          <h5 class="fw-bold mb-2">Đồng bộ tài khoản MYE</h5>
+          <p class="text-muted small mb-4">Chỉ đồng bộ được tài khoản MYE chưa có dữ liệu trong Game. Sau khi đồng bộ, bạn có thể đăng nhập bằng Facebook hoặc tài khoản MYE</p>
+
+          <div class="mb-3">
+            <label class="fw-semibold mb-2">Tạo tên đăng nhập MYE</label>
+            <input type="text" id="sync-username" class="form-control" placeholder="Tối thiểu 6 kí tự">
+          </div>
+          <div class="mb-3">
+            <label class="fw-semibold mb-2">Tạo mật khẩu</label>
+            <input type="password" class="form-control" placeholder="Tối thiểu 8 kí tự">
+          </div>
+          <div class="mb-4">
+            <label class="fw-semibold mb-2">Xác nhận lại mật khẩu</label>
+            <input type="password" class="form-control" placeholder="Tối thiểu 8 kí tự">
+          </div>
+
+          <button type="button" id="sync-confirm" class="btn btn-sync-confirm w-100 py-2">Xác nhận đồng bộ</button>
+        </div>
+
+        <div id="sync-success" class="d-none">
+          <div class="sync-account-box d-flex align-items-center justify-content-between gap-3 p-3 mb-3">
+            <div class="d-flex align-items-center gap-3">
+              <span class="linked-provider-icon"></span>
+              <p class="mb-0 fw-semibold linked-provider-name">Nguyễn Văn A</p>
+            </div>
+            <p class="mb-0 text-muted small linked-provider-id">gg.01020</p>
+          </div>
+
+          <div class="sync-divider">
+            <span class="badge-synced">Đã đồng bộ</span>
+          </div>
+
+          <div class="sync-account-box d-flex align-items-center gap-3 p-3 my-3">
+            <span class="mye-icon-badge"><i class="bi bi-person-fill"></i></span>
+            <div>
+              <p class="mb-0 fw-semibold">Tài khoản MYE</p>
+              <p class="mb-0 text-muted small" id="sync-mye-username">myepro456</p>
+            </div>
+          </div>
+
+          <div class="sync-success-banner d-flex align-items-center justify-content-center gap-2 p-3">
+            <i class="bi bi-check-circle-fill"></i>
+            <p class="mb-0 small">Tài khoản đã được đồng bộ. Bạn có thể đăng nhập bằng tài khoản Facebook hoặc tài khoản MYE</p>
+          </div>
+        </div>
+
+        <div id="sync-compact-synced" class="sync-account-box d-none d-flex flex-wrap align-items-center justify-content-between gap-3 p-3">
+          <div class="d-flex align-items-center gap-3">
+            <span class="linked-provider-icon"></span>
+            <div>
+              <p class="mb-0 fw-semibold linked-provider-name">Nguyễn Văn A</p>
+              <p class="mb-0 text-muted small linked-provider-id">gg.01020</p>
+            </div>
+          </div>
+          <i class="bi bi-arrow-left-right text-muted"></i>
+          <div class="d-flex align-items-center gap-3">
+            <span class="mye-icon-badge"><i class="bi bi-person-fill"></i></span>
+            <div>
+              <p class="mb-0 fw-semibold">Tài khoản MYE</p>
+              <p class="mb-0 text-muted small" id="sync-mye-username-compact">myepro456</p>
+            </div>
+          </div>
+          <span class="badge-synced">Đã đồng bộ</span>
+        </div>
+
+        <div id="sync-native-collapsed" class="d-none">
+          <div class="sync-account-box d-flex align-items-center justify-content-between gap-3 p-3">
+            <div class="d-flex align-items-center gap-3">
+              <span class="mye-icon-badge"><i class="bi bi-person-fill"></i></span>
+              <p class="mb-0 fw-semibold">Tài khoản MYE</p>
+            </div>
+            <p class="mb-0 text-muted small">myepro1123</p>
+          </div>
+        </div>
+
+        <div id="sync-native-expanded" class="d-none">
+          <div class="sync-account-box d-flex align-items-center justify-content-between gap-3 p-3 mb-3">
+            <div class="d-flex align-items-center gap-3">
+              <span class="mye-icon-badge"><i class="bi bi-person-fill"></i></span>
+              <p class="mb-0 fw-semibold">Tài khoản MYE</p>
+            </div>
+            <p class="mb-0 text-muted small">myepro1123</p>
+          </div>
+          <div class="sync-native-banner d-flex align-items-center justify-content-center gap-2 p-3">
+            <i class="bi bi-info-circle-fill"></i>
+            <p class="mb-0 small">Tính năng đồng bộ chỉ khả dụng với tài khoản đăng nhập gốc được tạo qua Facebook hoặc Google</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card bg-white p-4 mb-4">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center gap-3">
+            <span class="profile-avatar-sm">😝</span>
+            <h4 class="fw-bold mb-0">Lịch sử hoạt động</h4>
+          </div>
+          <button type="button" id="activity-toggle" class="chevron-btn"><i class="bi bi-chevron-right"></i></button>
+        </div>
+
+        <div id="activity-panel" class="d-none mt-4">
+          <h5 class="fw-bold mb-1">Gỡ tất cả các phiên đăng nhập đã lưu</h5>
+          <p class="text-muted small mb-3">Tăng cường kiểm soát và bảo vệ tài khoản của bạn</p>
+
+          <div class="activity-revoke-box d-flex flex-wrap align-items-center justify-content-between gap-3 p-3 mb-4">
+            <div>
+              <p class="mb-0 fw-semibold">Khi thực hiện thao tác này, các thiết bị đang đăng nhập sẽ bị đăng xuất.</p>
+              <p class="mb-2 fw-semibold">Bạn sẽ cần phải đăng nhập lại.</p>
+              <p class="mb-0 text-muted small">Lưu ý: Để đảm bảo an toàn tài khoản, vui lòng thay đổi mật khẩu trước khi tiến hành gỡ toàn bộ các phiên đăng nhập trên mọi thiết bị.</p>
+            </div>
+            <button type="button" class="btn btn-outline-warning btn-sm text-nowrap">Gỡ tất cả</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table activity-table">
+              <thead>
+                <tr>
+                  <th>Thời gian</th>
+                  <th>Hoạt động</th>
+                  <th>Thiết bị</th>
+                  <th>IP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-muted small"><i class="bi bi-clock me-1"></i>02/06/2026 08:53:18</td>
+                  <td>Kích hoạt tài khoản</td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="bi bi-browser-chrome text-warning"></i>
+                      <div>
+                        <p class="mb-0 fw-semibold small">Chrome Mobile</p>
+                        <p class="mb-0 text-muted" style="font-size: 0.75rem;">Mobile</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-muted small">210.86.237.19</td>
+                </tr>
+                <tr>
+                  <td class="text-muted small"><i class="bi bi-clock me-1"></i>02/06/2026 08:52:18</td>
+                  <td>Cập nhật thông tin tài khoản</td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <i class="bi bi-browser-safari text-primary"></i>
+                      <div>
+                        <p class="mb-0 fw-semibold small">Safari</p>
+                        <p class="mb-0 text-muted" style="font-size: 0.75rem;">Macbook</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-muted small">210.86.237.19</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/Quan_ly_tai_khoan.js"></script>
+</body>
+</html>

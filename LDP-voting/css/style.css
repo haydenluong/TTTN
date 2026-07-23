@@ -1,0 +1,1663 @@
+/* ===================================================================
+   CUSTOM CSS — only what Bootstrap cannot do.
+   Layout, spacing, grid, flex → Bootstrap classes in the HTML.
+=================================================================== */
+
+html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  background: #0a0020;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ---- PAGE WRAPPER ---- */
+.page-wrapper {
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  background-image: url('../assets/img/bg-trang-voting.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+/* ---- HEADER ---- */
+.site-header {
+  position: relative;
+  z-index: 100;
+  background-color: #8A008F; /* Figma: r:0.541 g:0 b:0.561 */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.hdr-iconapp {
+  height: 76px;
+  width: auto;
+  margin-left: 19.48%; /* Figma: x:374 / 1920 */
+  flex-shrink: 0;
+}
+
+/* Large game logo pokes above header into hero area */
+.hdr-logo-game {
+  position: absolute;
+  left: 37.92%; /* Figma: x:728 / 1920 */
+  top: -100px;
+  width: 24.22%; /* Figma: w:465 / 1920 */
+  max-width: 465px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hdr-right {
+  position: absolute;
+  right: 1.5%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hdr-icon {
+  color: #fff;
+  font-size: 32px;
+  text-decoration: none;
+  line-height: 1;
+  display: block;
+}
+
+.hdr-login img {
+  height: 51px;
+  width: auto;
+  display: block;
+}
+
+/* ---- HERO ---- */
+.section-hero {
+  /* y:346 to y:1069 relative to page, hero starts at header bottom y:80 */
+  padding-top: 13.85%; /* (346-80)/1920 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.hero-text-img {
+  width: 39.06%; /* Figma: 750/1920 */
+  max-width: 750px;
+}
+
+.vote-btn-link {
+  display: block;
+  position: relative;
+  width: 14.27%; /* Figma: 274/1920 */
+  max-width: 274px;
+  margin-top: 1.5%;
+}
+
+.vote-btn-img { width: 100%; display: block; }
+
+.vote-btn-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(14px, 1.67vw, 32px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* ---- SECTION NAV TABS ---- */
+.section-nav-area {
+  margin-top: 3%;
+  position: relative;
+}
+
+.section-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 16.56%; /* roughly center 4 tabs matching Figma spread */
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-tab {
+  position: relative;
+  width: 246px;
+  height: 89px;
+  text-decoration: none;
+  flex-shrink: 0;
+  background-image: url('../assets/img/btn-nav.png');
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-tab span {
+  color: #fff;
+  font-weight: 700;
+  font-size: 22px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.section-header-img {
+  width: 74.95%; /* Figma: 1439/1920 */
+  margin: -30px auto 0; /* overlap with tab bottom edge */
+  display: block;
+}
+
+/* ---- SECTION CONTENT COMMON ---- */
+.section-content {
+  padding: 3% 0 2%;
+
+
+}
+
+#bxh {  margin-top: -4%; }
+
+.section-title-wrap {
+  text-align: center;
+  margin-bottom: 2%;
+  position: relative;
+}
+
+.section-title-wrap::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 200%;
+  background: radial-gradient(closest-side, rgba(138, 0, 143, 0.45), transparent 70%);
+  filter: blur(20px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.section-title-img {
+  width: 31.25%; /* Figma: 600/1920 */
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- FILTER BAR ---- */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 2%;
+  padding: 0 15.625%; /* Figma: 300/1920 */
+  flex-wrap: wrap;
+}
+
+.filter-select,
+.filter-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter-select { width: 300px; }
+.filter-search { width: 350px; }
+
+.filter-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.filter-label {
+  position: absolute;
+  left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.filter-native-select {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.filter-caret {
+  position: absolute;
+  right: 20px;
+  color: #D9D9D9;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.filter-search-icon {
+  position: absolute;
+  right: 14px;
+  color: #1F46B4;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.filter-search-input {
+  position: absolute;
+  left: 32px;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  z-index: 2;
+}
+
+.filter-search-input::placeholder {
+  color: #1F46B4; /* Figma: matches search icon blue */
+  opacity: 1;
+}
+
+.filter-native-select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* ---- CANDIDATE CARDS GRID ---- */
+/* Figma: 3 cols × 430px, 15px gap, starts at x:301, total 1320px */
+.candidates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 1320px;
+  margin: 0 auto 2%;
+  padding: 0 15px;
+}
+
+.candidate-card {
+  position: relative;
+  width: 100%;
+  background-image: url('../assets/img/card-bg.png');
+  background-size: 100% 100%;
+  aspect-ratio: 430 / 327;
+}
+
+/* Bottom info bar overlay (~y:206/327 = 63%) */
+.card-rank-area {
+  position: absolute;
+  left: 4%; /* Figma: x:10/430 */
+  top: 63%; /* Figma: y:206/327 */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 44%; /* prevent overlap with card-vote-area on narrow cards */
+  overflow: hidden;
+}
+
+.card-rank-badge {
+  width: 6.28%; /* Figma: w:27/430 */
+  min-width: 20px;
+  height: auto;
+}
+
+.card-rank-num {
+  font-size: clamp(12px, 1.15vw, 22px);
+  font-weight: 600;
+  color: #fff;
+}
+
+.card-vote-area {
+  position: absolute;
+  right: 4%; /* Figma: (430-386-26)/430 */
+  top: 63%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 44%; /* prevent overlap with card-rank-area on narrow cards */
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.card-vote-count {
+  font-size: clamp(12px, 1.25vw, 24px);
+  font-weight: 600;
+  color: #fff;
+}
+
+.card-flower-icon {
+  width: 6.05%; /* Figma: w:26/430 */
+  min-width: 18px;
+  height: auto;
+}
+
+.card-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 79.2%; /* Figma: y:259/327 */
+  padding: 0 4%;
+}
+
+.card-name {
+  font-size: clamp(11px, 1.25vw, 24px);
+  font-weight: 700;
+  color: #FFE779; /* Figma: fill_eb201742 */
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-server {
+  font-size: clamp(10px, 0.83vw, 16px);
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+/* ---- PAGINATION ---- */
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 2% 0 1%;
+  flex-wrap: wrap;
+}
+
+.pag-btn {
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  background-size: 100% 100%;
+}
+
+.pag-sm {
+  background-image: url('../assets/img/btn-page-sm.png');
+  width: 100px;
+  height: 44px;
+}
+
+.pag-lg {
+  background-image: url('../assets/img/btn-page-lg.png');
+  width: 154px;
+  height: 44px;
+}
+
+.pag-active {
+  background-image: url('../assets/img/btn-page-active.png');
+  width: 44px;
+  height: 44px;
+  box-shadow: 0px 0px 10px 0px rgba(153, 213, 255, 1),
+              inset 0px 0px 5px 0px rgba(255, 255, 255, 1);
+}
+
+.pag-norm {
+  background-image: url('../assets/img/btn-page-active.png');
+  width: 44px;
+  height: 44px;
+  opacity: 0.55;
+}
+
+/* ---- TÍCH LŨY ---- */
+.tl-summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1%;
+}
+
+.tl-label {
+  font-size: clamp(18px, 1.67vw, 32px);
+  font-weight: 700;
+  color: #fff;
+}
+
+.tl-count {
+  font-size: clamp(22px, 2.08vw, 40px);
+  font-weight: 700;
+  color: #FFE779;
+}
+
+/* Milestones sit above the progress bar, overlapping it */
+.tl-progress-section {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 7.8125%; /* (150/1920) to match bar x:300 on 1920px */
+  position: relative;
+}
+
+.tl-milestones-row {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  z-index: 2;
+  /* Figma: milestones y:2904, bar y:2957 → overlap 53px below milestone top */
+  margin-bottom: -50px;
+}
+
+.tl-milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 252px;
+}
+
+.tl-milestone img {
+  width: 100%;
+  aspect-ratio: 252 / 168;
+  object-fit: cover;
+}
+
+.tl-milestone span {
+  font-size: clamp(14px, 1.67vw, 32px);
+  font-weight: 700;
+  color: #fff;
+  margin-top: 6px;
+}
+
+.tl-bar-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.tl-bar-img {
+  width: 100%;
+  aspect-ratio: 1320 / 74;
+}
+
+/* Gift boxes grid aligned under milestones */
+.gift-grid {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1320px;
+  margin: 2% auto 0;
+  padding: 0 7.8125%;
+  gap: 16px;
+}
+
+.gift-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 250px;
+  gap: 12px;
+}
+
+.gift-box {
+  position: relative;
+  width: 100%;
+}
+
+.gift-box > img {
+  width: 100%;
+  aspect-ratio: 209 / 249;
+  display: block;
+}
+
+/* 2×2 slot grid inside gift box */
+.gift-slots {
+  position: absolute;
+  top: 21.3%; /* Figma: (3192-3139)/249 */
+  left: 12.9%; /* Figma: (401-374)/209 */
+  right: 12.4%; /* mirror */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.8%; /* Figma: 8px gap / 209 */
+  height: 55%;
+}
+
+.slot {
+  background: #D9D9D9;
+  border-radius: 2px;
+}
+
+.btn-nhan {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+}
+
+.btn-nhan img {
+  width: 100%;
+  aspect-ratio: 250 / 75;
+  display: block;
+}
+
+/* ---- BXH ---- */
+.bxh-wrap {
+  max-width: 1620px;
+  margin: 0 auto;
+  padding: 0 7.8125%; /* Figma: x:150 / 1920 */
+}
+
+.bxh-subtabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 1%;
+}
+
+/* Figma: 312×84 button with image background */
+.btn-bxh-tab {
+  position: relative;
+  width: 312px;
+  height: 84px;
+  text-decoration: none;
+  flex-shrink: 0;
+  background-image: url('../assets/img/btn-bxh-tab.png');
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-bxh-tab span {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+
+/* bxh-frame: sized by content (bxh-content); border-layer is purely decorative */
+.bxh-frame {
+  position: relative;
+}
+
+/* 9-slice border-image so corners never distort as row count changes.
+   Measured from khung-bxh-6fac34.png (1620×864):
+   - neon glow peaks at ~90px from each edge, corner detail extends to ~130px
+   - slice=130 captures full corner + some glow fade on each side            */
+.bxh-border-layer {
+  position: absolute;
+  inset: 0;
+  border-width: 130px;
+  border-style: solid;
+  border-color: transparent;
+  border-image: url('../assets/img/khung-bxh-6fac34.png') 130 fill / 130px stretch;
+  mix-blend-mode: screen; /* dark interior → transparent; neon glow stays visible */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* content in normal flow — its height drives the wrapper height */
+.bxh-content {
+  position: relative;
+  z-index: 1;
+  /* Figma: header row starts 181px from visible frame top, 210px from left/right
+     As % of frame width (1620px): 181/1620=11.2% top, 210/1620=13% sides      */
+  padding: 1% 13% 6%;
+}
+
+/* Figma: HẠNG / TÊN NHÂN VẬT / MÁY CHỦ / HOA NHẬN */
+.bxh-thead,
+.bxh-row {
+  display: grid;
+  grid-template-columns: 20% 30% 27% 23%;
+  align-items: center;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.bxh-thead {
+  background: rgba(31, 70, 180, 0.70); /* Figma: fill_e8b66ae5 opacity 0.7 */
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.bxh-thead span {
+  font-size: clamp(13px, 1.04vw, 20px);
+  font-weight: 700;
+  color: #fff;
+}
+
+.bxh-row {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bxh-rank img {
+  height: 55px;
+  width: auto;
+  max-width: 80px;
+}
+
+.bxh-rank-num {
+  font-size: clamp(18px, 1.67vw, 32px);
+  font-weight: 700;
+  color: #fff;
+}
+
+.bxh-name,
+.bxh-server,
+.bxh-flowers {
+  font-size: clamp(13px, 1.25vw, 24px);
+  font-weight: 500;
+  color: #fff;
+}
+
+/* ---- MODAL HƯỚNG DẪN ---- */
+/* Figma: popup 1027×681, exit btn at x:890/1027≈86.7% y:99/681≈14.5% */
+.modal-huong-dan-dialog {
+  max-width: 1027px;
+  width: 90vw;
+}
+
+.modal-huong-dan-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.modal-huong-dan-popup {
+  position: relative;
+  width: 100%;
+}
+
+.popup-hd-img {
+  width: 100%;
+  aspect-ratio: 1027 / 681;
+  display: block;
+}
+
+.popup-hd-close {
+  position: absolute;
+  top: 14.5%;   /* Figma: y:99/681 */
+  left: 86.7%;  /* Figma: x:890/1027 */
+  width: 4.87%; /* Figma: w:50/1027 */
+  min-width: 32px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.popup-hd-close img {
+  width: 100%;
+  display: block;
+}
+
+/* ---- MODAL HOA FREE ---- */
+/* Figma frame: 1020×681; bg rect: 1027×681 at x:-3 (overflows 3px left) */
+.modal-hf-dialog {
+  max-width: 1020px;
+  width: 90vw;
+}
+
+.modal-hf-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.popup-hf {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1020 / 681;
+  overflow: hidden;
+}
+
+.popup-hf-bg {
+  position: absolute;
+  left: -0.29%;   /* Figma: x:-3/1020 */
+  top: 0;
+  width: 100.69%; /* Figma: w:1027/1020 */
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Figma: row x:143/1020=14.02%, w:734/1020=71.96%, h:77/681=11.31% */
+.popup-hf-row {
+  position: absolute;
+  left: 14.02%;
+  width: 71.96%;
+  height: 11.31%;
+}
+
+.popup-hf-row-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Figma: text at x:199/1020, vertically centred in 77px row */
+.popup-hf-label {
+  position: absolute;
+  left: 7.63%; /* (199-143)/734 */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(9px, 1.04vw, 20px);
+  white-space: nowrap;
+}
+
+/* Figma: btn x:653, w:200, h:60 relative to popup; within row: left=(653-143)/734=69.48%, top=(145-136)/77=11.69% */
+.popup-hf-nhan {
+  position: absolute;
+  left: 69.48%;
+  top: 11.69%;
+  width: 27.25%; /* 200/734 */
+  height: 77.92%; /* 60/77 */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.popup-hf-nhan img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Figma exit: x:889/1020=87.16%, y:98/681=14.39%, w:50/1020=4.9% */
+.popup-hf-close {
+  position: absolute;
+  left: 87.16%;
+  top: 14.39%;
+  width: 4.9%;
+  min-width: 28px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  z-index: 2;
+}
+
+.popup-hf-close img {
+  width: 100%;
+  display: block;
+}
+
+/* ---- MODAL THÔNG TIN THÍ SINH ---- */
+/* Figma: popup 1200×700 */
+.modal-profile-dialog {
+  max-width: 1200px;
+  width: 92vw;
+}
+
+.modal-profile-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.popup-profile {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200 / 700;
+  overflow: hidden;
+}
+
+.popup-profile-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Figma: large photo x:93/1200=7.75%, y:126/700=18%, w:507/1200=42.25%, h:319/700=45.57% */
+.pp-photo-main {
+  position: absolute;
+  left: 7.75%;
+  top: 18%;
+  width: 42.25%;
+  height: 45.57%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Figma: small photos y:453/700=64.71%, h:120/700=17.14%, w:167/1200=13.92% */
+.pp-photo-sm {
+  position: absolute;
+  top: 64.71%;
+  width: 13.92%;
+  height: 17.14%;
+  object-fit: cover;
+  display: block;
+}
+.pp-photo-sm-1 { left: 7.75%; }   /* x:93/1200 */
+.pp-photo-sm-2 { left: 22%; }     /* x:264/1200 */
+.pp-photo-sm-3 { left: 36.25%; }  /* x:435/1200 */
+
+/* Figma: italic note x:185/1200=15.42%, y:581/700=83% */
+.pp-note {
+  position: absolute;
+  left: 15.42%;
+  top: 83%;
+  color: #fff;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(7px, 1.33vw, 16px);
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Text fields (right panel, fontSize:16) */
+.pp-field {
+  position: absolute;
+  color: #fff;
+  font-size: clamp(7px, 1.33vw, 16px);
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+  z-index: 1;
+}
+.pp-val { font-weight: 600; color: #FFE779; }
+
+/* Figma positions */
+.pp-nv      { left: 52.33%; top: 19.43%; }  /* x:628, y:136 */
+.pp-sbd     { left: 74.25%; top: 19.43%; }  /* x:891, y:136 */
+.pp-bang    { left: 52.33%; top: 24.57%; }  /* x:628, y:172 */
+.pp-may     { left: 52.33%; top: 29.71%; }  /* x:628, y:208 */
+.pp-lgt-label { left: 52.33%; top: 34.86%; font-weight: 600; }
+
+.pp-intro {
+  position: absolute;
+  left: 52.33%;
+  top: 38.86%;
+  width: 39.17%; /* Figma: 470/1200 */
+  color: #FFE779;
+  font-size: clamp(7px, 1.33vw, 16px);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.4;
+  z-index: 1;
+}
+
+/* Flower count box: x:628/1200=52.33%, y:328/700=46.86%, w:307/1200=25.58%, h:106/700=15.14% */
+.pp-sohoa-wrap {
+  position: absolute;
+  left: 52.33%;
+  top: 46.86%;
+  width: 25.58%;
+  height: 15.14%;
+}
+.pp-sohoa-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+/* positions within box: (absolute - box_origin) / box_size */
+.pp-sohoa-label {
+  position: absolute;
+  left: 11.7%;
+  top: 9%;
+  color: #fff;
+  font-size: clamp(6px, 1.04vw, 16px);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.pp-sohoa-num {
+  position: absolute;
+  left: 10%;
+  bottom: 18%;
+  color: #fff;
+  font-size: clamp(10px, 2.67vw, 32px);
+  font-weight: 600;
+}
+.pp-sohoa-icon {
+  position: absolute;
+  left: 40%;
+  bottom: 12%;
+  width: 14%;
+  height: auto;
+}
+.pp-hang-label {
+  position: absolute;
+  left: 78%;
+  top: 9%;
+  color: #fff;
+  font-size: clamp(6px, 1.04vw, 16px);
+  font-weight: 500;
+}
+.pp-hang-num {
+  position: absolute;
+  left: 75%;
+  bottom: 18%;
+  color: #fff;
+  font-size: clamp(10px, 2.67vw, 32px);
+  font-weight: 600;
+}
+
+/* "Số hoa muốn tặng": x:628/1200=52.33%, y:450/700=64.29% */
+.pp-tang-label {
+  position: absolute;
+  left: 52.33%;
+  top: 64.29%;
+  color: #fff;
+  font-size: clamp(7px, 1.33vw, 16px);
+  font-weight: 600;
+  margin: 0;
+  z-index: 1;
+}
+
+/* Stepper: x:628/1200=52.33%, y:478/700=68.29%, w:218/1200=18.17%, h:35/700=5% */
+.pp-stepper-wrap {
+  position: absolute;
+  left: 52.33%;
+  top: 68.29%;
+  width: 18.17%;
+  height: 5%;
+}
+.pp-stepper-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+.pp-stepper-btn {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: none;
+  border: none;
+  padding: 0 4%;
+  cursor: pointer;
+  color: #fff;
+  font-size: clamp(12px, 2.67vw, 32px);
+  font-weight: 600;
+  z-index: 1;
+  line-height: 1;
+}
+.pp-stepper-minus { left: 0; }
+.pp-stepper-plus  { right: 0; }
+.pp-stepper-val {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: clamp(9px, 2vw, 24px);
+  font-weight: 600;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* MAX button: x:859/1200=71.58%, y:480/700=68.57%, w:65/1200=5.42%, h:32/700=4.57% */
+.pp-btn-max {
+  position: absolute;
+  left: 71.58%;
+  top: 68.57%;
+  width: 5.42%;
+  height: 4.57%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+.pp-btn-max img { width: 100%; height: 100%; object-fit: fill; display: block; }
+
+/* Tặng hoa button: x:628/1200=52.33%, y:537/700=76.71%, w:180/1200=15%, h:54/700=7.71% */
+.pp-btn-tang {
+  position: absolute;
+  left: 52.33%;
+  top: 76.71%;
+  width: 15%;
+  height: 7.71%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+.pp-btn-tang img { width: 100%; height: 100%; object-fit: fill; display: block; }
+
+/* LS tặng button: x:816/1200=68%, y:537/700=76.71%, w:180/1200=15%, h:54/700=7.71% */
+.pp-btn-ls {
+  position: absolute;
+  left: 68%;
+  top: 76.71%;
+  width: 15%;
+  height: 7.71%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+.pp-btn-ls img { width: 100%; height: 100%; object-fit: fill; display: block; }
+
+/* Exit: x:1090/1200=90.83%, y:93/700=13.29%, w:50/1200=4.17% */
+.pp-close {
+  position: absolute;
+  left: 90.83%;
+  top: 13.29%;
+  width: 4.17%;
+  min-width: 28px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  z-index: 2;
+}
+.pp-close img { width: 100%; display: block; }
+
+/* Cards are clickable */
+.candidate-card { cursor: pointer; }
+
+/* ---- LỊCH SỬ TẶNG OVERLAY ---- */
+.pp-history-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 3, 25, 0.72);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pp-history-box {
+  position: relative;
+  width: 60%;
+  background: linear-gradient(145deg, #0e0c2e 0%, #12103a 50%, #0c0a28 100%);
+  border: 1.5px solid rgba(0, 210, 255, 0.7);
+  box-shadow:
+    0 0 14px rgba(0, 210, 255, 0.55),
+    0 0 35px rgba(0, 210, 255, 0.15),
+    inset 0 0 30px rgba(0, 0, 60, 0.7);
+  padding-bottom: 3%;
+}
+
+/* Reuse the same corner brackets */
+.pp-history-box .pp-sc-corner { border-color: #00d4ff; }
+
+.pp-history-header {
+  background: linear-gradient(90deg, transparent 0%, #5b1fa8 20%, #7c3aed 50%, #5b1fa8 80%, transparent 100%);
+  text-align: center;
+  padding: 2.5% 0 1.8%;
+  margin-bottom: 2%;
+  position: relative;
+}
+
+.pp-history-gem {
+  display: block;
+  color: #c084fc;
+  font-size: 1.2vw;
+  line-height: 1;
+  margin-bottom: 2px;
+  text-shadow: 0 0 8px rgba(192, 132, 252, 0.9);
+}
+
+.pp-history-title {
+  color: #fff;
+  font-size: 1.4vw;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.pp-history-close {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e040fb;
+  font-size: 1.4vw;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(224, 64, 251, 0.8);
+  z-index: 2;
+}
+
+.pp-history-table {
+  width: 88%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  color: #fff;
+  font-size: 0.9vw;
+  table-layout: fixed;
+}
+
+.pp-history-table th {
+  font-weight: 700;
+  padding: 1.2% 2%;
+  text-align: left;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.pp-history-table th:nth-child(1) { width: 10%; }
+.pp-history-table th:nth-child(2) { width: 12%; }
+.pp-history-table th:nth-child(3) { width: 52%; }
+.pp-history-table th:nth-child(4) { width: 26%; }
+
+.pp-history-table td {
+  padding: 1.2% 2%;
+  background: rgba(18, 14, 70, 0.7);
+  border-top: 1px solid rgba(0, 210, 255, 0.12);
+  font-size: 0.85vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pp-history-table tbody tr:nth-child(even) td {
+  background: rgba(28, 20, 90, 0.8);
+}
+
+/* ---- TẶNG HOA SUCCESS OVERLAY ---- */
+.pp-success-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 3, 25, 0.72);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tech-frame popup matching screenshot: dark navy bg, cyan border + glow, corner brackets */
+.pp-success-box {
+  position: relative;
+  width: 46%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(145deg, #0e0c2e 0%, #12103a 50%, #0c0a28 100%);
+  border: 1.5px solid rgba(0, 210, 255, 0.7);
+  box-shadow:
+    0 0 14px rgba(0, 210, 255, 0.55),
+    0 0 35px rgba(0, 210, 255, 0.15),
+    inset 0 0 30px rgba(0, 0, 60, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6%;
+}
+
+/* Corner L-brackets */
+.pp-sc-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #00d4ff;
+  border-style: solid;
+}
+.pp-sc-tl { top: -2px;  left: -2px;  border-width: 2px 0 0 2px; }
+.pp-sc-tr { top: -2px;  right: -2px; border-width: 2px 2px 0 0; }
+.pp-sc-bl { bottom: -2px; left: -2px;  border-width: 0 0 2px 2px; }
+.pp-sc-br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+.pp-success-text {
+  color: #fff;
+  font-size: 1.6vw;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pink/magenta × — top-right, no circle, just the symbol */
+.pp-success-close {
+  position: absolute;
+  top: 8%;
+  right: 5%;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e040fb;
+  font-size: clamp(12px, 1.6vw, 22px);
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(224, 64, 251, 0.8);
+}
+
+/* ---- LỊCH SỬ TẶNG STANDALONE MODAL ---- */
+.modal-ls-dialog {
+  max-width: 580px;
+  width: 90vw;
+}
+
+.modal-ls-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.popup-ls {
+  position: relative;
+  background: linear-gradient(145deg, #0a0820 0%, #0f0c38 50%, #0a0820 100%);
+  border: 1.5px solid rgba(0, 210, 255, 0.75);
+  box-shadow:
+    0 0 14px rgba(0, 210, 255, 0.6),
+    0 0 40px rgba(0, 210, 255, 0.15),
+    inset 0 0 30px rgba(0, 0, 60, 0.6);
+  overflow: visible;
+  padding-top: 28px; /* breathing room below overflowing title image */
+}
+
+/* Title banner image — overflows above the frame top (same pattern as other popups) */
+.pls-title-img {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 62%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* HUD decorative labels */
+.pls-hud-tl {
+  position: absolute;
+  top: 4px;
+  left: 10%;
+  font-size: 6px;
+  color: rgba(0, 210, 255, 0.45);
+  letter-spacing: 0.1em;
+  font-family: monospace;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pls-hud-left {
+  position: absolute;
+  left: 6px;
+  top: 28%;
+  font-size: 6px;
+  color: rgba(0, 210, 255, 0.35);
+  letter-spacing: 0.05em;
+  font-family: monospace;
+  line-height: 1.9;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pls-hud-right {
+  position: absolute;
+  right: 6px;
+  top: 18%;
+  font-size: 6px;
+  color: rgba(0, 210, 255, 0.35);
+  font-family: monospace;
+  line-height: 1.9;
+  text-align: right;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pls-hud-br {
+  position: absolute;
+  bottom: 12%;
+  right: 7px;
+  font-size: 6px;
+  color: rgba(0, 210, 255, 0.35);
+  font-family: monospace;
+  line-height: 1.8;
+  text-align: right;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Pink × close */
+.pls-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e040fb;
+  font-size: clamp(14px, 1.8vw, 22px);
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(224, 64, 251, 0.8);
+  z-index: 10;
+}
+
+/* Table */
+.pls-table {
+  width: 88%;
+  margin: 6px auto 14px;
+  border-collapse: collapse;
+  color: #fff;
+  table-layout: fixed;
+}
+
+.pls-table th {
+  font-size: clamp(10px, 1.1vw, 15px);
+  font-weight: 700;
+  padding: 6px 6px 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.pls-table th:nth-child(1) { width: 9%;  text-align: center; }
+.pls-table th:nth-child(2) { width: 12%; }
+.pls-table th:nth-child(3) { width: 53%; text-align: center; }
+.pls-table th:nth-child(4) { width: 26%; }
+
+/* Each data row uses box.png as its background */
+.pls-table tbody tr {
+  background-image: url('../TN/box.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.pls-table td {
+  font-size: clamp(9px, 1vw, 14px);
+  padding: 8px 8px;
+  background: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pls-table td:nth-child(1) { text-align: center; }
+.pls-table td:nth-child(3) { text-align: center; }
+
+/* ---- NHẬN CODE MODAL ---- */
+.modal-nhan-dialog {
+  max-width: 520px;
+  width: 90vw;
+}
+
+.modal-nhan-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.popup-nhan {
+  position: relative;
+  background: linear-gradient(145deg, #0a0820 0%, #0f0c38 50%, #0a0820 100%);
+  border: 1.5px solid rgba(0, 210, 255, 0.75);
+  box-shadow:
+    0 0 14px rgba(0, 210, 255, 0.6),
+    0 0 40px rgba(0, 210, 255, 0.15),
+    inset 0 0 30px rgba(0, 0, 60, 0.6);
+  padding: 9% 10% 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* HUD decorative texts */
+.pn-hud-top {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  color: rgba(0, 210, 255, 0.5);
+  letter-spacing: 0.12em;
+  font-family: monospace;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.pn-hud-left {
+  position: absolute;
+  left: 6px;
+  top: 18%;
+  font-size: 6px;
+  color: rgba(0, 210, 255, 0.38);
+  letter-spacing: 0.05em;
+  font-family: monospace;
+  line-height: 1.9;
+  pointer-events: none;
+}
+
+.pn-hud-right {
+  position: absolute;
+  right: 6px;
+  top: 30%;
+  font-size: 6px;
+  color: rgba(0, 210, 255, 0.38);
+  letter-spacing: 0.05em;
+  font-family: monospace;
+  line-height: 1.9;
+  text-align: right;
+  pointer-events: none;
+}
+
+.pn-hud-br {
+  position: absolute;
+  bottom: 18%;
+  right: 8px;
+  font-size: 6px;
+  color: rgba(0, 210, 255, 0.38);
+  font-family: monospace;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* Small diamond notch at bottom-center of frame border */
+.pn-bottom-gem {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: #00d4ff;
+  text-shadow: 0 0 6px rgba(0, 210, 255, 0.9);
+  line-height: 1;
+  background: #0a0820;
+  padding: 0 3px;
+  pointer-events: none;
+}
+
+/* Pink × close */
+.pn-close {
+  position: absolute;
+  top: 7%;
+  right: 5%;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e040fb;
+  font-size: clamp(14px, 1.8vw, 24px);
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(224, 64, 251, 0.8);
+}
+
+/* Two-line message */
+.pn-msg {
+  color: #fff;
+  font-size: clamp(14px, 1.5vw, 22px);
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Code display box */
+.pn-code-box {
+  width: 84%;
+  background: #1a1260;
+  border: 1px solid rgba(90, 70, 190, 0.5);
+  border-radius: 6px;
+  padding: 9px 16px;
+  text-align: center;
+  color: #fff;
+  font-size: clamp(12px, 1.3vw, 18px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* SAO CHÉP button */
+.pn-copy-btn {
+  position: relative;
+  background: linear-gradient(90deg, #5b21b6 0%, #7c3aed 35%, #9b6ef5 50%, #7c3aed 65%, #5b21b6 100%);
+  border: none;
+  border-radius: 50px;
+  padding: 9px 28px;
+  color: #fff;
+  font-size: clamp(11px, 1.2vw, 17px);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.65), 0 0 28px rgba(124, 58, 237, 0.2);
+  overflow: hidden;
+}
+
+.pn-copy-btn::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 45%;
+  background: radial-gradient(ellipse, rgba(200, 185, 255, 0.28) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pn-deco {
+  color: rgba(210, 195, 255, 0.85);
+  font-size: 0.75em;
+  letter-spacing: 0.22em;
+  position: relative;
+  z-index: 1;
+}
+
+.pn-copy-text {
+  letter-spacing: 0.12em;
+  position: relative;
+  z-index: 1;
+}
+
+#tich-luy { margin-top: -2%}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1199px) {
+  .hdr-iconapp { margin-left: 2%; }
+  .hdr-logo-game { left: 40%; width: 20%; }
+
+  .candidates-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .section-tabs { padding: 0 2%; gap: 8px; }
+  .btn-tab { width: 200px; }
+  .btn-tab span { font-size: 18px; }
+
+  .btn-bxh-tab { width: 250px; }
+}
+
+@media (max-width: 991px) {
+  .hdr-logo-game { display: none; }
+  .section-header-img { width: 90%; }
+  .hero-text-img { width: 60%; }
+  .vote-btn-link { width: 22%; }
+
+  .bxh-subtabs { gap: 8px; }
+  .btn-bxh-tab { width: 200px; height: 70px; font-size: 13px; }
+  .btn-bxh-tab span { font-size: 13px; }
+}
+
+@media (max-width: 767px) {
+  .site-header { height: 60px; }
+  .hdr-iconapp { height: 54px; margin-left: 3%; }
+  .hdr-icon { font-size: 24px; }
+  .hdr-login img { height: 38px; }
+
+  .section-hero { padding-top: 20%; }
+  .hero-text-img { width: 80%; }
+  .vote-btn-link { width: 35%; }
+
+  .section-tabs { flex-wrap: wrap; justify-content: center; gap: 6px; padding: 0 4%; }
+  .btn-tab { width: 45%; height: 70px; }
+  .btn-tab span { font-size: 14px; }
+
+  .candidates-grid { grid-template-columns: 1fr; max-width: 430px; }
+
+  .filter-bar { flex-direction: column; align-items: center; padding: 0 4%; }
+  .filter-select, .filter-search { width: 100%; max-width: 350px; }
+
+  .tl-milestones-row { flex-wrap: wrap; justify-content: center;}
+  .tl-milestone { max-width: 45%; transform: translateY(40px);}
+
+  .gift-grid { flex-wrap: wrap; }
+  .gift-col { max-width: 45%; }
+
+  .bxh-subtabs { flex-direction: column; align-items: center; }
+  .btn-bxh-tab { width: 280px; }
+
+  .bxh-thead span { font-size: 11px; }
+  .bxh-name, .bxh-server, .bxh-flowers { font-size: 11px; }
+}
+
+@media (max-width: 480px) {
+  .candidates-grid { padding: 0 4%; }
+  .section-title-img { width: 70%; }
+  .tl-milestone { max-width: 40%; }
+  .gift-col { max-width: 40%; }
+}

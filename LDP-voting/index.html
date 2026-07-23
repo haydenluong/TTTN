@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voting – Miss Mister MG19</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <img src="assets/img/iconapp.png" class="hdr-iconapp" alt="MG19">
+    <img src="assets/img/logo-game.png" class="hdr-logo-game" alt="Hào Khí Du Hiệp">
+    <div class="hdr-right">
+      <a href="#" class="hdr-icon"><i class="bi bi-house-fill"></i></a>
+      <a href="#" class="hdr-icon"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="hdr-login"><img src="assets/img/btn-login.png" alt="Đăng Nhập"></a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="section-hero">
+    <img src="assets/img/hero-text.png" class="hero-text-img" alt="Miss Mister MG19">
+    <a href="#danh-sach" class="vote-btn-link">
+      <img src="assets/img/vote-button.png" class="vote-btn-img" alt="">
+      <span class="vote-btn-text">VOTE<br>NGAY</span>
+    </a>
+  </section>
+
+  <!-- ===== NAV TABS + SECTION HEADER ===== -->
+  <div class="section-nav-area">
+    <nav class="section-tabs">
+      <a class="btn-tab" href="#" data-bs-toggle="modal" data-bs-target="#modal-huong-dan"><span>HƯỚNG DẪN</span></a>
+      <a class="btn-tab" href="#" data-bs-toggle="modal" data-bs-target="#modal-hoa-free"><span>HOA FREE</span></a>
+      <a class="btn-tab" href="#tich-luy"><span>QUÀ TÍCH LŨY</span></a>
+      <a class="btn-tab" href="#nap-hoa"><span>NẠP HOA</span></a>
+    </nav>
+    <img src="assets/img/section-header.png" class="section-header-img" alt="">
+  </div>
+
+  <!-- ===== DANH SÁCH THÍ SINH ===== -->
+  <section id="danh-sach" class="section-content">
+    <div class="section-title-wrap">
+      <img src="assets/img/title-danhsach.png" class="section-title-img" alt="Danh Sách Thí Sinh">
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <div class="filter-select">
+        <img src="assets/img/dropdown-box.png" alt="" class="filter-bg">
+        <span class="filter-label">Sắp xếp</span>
+        <i class="bi bi-caret-down-fill filter-caret"></i>
+        <select class="filter-native-select" id="sel-sapxep">
+          <option value="">-- Chọn --</option>
+          <option value="az">Từ A đến Z</option>
+          <option value="za">Từ Z đến A</option>
+        </select>
+      </div>
+      <div class="filter-select">
+        <img src="assets/img/dropdown-box.png" alt="" class="filter-bg">
+        <span class="filter-label">Chọn giới tính</span>
+        <i class="bi bi-caret-down-fill filter-caret"></i>
+        <select class="filter-native-select" id="sel-gioitinh">
+          <option value="">-- Chọn --</option>
+          <option value="nam">Nam</option>
+          <option value="nu">Nữ</option>
+        </select>
+      </div>
+      <div class="filter-select">
+        <img src="assets/img/dropdown-box.png" alt="" class="filter-bg">
+        <span class="filter-label">Chọn máy chủ</span>
+        <i class="bi bi-caret-down-fill filter-caret"></i>
+        <select class="filter-native-select" id="sel-maychu">
+          <option value="">-- Chọn --</option>
+          <option value="s01">Server 01 - Lý Bạch</option>
+        </select>
+      </div>
+      <div class="filter-search">
+        <img src="assets/img/search-box.png" alt="" class="filter-bg">
+        <input type="text" class="filter-search-input" id="input-search-sbd" placeholder="Tìm thí sinh theo Số Báo Danh">
+        <i class="bi bi-search filter-search-icon"></i>
+      </div>
+    </div>
+
+    <!-- Cards grid: 3 × 3 -->
+    <div class="candidates-grid">
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+      <div class="candidate-card">
+        <div class="card-rank-area">
+          <img src="assets/img/rank-badge.png" class="card-rank-badge" alt="">
+          <span class="card-rank-num">999</span>
+        </div>
+        <div class="card-vote-area">
+          <span class="card-vote-count">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="card-flower-icon" alt="">
+        </div>
+        <div class="card-info">
+          <p class="card-name">Tên thí sinh - SBD 1234</p>
+          <p class="card-server">Server 01 - Lý Bạch</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-bar">
+      <a href="#" class="pag-btn pag-sm">Đầu</a>
+      <a href="#" class="pag-btn pag-lg">Trang Trước</a>
+      <a href="#" class="pag-btn pag-active">1</a>
+      <a href="#" class="pag-btn pag-norm">2</a>
+      <a href="#" class="pag-btn pag-norm">3</a>
+      <a href="#" class="pag-btn pag-lg">Trang Sau</a>
+      <a href="#" class="pag-btn pag-sm">Cuối</a>
+    </div>
+  </section>
+
+  <!-- ===== TÍCH LŨY MỐC ĐỔI QUÀ ===== -->
+  <section id="tich-luy" class="section-content">
+    <div class="section-title-wrap">
+      <img src="assets/img/title-tichluy.png" class="section-title-img" alt="Tích Lũy Mốc Đổi Quà">
+    </div>
+
+    <div class="tl-summary">
+      <span class="tl-label">Đã tích lũy</span>
+      <span class="tl-count">0</span>
+      <span class="tl-label">hoa</span>
+    </div>
+
+    <!-- Milestones + progress bar -->
+    <div class="tl-progress-section">
+      <div class="tl-milestones-row">
+        <div class="tl-milestone">
+          <img src="assets/img/flower-milestone.png" alt="">
+          <span>50 Hoa</span>
+        </div>
+        <div class="tl-milestone">
+          <img src="assets/img/flower-milestone.png" alt="">
+          <span>150 Hoa</span>
+        </div>
+        <div class="tl-milestone">
+          <img src="assets/img/flower-milestone.png" alt="">
+          <span>500 Hoa</span>
+        </div>
+        <div class="tl-milestone">
+          <img src="assets/img/flower-milestone.png" alt="">
+          <span>1000 Hoa</span>
+        </div>
+      </div>
+      <div class="tl-bar-wrap">
+        <img src="assets/img/progress-bar.png" class="tl-bar-img" alt="">
+      </div>
+    </div>
+
+    <!-- Gift boxes + NHẬN buttons -->
+    <div class="gift-grid">
+      <div class="gift-col">
+        <div class="gift-box">
+          <img src="assets/img/box-item.png" alt="">
+          <div class="gift-slots">
+            <div class="slot"></div><div class="slot"></div>
+            <div class="slot"></div><div class="slot"></div>
+          </div>
+        </div>
+        <a href="#" class="btn-nhan" data-bs-toggle="modal" data-bs-target="#modal-nhan-code"><img src="assets/img/btn-nhan.png" alt="NHẬN"></a>
+      </div>
+      <div class="gift-col">
+        <div class="gift-box">
+          <img src="assets/img/box-item.png" alt="">
+          <div class="gift-slots">
+            <div class="slot"></div><div class="slot"></div>
+            <div class="slot"></div><div class="slot"></div>
+          </div>
+        </div>
+        <a href="#" class="btn-nhan" data-bs-toggle="modal" data-bs-target="#modal-nhan-code"><img src="assets/img/btn-nhan.png" alt="NHẬN"></a>
+      </div>
+      <div class="gift-col">
+        <div class="gift-box">
+          <img src="assets/img/box-item.png" alt="">
+          <div class="gift-slots">
+            <div class="slot"></div><div class="slot"></div>
+            <div class="slot"></div><div class="slot"></div>
+          </div>
+        </div>
+        <a href="#" class="btn-nhan" data-bs-toggle="modal" data-bs-target="#modal-nhan-code"><img src="assets/img/btn-nhan.png" alt="NHẬN"></a>
+      </div>
+      <div class="gift-col">
+        <div class="gift-box">
+          <img src="assets/img/box-item.png" alt="">
+          <div class="gift-slots">
+            <div class="slot"></div><div class="slot"></div>
+            <div class="slot"></div><div class="slot"></div>
+          </div>
+        </div>
+        <a href="#" class="btn-nhan" data-bs-toggle="modal" data-bs-target="#modal-nhan-code"><img src="assets/img/btn-nhan.png" alt="NHẬN"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BẢNG XẾP HẠNG ===== -->
+  <section id="bxh" class="section-content">
+    <div class="section-title-wrap">
+      <img src="assets/img/title-bxh.png" class="section-title-img" alt="Bảng Xếp Hạng">
+    </div>
+
+    <div class="bxh-wrap">
+      <!-- Sub-tabs -->
+      <div class="bxh-subtabs">
+        <a class="btn-bxh-tab active" href="#"><span>BXH Đệ Nhất Mỹ Nhân</span></a>
+        <a class="btn-bxh-tab" href="#"><span>BXH Tuyệt Thế Mỹ Nam</span></a>
+        <a class="btn-bxh-tab" href="#"><span>BXH Phú Giáp Thiên Hạ</span></a>
+      </div>
+
+      <!-- Table: bxh-border-layer is purely decorative (absolutely positioned),
+           bxh-content is in normal flow and determines the wrapper height -->
+      <div class="bxh-frame">
+        <div class="bxh-border-layer" aria-hidden="true"></div>
+        <div class="bxh-content">
+          <div class="bxh-thead">
+            <span>HẠNG</span>
+            <span>TÊN NHÂN VẬT</span>
+            <span>MÁY CHỦ</span>
+            <span>HOA NHẬN</span>
+          </div>
+          <div class="bxh-tbody">
+            <div class="bxh-row">
+              <span class="bxh-rank"><img src="assets/img/hang1.png" alt="1"></span>
+              <span class="bxh-name">Lục Trà Bạc Hà</span>
+              <span class="bxh-server">S1 - Lý Bạch</span>
+              <span class="bxh-flowers">9999.9999</span>
+            </div>
+            <div class="bxh-row">
+              <span class="bxh-rank"><img src="assets/img/hang2.png" alt="2"></span>
+              <span class="bxh-name">Tên thí sinh</span>
+              <span class="bxh-server">S1 - Lý Bạch</span>
+              <span class="bxh-flowers">8888.8888</span>
+            </div>
+            <div class="bxh-row">
+              <span class="bxh-rank"><img src="assets/img/hang3.png" alt="3"></span>
+              <span class="bxh-name">Tên thí sinh</span>
+              <span class="bxh-server">S1 - Lý Bạch</span>
+              <span class="bxh-flowers">7777.7777</span>
+            </div>
+            <div class="bxh-row">
+              <span class="bxh-rank bxh-rank-num">4</span>
+              <span class="bxh-name">Tên thí sinh</span>
+              <span class="bxh-server">S1 - Lý Bạch</span>
+              <span class="bxh-flowers">6666.6666</span>
+            </div>
+            <div class="bxh-row">
+              <span class="bxh-rank bxh-rank-num">5</span>
+              <span class="bxh-name">Tên thí sinh</span>
+              <span class="bxh-server">S1 - Lý Bạch</span>
+              <span class="bxh-flowers">5555.5555</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- .page-wrapper -->
+
+<!-- ===== MODAL HƯỚNG DẪN ===== -->
+<div class="modal fade" id="modal-huong-dan" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-huong-dan-dialog">
+    <div class="modal-content modal-huong-dan-content">
+      <div class="modal-huong-dan-popup">
+        <img src="assets/img/popup-huong-dan.png" class="popup-hd-img" alt="Hướng Dẫn">
+        <button type="button" class="popup-hd-close" data-bs-dismiss="modal" aria-label="Đóng">
+          <img src="assets/img/exit-btn.png" alt="Đóng">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL HOA FREE ===== -->
+<div class="modal fade" id="modal-hoa-free" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-hf-dialog">
+    <div class="modal-content modal-hf-content">
+      <div class="popup-hf">
+        <img src="assets/img/popup-hoa-free.png" class="popup-hf-bg" alt="">
+
+        <div class="popup-hf-row" style="top:19.97%">
+          <img src="assets/img/row-hoa-free.png" class="popup-hf-row-bg" alt="">
+          <span class="popup-hf-label">Đăng nhập mỗi ngày: +10 hoa</span>
+          <button class="popup-hf-nhan"><img src="assets/img/btn-nhan-free.png" alt="NHẬN"></button>
+        </div>
+        <div class="popup-hf-row" style="top:33.63%">
+          <img src="assets/img/row-hoa-free.png" class="popup-hf-row-bg" alt="">
+          <span class="popup-hf-label">Share Landing: +10 hoa</span>
+          <button class="popup-hf-nhan"><img src="assets/img/btn-nhan-free.png" alt="NHẬN"></button>
+        </div>
+        <div class="popup-hf-row" style="top:47.28%">
+          <img src="assets/img/row-hoa-free.png" class="popup-hf-row-bg" alt="">
+          <span class="popup-hf-label">Like Fanpage: +10 hoa</span>
+          <button class="popup-hf-nhan"><img src="assets/img/btn-nhan-free.png" alt="NHẬN"></button>
+        </div>
+        <div class="popup-hf-row" style="top:60.94%">
+          <img src="assets/img/row-hoa-free.png" class="popup-hf-row-bg" alt="">
+          <span class="popup-hf-label">Like Post: +10 hoa</span>
+          <button class="popup-hf-nhan"><img src="assets/img/btn-nhan-free.png" alt="NHẬN"></button>
+        </div>
+        <div class="popup-hf-row" style="top:74.6%">
+          <img src="assets/img/row-hoa-free.png" class="popup-hf-row-bg" alt="">
+          <span class="popup-hf-label">Tham gia group: +10 hoa</span>
+          <button class="popup-hf-nhan"><img src="assets/img/btn-nhan-free.png" alt="NHẬN"></button>
+        </div>
+
+        <button type="button" class="popup-hf-close" data-bs-dismiss="modal" aria-label="Đóng">
+          <img src="assets/img/exit-btn.png" alt="Đóng">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL THÔNG TIN THÍ SINH ===== -->
+<div class="modal fade" id="modal-profile" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-profile-dialog">
+    <div class="modal-content modal-profile-content">
+      <div class="popup-profile">
+        <img src="assets/img/popup-profile-bg.png" class="popup-profile-bg" alt="">
+
+        <!-- Left: photos -->
+        <img src="assets/img/profile-photo-main.png" class="pp-photo-main" alt="">
+        <img src="assets/img/profile-photo-sm1.png" class="pp-photo-sm pp-photo-sm-1" alt="">
+        <img src="assets/img/profile-photo-sm2.png" class="pp-photo-sm pp-photo-sm-2" alt="">
+        <img src="assets/img/profile-photo-sm3.png" class="pp-photo-sm pp-photo-sm-3" alt="">
+        <p class="pp-note">*Bắt buộc phải đăng ký đủ 4 ảnh dự thi</p>
+
+        <!-- Right: info -->
+        <p class="pp-field pp-nv"><strong>Nhân Vật: </strong><span class="pp-val">Lục Trà Bạc Hà</span></p>
+        <p class="pp-field pp-sbd"><strong>SBD: </strong><span class="pp-val">01239</span></p>
+        <p class="pp-field pp-bang"><strong>Bang Hội: </strong><span class="pp-val">Lạc Viên</span></p>
+        <p class="pp-field pp-may"><strong>Máy Chủ: </strong><span class="pp-val">S1-Lý Bạch</span></p>
+        <p class="pp-field pp-lgt-label">Lời giới thiệu:</p>
+        <p class="pp-intro">Xin chào, mình là [Tên nhân vật]. Mình tham gia Mister để lưu giữ lại kỉ niệm và những khoảnh khắc đẹp.</p>
+
+        <!-- Flower count box -->
+        <div class="pp-sohoa-wrap">
+          <img src="assets/img/box-sohoa.png" class="pp-sohoa-bg" alt="">
+          <span class="pp-sohoa-label">Số hoa đã nhận</span>
+          <span class="pp-sohoa-num">9999</span>
+          <img src="assets/img/icon-flower-card.png" class="pp-sohoa-icon" alt="">
+          <span class="pp-hang-label">Hạng</span>
+          <span class="pp-hang-num">77</span>
+        </div>
+
+        <!-- Vote input -->
+        <p class="pp-tang-label">Số hoa muốn tặng</p>
+        <div class="pp-stepper-wrap">
+          <img src="assets/img/stepper-input.png" class="pp-stepper-bg" alt="">
+          <button class="pp-stepper-btn pp-stepper-minus">−</button>
+          <span class="pp-stepper-val">10.000</span>
+          <button class="pp-stepper-btn pp-stepper-plus">+</button>
+        </div>
+        <button class="pp-btn-max"><img src="assets/img/btn-max.png" alt="MAX"></button>
+
+        <!-- Action buttons -->
+        <button class="pp-btn-tang"><img src="assets/img/btn-tang-hoa.png" alt="Tặng Hoa"></button>
+        <button class="pp-btn-ls"><img src="assets/img/btn-ls-tang.png" alt="Lịch Sử Tặng"></button>
+
+
+        <!-- Success overlay -->
+        <div class="pp-success-overlay" id="pp-success" style="display:none">
+          <div class="pp-success-box">
+            <span class="pp-sc-corner pp-sc-tl"></span>
+            <span class="pp-sc-corner pp-sc-tr"></span>
+            <span class="pp-sc-corner pp-sc-bl"></span>
+            <span class="pp-sc-corner pp-sc-br"></span>
+            <button class="pp-success-close" id="pp-success-close">✕</button>
+            <p class="pp-success-text">ĐÃ TẶNG HOA THÀNH CÔNG</p>
+          </div>
+        </div>
+
+        <button type="button" class="pp-close" data-bs-dismiss="modal" aria-label="Đóng">
+          <img src="assets/img/exit-btn.png" alt="Đóng">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LỊCH SỬ TẶNG MODAL ===== -->
+<div class="modal fade" id="modal-ls" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-ls-dialog">
+    <div class="modal-content modal-ls-content">
+      <div class="popup-ls">
+        <span class="pp-sc-corner pp-sc-tl"></span>
+        <span class="pp-sc-corner pp-sc-tr"></span>
+        <span class="pp-sc-corner pp-sc-bl"></span>
+        <span class="pp-sc-corner pp-sc-br"></span>
+        <span class="pls-hud-tl">ANGILAYASI</span>
+        <span class="pls-hud-left">S1<br>CON<br>M<br>BANCV1</span>
+        <span class="pls-hud-right">EN<br>ENEY</span>
+        <span class="pls-hud-br">BAC<br>CO<br>BI<br>IN</span>
+        <img src="TN/buttonlstang.png" class="pls-title-img" alt="Lịch Sử Tặng">
+        <button type="button" class="pls-close" data-bs-dismiss="modal">✕</button>
+        <table class="pls-table">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Loại</th>
+              <th>Phần thưởng</th>
+              <th>Ngày</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Hoa</td><td>Đã tặng 100 hoa cho Lục Trà Bạc Hà</td><td>23/07/2026</td></tr>
+            <tr><td>2</td><td>Code</td><td>ABACA0145656</td><td>23/07/2026</td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NHẬN CODE MODAL ===== -->
+<div class="modal fade" id="modal-nhan-code" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-nhan-dialog">
+    <div class="modal-content modal-nhan-content">
+      <div class="popup-nhan">
+        <span class="pp-sc-corner pp-sc-tl"></span>
+        <span class="pp-sc-corner pp-sc-tr"></span>
+        <span class="pp-sc-corner pp-sc-bl"></span>
+        <span class="pp-sc-corner pp-sc-br"></span>
+        <span class="pn-hud-top">ANCILES1001</span>
+        <span class="pn-hud-left">S1<br>CON<br>M<br>TX<br>RANKS1</span>
+        <span class="pn-hud-right">EN<br>ENEY</span>
+        <span class="pn-hud-br">SACI</span>
+        <span class="pn-bottom-gem">◆</span>
+        <button type="button" class="pn-close" data-bs-dismiss="modal">✕</button>
+        <p class="pn-msg">Đã đạt mốc XX,<br>Code của Đại Hiệp là:</p>
+        <div class="pn-code-box" id="pn-code-text">ABACA0145656</div>
+        <button class="pn-copy-btn" id="pn-copy-btn">
+          <span class="pn-deco">◆ ·</span>
+          <span class="pn-copy-text">SAO CHÉP</span>
+          <span class="pn-deco">· ◆</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
